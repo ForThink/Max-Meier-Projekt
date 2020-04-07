@@ -4,7 +4,22 @@ const secdatpath = process.argv[3]||"./.secdat";
 const location = "./udb/";
 const {sign, verify, setup} = require("verlikify");
 setup("./.RSA");
-jables.setup({location, secDatFileLoc:secdatpath});
+jables.setup({location, secDatFileLoc:secdatpath}).then(()=>{
+    getUsers().then((users)=>{
+        const adresses = [];
+        jables.deleteVersion({location, definition: users.filter(({confirmed, joined, email})=>{
+            if(adresses.includes(email)){
+                return true;
+            }else{
+                adresses.push(email);
+            }
+            const now = Date.now();
+            const then = Date.parse(joined);
+            return !confirmed&&(joined==undefined||isNaN(then)||now-then>60*60*2*1000)
+        }).map(({uid})=>updateObject(userBase, {uid}))}).then(console.log, console.log)
+        
+    }, console.log)    
+});
 const updateObject = (original, update)=>{
     const merge = {};
     Object.keys(original).forEach((key)=>{
@@ -318,20 +333,6 @@ const getTextList = ()=>new Promise((res, rej)=>{
         res(JSON.parse(Obj).Versions.map(({id, lastChange, changedBy})=>({id, lastChange, changedBy})))
     }, rej)
 })
-getUsers().then((users)=>{
-    const adresses = [];
-    jables.deleteVersion({location, definition: users.filter(({confirmed, joined, email})=>{
-        if(adresses.includes(email)){
-            return true;
-        }else{
-            adresses.push(email);
-        }
-        const now = Date.now();
-        const then = Date.parse(joined);
-        return !confirmed&&(joined==undefined||isNaN(then)||now-then>60*60*2*1000)
-    }).map(({uid})=>updateObject(userBase, {uid}))}).then(console.log, console.log)
-    
-}, console.log)
 
 module.exports = {
     searchArray,
