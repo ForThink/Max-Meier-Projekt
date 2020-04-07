@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 499.499 499.499" style="enable-background:new 0 0 499.499 499.499;" xml:space="preserve" width="512px" height="512px" class=""><g><g>
+	<g>
+		<g>
+			<path d="M42.667,42.667H256V128h85.333v64H384V97.835L286.165,0H42.667C19.136,0,0,19.157,0,42.667v384     c0,23.531,19.136,42.667,42.667,42.667h170.667v-42.667H42.667V42.667z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#616161"/>
+			<rect x="85.333" y="192" width="170.667" height="42.667" data-original="#000000" class="active-path" data-old_color="#000000" fill="#616161"/>
+			<rect x="85.333" y="277.333" width="106.667" height="42.667" data-original="#000000" class="active-path" data-old_color="#000000" fill="#616161"/>
+			<path d="M430.229,400.064C441.408,383.189,448,363.051,448,341.333c0-58.816-47.851-106.667-106.667-106.667     c-58.816,0-106.667,47.851-106.667,106.667c0,58.816,47.851,106.667,106.667,106.667c21.717,0,41.877-6.592,58.731-17.771     l69.269,69.269l30.165-30.165L430.229,400.064z M341.333,405.333c-35.285,0-64-28.715-64-64c0-35.285,28.715-64,64-64     c35.285,0,64,28.715,64,64S376.619,405.333,341.333,405.333z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#616161"/>
+		</g>
+	</g>
+</g></g> </svg>

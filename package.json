@@ -1,0 +1,22 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "nerp",
+    "dev": "node dev.js 3000 ./.secdat"
+  },
+  "keywords": [],
+  "author": "nickveliki",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jables-multiproc": "git+https://github.com/nickveliki/jables-multiproc.git",
+    "json-web-token": "^3.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.4.5",
+    "verlikify": "git+https://github.com/nickveliki/Verlikify.git"
+  }
+}

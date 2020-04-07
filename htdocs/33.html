@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(199, 199, 199);
+  overflow: auto;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin-left: left;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  margin-left: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dot {
+  height: 150px;
+  width: 150px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot1 {
+  height: 50px;
+  width: 50px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+  display: inline-block;
+}
+.img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+@keyframes fadein {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@keyframes fadeout {
+  0% {opacity: 1;}
+  100%{opacity: 0;}
+}
+</style>
+<body>
+    <form action="/action_page.php" method="post" id="main">
+        <div class="navbar">
+            <div class="dropdown">
+                <button class="dropbtn"> 
+                    <img style="width: 40px; height: 40px;" src="img/menubar/menu.svg" class="img-fluid">
+                </button>
+                <div class="dropdown-content">
+                    <a href="10-1.html">Über uns</a>
+                    <a href="10-2.html">Hilfe</a>
+                    <a href="10-3.html">AGB</a>
+                    <a href="10-4.html">Datenschutz</a>
+                    <a id="34html" style="display: none;" href="34.html">Umgebung Leaderboard</a>
+                    <a id="35html" style="display: none;" href="35.html">Umgebung Badges</a>
+                    <a id="36html" style="display: none;" href="36.html">Umgebung Points</a>
+                </div>
+            </div> 
+            <div>
+            <a id="homebtn" href="#home"><img style="width: 40px; height: 40px;" src="img/menubar/tools-and-utensils.svg" class="tools-and-utensils"></a>
+            </div>
+            
+            <div>
+            <a href="37.html"><img style="width: 40px; height: 40px;" src="img/menubar/file.svg" class="img-fluid"></a>
+            </div>
+            
+            <div>
+            <a id="logoutbtn" href="#logout"><img style="width: 40px; height: 40px;" src="img/menubar/logout.svg" class="img-fluid"></a>
+            </div>  
+        </div>
+        <div id="apan">
+          <h1>
+            your ad here
+          </h1>
+          <button id="rmad">x</button>
+        </div>
+        <div id="contentPanel" style="display: none;">
+          <div style="text-align:center">
+            <h1>Modul 1</h1>
+            <span class="dot">
+            <img src="img/vv.jpg" class="rounded-circles" alt="Cinque Terre" width="100" height="100">
+            </span>
+        </div>
+        <div style="text-align:center">
+            <h1></h1>
+            <a span href="" class="dot1"></span></a>
+            <a span href="" class="dot1"></span></a>
+            <a span href="" class="dot1"></span></a>
+        </div>
+
+        <div style="text-align:center">
+            <h1>Modul 2</h1>
+            <span class="dot">
+            <img src="img/vv.jpg" class="rounded-circles" alt="Cinque Terre" width="100" height="100">
+            </span>
+        </div>
+        <div style="text-align:center">
+            <h1></h1>
+            <a span href="" class="dot1"></span></a>
+            <a span href="" class="dot1"></span></a>
+            <a span href="" class="dot1"></span></a>
+        </div>
+        </div>
+        
+    </form>
+  
+</body>
+
+<script type="text/javascript" src="/app_33.js"></script></html> 

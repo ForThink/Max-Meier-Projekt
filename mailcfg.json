@@ -1,0 +1,9 @@
+{
+    "host": "mail.xenonserver.de",
+    "port": 587,
+        "secure": false,
+        "auth":{
+            "user":"phil@ftt.gmbh",
+            "pass":"RucDer?Nancigca"
+        } 
+}
