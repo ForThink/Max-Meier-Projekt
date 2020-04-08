@@ -213,7 +213,7 @@ const confirm = ({uid})=>new Promise((res, rej)=>{
     rej)
 })
 const textBase = {path: "text", indexKey:"id"};
-const writeText = ({content, id, uid}) =>jables.writeDefinition({location, definition:updateObject(textBase, {id, content, lastChange: new Date().toUTCString(), changedBy: uid})})
+const writeText = ({content, id, uid, tag}) =>jables.writeDefinition({location, definition:updateObject(textBase, {tag, id, content, lastChange: new Date().toUTCString(), changedBy: uid})})
 const getText = ({id})=>id!=undefined?jables.getDefinitionProperties({location, definition: updateObject(textBase, {id})}):new Promise((res, rej)=>{
     jables.getDefinition({location, definition: textBase}).then((Obj)=>{
         res(JSON.parse(Obj).Versions);
@@ -328,9 +328,9 @@ const getActiveOrder = ()=>new Promise((res, rej)=>{
         res(Versions[searchArray("active", true, Versions).i]);
     }, rej)
 })
-const getTextList = ()=>new Promise((res, rej)=>{
+const getTextList = ({tag})=>new Promise((res, rej)=>{
     jables.getDefinition({location, definition: textBase}).then((Obj)=>{
-        res(JSON.parse(Obj).Versions.map(({id, lastChange, changedBy})=>({id, lastChange, changedBy})))
+        res(JSON.parse(Obj).Versions.filter((item)=>tag==undefined||item.tag==tag).map(({id, lastChange, changedBy})=>({id, lastChange, changedBy})))
     }, rej)
 })
 

@@ -12,8 +12,8 @@ const modulUntertitel = document.getElementById("modulUntertitel");
 const modulUntertitelInput = document.getElementById("modulUntertitelInput");
 const modulBeschreibung = document.getElementById("modulBeschreibung");
 const modulBeschreibungInput = document.getElementById("modulBeschreibungInput");
-const modulePageFill= ({titel=modulTitel.innerHTML, untertitel=modulUntertitel.innerHTML, beschreibung=modulBeschreibung.innerHTML})=>{
-    modulTitel.innerHTML=titel;
+const modulePageFill= ({title=modulTitel.innerHTML, untertitel=modulUntertitel.innerHTML, beschreibung=modulBeschreibung.innerHTML})=>{
+    modulTitel.innerHTML=title;
     modulUntertitel.innerHTML=untertitel;
     modulBeschreibung.innerHTML=beschreibung;
 }
@@ -26,7 +26,6 @@ fetch("/text?id="+params.main+params.modulename).then((response)=>{
     }
 }, console.log)
 const dot = document.getElementById(params.modulename);
-console.log(dot)
 if(dot){
     dot.setAttribute("style", "background-color: #4CAF50")
 }
@@ -47,11 +46,22 @@ adminbtn.addEventListener("click", (ev)=>{
                   beschreibung: modulBeschreibungInput.value!=""?modulBeschreibungInput.value:modulBeschreibung.innerHTML 
                }
             }) 
+        }).then((response)=>{
+            if(response.status<400){
+                response.json().then(({content})=>{
+                    modulTitel.innerHTML=content.title;
+                    modulUntertitel.innerHTML=content.untertitel;
+                    modulBeschreibung.innerHTML=content.beschreibung;
+                }) 
+            }
+            modulBeschreibungInput.setAttribute("style", "display: none");
+            modulTitelInput.setAttribute("style", "display: none");
+            modulUntertitelInput.setAttribute("style", "display: none");
         })
     }else{
         modulBeschreibungInput.setAttribute("style", "");
         modulTitelInput.setAttribute("style", "");
-        modulUntertitel.setAttribute("style", "");
+        modulUntertitelInput.setAttribute("style", "");
     }
     edit=!edit;
 })
