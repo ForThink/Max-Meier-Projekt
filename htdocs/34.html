@@ -80,12 +80,15 @@ body {
   display: inline-block;
 }
 .dot1 {
+  border: none;
   height: 50px;
   width: 50px;
-  background-color: #4CAF50;
+  background-color: #ABEE5E;
   border-radius: 50%;
   display: inline-block;
+  cursor: pointer;
 }
+
 .img {
   display: block;
   margin-left: auto;
@@ -94,11 +97,7 @@ body {
 h4 {
   text-align: center;
 }
-ol{
-  height:center;
-  width: center;
-  text-align: center;
-}@keyframes fadein {
+@keyframes fadein {
   0% {opacity: 0;}
   100% {opacity: 1;}
 }
@@ -148,26 +147,26 @@ ol{
       <div style="text-align:center">
         <h1>Modul 1</h1>
         <span class="dot">
-        <img src="img/vv.jpg" class="rounded-circles" alt="Cinque Terre" width="100" height="100">
+        <img src="img/vv.jpg" class="rounded-circles" alt="Cinque Terre" width="100" height="100" style="position: relative; top: 25px">
         </span>
     </div>
     <div style="text-align:center">
         <h1></h1>
-        <a span href="" class="dot1"></span></a>
-        <a span href="" class="dot1"></span></a>
-        <a span href="" class="dot1"></span></a>
+        <button id="Modul1-mod1" class="dot1" ></button>
+<button id="Modul1-mod2"class="dot1" ></button>
+<button id="Modul1-mod3" class="dot1" ></button>
     </div>
     <div style="text-align:center">
       <h1>Modul 2</h1>
       <span class="dot">
-      <img src="img/vv.jpg" class="rounded-circles" alt="Cinque Terre" width="100" height="100">
+      <img src="img/vv.jpg" class="rounded-circles" alt="Cinque Terre" width="100" height="100" style="position: relative; top: 25px">
       </span>
   </div>
   <div style="text-align:center">
       <h1></h1>
-      <a span href="" class="dot1"></span></a>
-      <a span href="" class="dot1"></span></a>
-      <a span href="" class="dot1"></span></a>
+      <button id="Modul2-mod1" class="dot1" ></button>
+<button id="Modul2-mod2"class="dot1" ></button>
+<button id="Modul2-mod3" class="dot1" ></button>
   </div>
       <div style="text-align: center;">
         <select id="selector" style="margin: 8px;">
@@ -185,4 +184,4 @@ ol{
     </form>
   
 </body>
-<script type="text/javascript" src="/app_34.js"></script></html> 
+<script type="text/javascript" src="/app_34.js"></script><script type="text/javascript" src="/umgebungButtons.js"></script></html> 

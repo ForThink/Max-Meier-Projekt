@@ -48,7 +48,7 @@ let sock = 0;
     })
     total+=tday;
     switch(Math.floor((Date.now()-Date.parse(day.date))/(24*60*60*1000))){
-        case 0: today[0] = tday; today[1]=new Date().getDay(); break;
+        case 0: today[0] = tday; break;
         case 1: yesterday[0] = tday; break;
         case 2: twdag[0] = tday; break;
         case 3: trdag[0] = tday; break;
@@ -56,6 +56,7 @@ let sock = 0;
         default: sock+=tday; break;
     }
 });
+today[1]=new Date().getDay();
 yesterday[1]=(today[1]-1)<0?(today[1]+6):today[1]-1;
 twdag[1]=(today[1]-2)<0?(today[1]-1+6):(today[1]-2);
 trdag[1]=(today[1]-3)<0?(today[1]-2+6):(today[1]-3);
