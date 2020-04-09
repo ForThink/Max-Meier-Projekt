@@ -1,7 +1,7 @@
 const {admin, group} = JSON.parse(localStorage.getItem("userData"));
 document.getElementById("main").addEventListener("submit", (ev)=>{
     ev.preventDefault();
-    window.location=`/3+${3+group}.html`;
+    window.location=`/3${3+group}.html`;
 });
 const params = JSON.parse(new URLSearchParams(window.location.search).get("q"));
 let edit = false;
