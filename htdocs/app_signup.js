@@ -28,7 +28,7 @@ document.getElementById("register").addEventListener("click", (ev)=>{
         }).then((response)=>{
             response.json().then((rm)=>{
                 if(response.status<400){
-                    window.location="index.html?html=login";
+                    window.location="/login.html";
                 }else{
                     errorbar.innerHTML=rm;
                 }
