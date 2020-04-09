@@ -151,10 +151,10 @@ const getQuestions = (tags=[]) => new Promise((res, rej)=>{
         res(JSON.parse(Obj).Versions.filter((item)=>tags.length==0?true:tagcompare(tags, item.tags)));
     }, rej)
 })
-const newQuestion = ({title, answers, tags})=>new Promise((res, rej)=>{
+const newQuestion = ({title, answers, tags, page})=>new Promise((res, rej)=>{
     getQuestions().then((Versions)=>{
         if(searchArray("title", title, Versions.sort(({title: a}, {title: b})=>a-b)).before!==undefined){
-            jables.writeDefinition({location, definition: updateObject(questionBase, {title, answers, qid: Versions.length, tags})}).then(()=>{
+            jables.writeDefinition({location, definition: updateObject(questionBase, {title, answers, qid: Versions.length, tags, page})}).then(()=>{
                 res({qid: Versions.length});
             }, rej)
         }else{

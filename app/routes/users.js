@@ -2,6 +2,7 @@ const route = require("express").Router();
 const jables = require("../jableshandler");
 const token = require("../token");
 const fs = require("fs");
+const connection = fs.existsSync("./connection")?JSON.parse(fs.readFileSync("./connection")):{protocol: "http", host:"localhost", port:"3000"}
 const passwordRecovery = fs.readFileSync("./passwordRecovery.html")
 const welcomePage = fs.readFileSync("./welcomePage.html")
 const emailgen = require("../emailgen");
@@ -23,7 +24,7 @@ route.post("/pwd", (req, res, next)=>{
                 from: "Revolutionizing Accounting Education <noreply@ubt.de>",
                 to: req.body.email,
                 subject: "Passwort Wiederherstellung",
-                html: emailgen.recover(`http://localhost:3000/users/recoverpw?token=${token.createToken({uid, recover:true}, 2*60*60)}`)
+                html: emailgen.recover(`${connection.protocol}://${connection.host}:${connection.port}/users/recoverpw?token=${token.createToken({uid, recover:true}, 2*60*60)}`)
             }).then(()=>{
                 res.status(200).json("please check your mail")
             },
@@ -43,7 +44,7 @@ route.post("/signup", (req, res, next)=>{
             from: "Revolutionizing Accounting Education <noreply@ubt.de>",
             to: req.body.email,
             subject: "Anmeldungsbestätigung",
-            html: uid!=0?emailgen.confirm(`http://localhost:3000/users/confirm?token=${token.createToken({uid, confirm:true}, 24*60*60)}`):"Welcome, Admin!"
+            html: uid!=0?emailgen.confirm(`${connection.protocol}://${connection.host}:${connection.port}/users/confirm?token=${token.createToken({uid, confirm:true}, 24*60*60)}`):"Welcome, Admin!"
             }).then(()=>{
                 res.status(200).json("please check your mail")
             },

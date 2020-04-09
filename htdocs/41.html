@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {margin:0;}
+
+textarea :disabled{
+  background-color: #ffffff;
+}
+
+
+.button1 {
+  background-color: rgb(107, 110, 107);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+div.ex1 {
+  background-color: lightblue;
+  width:auto;
+  height: 110px;
+  overflow: scroll;
+  margin: 8px;
+}
+button {
+  background-color: rgb(107, 110, 107);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+}
+select {
+    font-size: .9rem;
+    padding: 2px 4px;
+}
+
+footer {
+    font-size: .8rem;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+</style>
+<body>
+    <form action="/action_page.php" method="post" id="main">
+        <div >
+            <div>
+                <button class="button1" type="submit"><i class="fa fa-close"></i></button>
+            </div>
+
+        <div style="text-align:center"> 
+          <div class="w3-light-grey">
+            <div class="w3-green" id="progressBar" style="height:24px;width:25px"></div>
+          </div>
+            
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <p id="Aufgabe"></p>
+          <p id ="Hinweis"></p>
+          </div>
+        
+        <!--Text_5_a--> 
+        <div style="text-align:lift">
+          <label  style="font-size:24px;margin:10px;" class="text" id="text_5_a">Text_5_a</label>
+          </div>
+      <!--end Text_5_a-->
+      <div class="img" style="display: flex; flex-direction: row; justify-content: space-between;">
+          <div>
+            <img src="img/vv.jpg" style="width: 30px; height: 30px; margin: 5px;" class="rounded-circles" alt="Cinque Terre">
+          <label style="font: size 20px;margin:10px;" class="text" id="text_4_a">Text_4_a</label>
+          </div>
+          <div>
+            <label style="font: size 20px;margin:10px;" class="text" id="text_4_b">Text_4_b</label>
+          </div>
+          </div>
+
+      <div class="img" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+          <img src="img/vv.jpg" style="width: 30px; height: 30px; margin: 5px;" class="rounded-circles" alt="Cinque Terre">
+        <label style="font: size 20px;margin:10px;" class="text" id="text_4_c">Text_4_c</label>
+        </div>
+        <div>
+          <label style="font: size 20px;margin:10px;" class="text" id="text_4_d">Text_4_d</label>
+        </div>
+        </div>
+
+      <div class="img" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+          <img src="img/vv.jpg" style="width: 30px; height: 30px; margin: 5px;" class="rounded-circles" alt="Cinque Terre">
+        <label style="font: size 20px;margin:10px;" class="text" id="text_4_e">Text_4_e</label>
+        </div>
+        <div>
+          <label style="font: size 20px;margin:10px;" class="text" id="text_4_f">Text_4_f</label>
+        </div>
+        </div>
+
+      <div class="img" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+          <img src="img/vv.jpg" style="width: 30px; height: 30px; margin: 5px;" class="rounded-circles" alt="Cinque Terre">
+        <label style="font: size 20px;margin:10px;" class="text" id="text_4_g">Text_4_g</label>
+        </div>
+        <div>
+          <select name="sel1" id="sel1">
+          </select>
+        </div>
+        </div>
+
+
+      <!--Text_5_b--> 
+      <div style="text-align:lift">
+          <label  style="font-size:24px;margin:10px;" class="text1" id="text_5_b">Text_5_b</label>        </div>
+      <!--end Text_5_b-->
+      <div class="img" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+          <img id="img_4m" src="img/vv.jpg" style="width: 30px; height: 30px; margin: 5px;" class="rounded-circles" alt="Cinque Terre">
+        <label style="font: size 20px;margin:10px;" class="text" id="text_4_h">Text_4_h</label>
+        </div>
+        <div>
+          <label style="font: size 20px;margin:10px;" class="text" id="text_4_i">Text_i_b</label>
+        </div>
+        </div>
+
+      
+      <div class="img" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+          <img id="img_4j" src="img/vv.jpg" style="width: 30px; height: 30px; margin: 5px;" class="rounded-circles" alt="Cinque Terre">
+        <label style="font: size 20px;margin:10px;" class="text" id="text_4_j">Text_4_j</label>
+        </div>
+        <div>
+          <label style="font: size 20px;margin:10px;" class="text" id="text_4_k">Text_4_k</label>
+        </div>
+        </div>
+
+      <div class="img" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+          <img id="img_4l" src="img/vv.jpg" style="width: 30px; height: 30px; margin: 5px;" class="rounded-circles" alt="Cinque Terre">
+        <label style="font: size 20px;margin:10px;" class="text" id="text_4_l">Text_4_l</label>
+        </div>
+          <div>
+            <select name="sel2" id="sel2">
+            </select>
+          </div>
+          
+      </div>
+
+      <div class="img" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+          <img id="img_4m" src="img/vv.jpg" style="width: 30px; height: 30px; margin: 5px;" class="rounded-circles" alt="Cinque Terre">
+        <label style="font: size 20px;margin:10px;" class="text" id="text_4_m">Text_4_m</label>
+        </div>
+        <div>
+          <select name="sel3" id="sel3">
+          </select>
+        </div>
+        
+      </div>
+       
+
+    </form>
+    <div>
+      <button type="submit">Absenden</button>
+    </div>
+</body>
+<script type="text/javascript" src="/editAdmin.js"></script>
+<script type="text/javascript" src="/app_41.js"></script></html> 

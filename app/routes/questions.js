@@ -10,7 +10,7 @@ route.get("/", (req, res, next)=>{
     })
 })
 route.post("/", token.checkAdminToken, (req, res, next)=>{
-    const {title, answers, tags} = req.body;
+    const {title, answers, tags, page} = req.body;
     if (!Array.isArray(answers)){
         return res.status(406).json("answers must be arranged in an array");
     }
@@ -22,7 +22,7 @@ route.post("/", token.checkAdminToken, (req, res, next)=>{
             return res.status(406).json("answers must correspond to the interface {text: string, correct: boolean}")
         }
     })
-    jables.newQuestion({title, answers, tags}).then(({qid})=>{
+    jables.newQuestion({title, answers, tags, page}).then(({qid})=>{
         res.status(201).json({qid});
     }, ({error, message})=>{
         res.status(error).json(message);
@@ -71,5 +71,36 @@ route.get("/order", (req, res, next)=>{
         })
     }
     
+})
+route.post("/startRound", token.checkToken, (req, res, next)=>{
+    jables.getUser(req.userData).then(({rounds})=>{
+        if(!rounds){
+            jables.patchUser({uid: req.userData.uid, rounds: [{module: req.body.module, tries: 1}]}).then(()=>{
+                res.status(200).json(token.createToken(req.userData));
+            })
+        }else{
+            const {i, before} = jables.searchArray("module", req.body.module, rounds);
+            if(before===undefined){
+                let allow = rounds[i].tries<3;
+                if(allow){
+                    rounds[i].tries++;
+                    jables.patchUser({uid: req.userData.uid, rounds}).then(()=>{
+                        res.status(200).json(token.createToken(req.userData));
+                    }, ({error, message})=>{
+                        res.status(error).json(message);
+                    })
+                }else{
+                    res.status(403).json("kann jede Lektion nur 3 mal prüfen")
+                }
+            }else{
+                rounds.splice(before?i:i+1, 0, {module: req.body.module, tries: 1});
+                jables.patchUser({uid: req.body.uid, rounds}).then(()=>{
+                    res.status(200).json(token.createToken(req.userData));
+                }, ({error, message})=>{
+                    res.status(error).json(message);
+                })
+            }
+        }
+    })
 })
 module.exports=route;
