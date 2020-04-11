@@ -6,6 +6,15 @@ const addFile = pdoc.getElementById("addFile");
 const editCheckBox = pdoc.getElementById("editCheckBox");
 const editConfirm = pdoc.getElementById("editConfirm");
 const editCancel = pdoc.getElementById("editCancel");
+const error = pdoc.getElementById("error");
+const showError= (errortext)=>{
+    error.innerHTML=errortext;
+    error.setAttribute("style", "color: red;")
+    setTimeout(()=>{
+        error.innerHTML = "";
+        error.setAttribute("style", "display: none;")
+    }, 5000)
+}
 const SelectedElement = [];
 const selectedEditor = [];
 const select = (element, list, arg)=>{
@@ -103,12 +112,17 @@ if(admin){
     editConfirm.addEventListener("click", (ev)=>{
         ev.preventDefault();
         if(selectedEditor[0]===addFile){
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(selectedEditor[0].files[0]);
-            fileReader.onloadend = (ev)=>{
+            if(selectedEditor[0].files[0]&&selectedEditor[0].files[0].size<20490){
+                const fileReader = new FileReader();
+                fileReader.readAsDataURL(selectedEditor[0].files[0]);
+                fileReader.onloadend = (ev)=>{
                 SelectedElement[0].src=ev.target.result;
                 selectedEditor[0].files[0]=undefined;
             }
+            }else{
+                showError("IMages can be max 20kb in size!")
+            }
+            
         }else{
             SelectedElement[0][SelectedElement[1]||"innerHTML"]=selectedEditor[0][selectedEditor[1]||"value"];
         }
@@ -138,12 +152,12 @@ const gatherData = (id)=>{
     }
     for (let img of document.getElementsByTagName("img")){
         if(img.id){
-            data.oush({id: img.id, attr: "src", content: img.src});
+            data.push({id: img.id, attr: "src", content: img.src});
         }
     }
     for (let div of document.getElementsByTagName("div")){
         if(div.id&&div.id.includes("edit")){
-            data.oush({id: div.id, attr: "innerHTML", content: div.src});
+            data.push({id: div.id, attr: "innerHTML", content: div.src});
         }
     }
     fetch("/text", {
