@@ -16,18 +16,17 @@ document.getElementById("logoutbtn").addEventListener("click", (ev)=>{
         window.location="/login.html"
     })
 })
-const params = JSON.parse(new URLSearchParams(window.location.search).get("q"));
 let edit = false;
 const {admin} = JSON.parse(localStorage.getItem("userData"));
 const subpanehead = (text, id)=> `<div style="text-align:lift">
-<label id="title_${id}" for="week" style="font-size:24px;margin:10px;" class="text">${text}</label>
+<label id="title_${id}"  style="font-size:24px;margin:10px;" class="text">${text}</label>
 <input type="text" style="display: none;" id="title_${id}_input"/>
 </div>
 `
 const textel = (text, imglnk, id)=> `<div class="img">
 <img id="img_${id}" src="${imglnk}" style="width: 30px; height: 30px; margin: 5px;" class="rounded-circles" alt="Cinque Terre">
 <input type="text" style="display: none;" placeholder="image url" id="img_${id}_input"/>
-<label id="text_${id}" for="week" style="font: size 20px;margin:10px;" class="text">${text}</label>
+<label id="text_${id}"  style="font: size 20px;margin:10px;" class="text">${text}</label>
 <input type="text" placeholder="text" style="display: none;" id="text_${id}_input"/>
 </div>
 `

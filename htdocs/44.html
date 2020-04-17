@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {margin:0;}
+
+.button1 {
+  background-color: rgb(107, 110, 107);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+div.ex1 {
+  background-color: lightblue;
+  width:auto;
+  height: 110px;
+  overflow: scroll;
+  margin: 8px;
+}
+button {
+  background-color: rgb(107, 110, 107);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+}
+ul {
+  list-style-type: none;
+  padding-inline-start: 20px ;
+}
+
+li {
+  display: inline-block;
+}
+
+input[type="checkbox"][id^="myCheckbox"] {
+  display: none;
+}
+
+label {
+  border: 1px solid #fff;
+  padding: 10px;
+  display: block;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+}
+
+label:before {
+  background-color: white;
+  color: white;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  border: 1px solid grey;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+label img {
+  height: 50px;
+  width: 50px;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+
+:checked + label {
+  border-color: #ddd;
+}
+
+:checked + label:before {
+  content: "✓";
+  background-color: grey;
+  transform: scale(1);
+}
+
+:checked + label img {
+  transform: scale(0.9);
+  /* box-shadow: 0 0 5px #333; */
+  z-index: -1;
+}
+
+</style>
+<body>
+    <form action="/action_page.php" method="post" id="main" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div>
+            <button class="button1" type="submit"><i class="fa fa-close"></i></button>
+        </div>
+
+    <div style="text-align:center"> 
+      <div class="w3-light-grey">
+        <div class="w3-green" id="progressBar" style="height:24px;width:25px"></div>
+      </div>
+        
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <p id="Aufgabe" style="width: 80%; height: 100px;"></p>
+      <p id ="Hinweis" style="width: 80%; height: 100px;"></p>
+      </div>
+    
+        </div>
+        <div style="display: flex; flex-direction: row; justify-content:space-evenly;">
+          <div id="acc1disp" style="height: 110; width: 110; display: flex; justify-content: center; align-content: center;">
+            <img src="img/vv.jpg" id="acc1" style="width: 100px; height: 100px;"/>
+            <input type="checkbox" style="display: none;" id="a1">
+          </div>
+          <div id="acc2disp" style="height: 110; width: 110; display: flex; justify-content: center; align-content: center;">
+            <img src="img/vv.jpg" id="acc2" style="width: 100px; height: 100px;"/>
+            <input type="checkbox" style="display: none;" id="a2">
+          </div>
+          <div id="acc3disp" style="height: 110; width: 110; display: flex; justify-content: center; align-content: center;">
+            <img src="img/vv.jpg" id="acc3" style="width: 100px; height: 100px;"/>
+            <input type="checkbox" style="display: none;" id="a3">
+          </div>
+          </div>
+        <div>
+          <button type="submit" id="beantworten">Absenden</button><button id="adminSave" style="display: none;">Änderungen Speichern</button><select id="adminQuestionSelect" style="display: none;">
+            <option>Aufgabentyp wählen</option>
+    
+          </select>        
+    </form>
+    <div>
+      </div>
+</body>
+<script type="text/javascript" src="editAdmin.js"></script>
+<script type="text/javascript" src="adminQuestionSelect.js"></script>
+<script type="text/javascript" src="qbase.js"></script>
+<script type="text/javascript" src="app_44.js"></script>
+<script type="text/javascript" src="konten.js"></script>
+<script type="text/javascript">
+  document.getElementById("beantworten").addEventListener("click", sendAnswer)
+</script>
+<script type="text/javascript" src="stretchForm.js"></script>
+<script type="text/javascript" src="progressBar.js"></script>
+</html> 

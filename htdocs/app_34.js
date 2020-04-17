@@ -19,7 +19,7 @@ const tabcontent = (ranking)=>{
     let tabcontent = "";
     if(ranking.length<10){
         tabcontent = `<table style="border: 1px solid black; border-collapse: collapse">
-        ${ranking.map((item, index)=>{return "<tr style=\"background: "+(index%2==0?"white":"grey")+";border: solid 1px black;\"><td style=\"width: 20px;\">"+index+"</td><td style=\"width: 120px\">"+(item===uid?"DU":("Spieler "+item))+"</td></tr>"})}
+        ${ranking.map((item, index)=>{return "<tr style=\"background: "+(index%2==0?"white":"grey")+";border: solid 1px black;\"><td style=\"width: 20px;\">"+(index+1)+"</td><td style=\"width: 120px\">"+(item===uid?"DU":("Spieler "+item))+"</td></tr>"})}
       </table>`
     }else{
         const top5 = ranking.splice(0, 5);
@@ -29,8 +29,11 @@ const tabcontent = (ranking)=>{
       </table>
         ${!top5.includes(uid)&&!last5.includes(uid)?'<table style="border: 1px solid black; border-collapse: collapse"><tr><td></td style="width: 20px;">'+(ranking.indexOf(uid)+6)+'<td style="width: 120px">DU</td></tr></table>':""}
       <table style="border: 1px solid black; border-collapse: collapse">
-        ${last5.map((item, index)=>{return "<tr style=\"background: "+(index%2==0?"white":"grey")+";border: solid 1px black;\"><td style=\"width: 20px;\">"+(ranking.length+5+index)+"</td><td style=\"width: 120px\">"+(item===uid?"DU":("Spieler "+item))+"</td></tr>"})}
+        ${last5.map((item, index)=>{return "<tr style=\"background: "+(index%2==0?"white":"grey")+";border: solid 1px black;\"><td style=\"width: 20px;\">"+(ranking.length+6+index)+"</td><td style=\"width: 120px\">"+(item===uid?"DU":("Spieler "+item))+"</td></tr>"})}
       </table>`
+    }
+    while(tabcontent.includes(",")){
+        tabcontent=tabcontent.replace(",", "")
     }
     tab.innerHTML=tabcontent;
 }
@@ -75,4 +78,13 @@ document.getElementById("logoutbtn").addEventListener("click", (ev)=>{
         window.location="/login.html"
     })
 })
-const params = JSON.parse(new URLSearchParams(window.location.search).get("q"));
+if(admin){
+    const editAdmin = document.getElementById("edit_admin");
+    editAdmin.setAttribute("style", "");
+    editAdmin.addEventListener("click", (ev)=>{
+        ev.preventDefault();
+        gatherData("Umgebung");
+    }
+    )
+}
+getData("Umgebung");

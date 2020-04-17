@@ -30,4 +30,14 @@ document.getElementById("logoutbtn").addEventListener("click", (ev)=>{
         window.location="/login.html"
     })
 })
-const params = JSON.parse(new URLSearchParams(window.location.search).get("q"));
+if(admin){
+    const editAdmin = document.getElementById("edit_admin");
+    editAdmin.setAttribute("style", "");
+    editAdmin.addEventListener("click", (ev)=>{
+        ev.preventDefault();
+        gatherData("Umgebung");
+    }
+    )
+}
+getData("Umgebung");
+document.getElementById("editA").setAttribute("style", `width: ${window.innerWidth}px; height: ${window.innerHeight};`)

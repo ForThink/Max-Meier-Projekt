@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {margin:0;}
+
+
+
+
+.button1 {
+  background-color: rgb(107, 110, 107);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+div.ex1 {
+  background-color: lightblue;
+  width:auto;
+  height: 110px;
+  overflow: scroll;
+  margin: 8px;
+}
+button {
+  background-color: rgb(107, 110, 107);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+}
+select {
+    font-size: .9rem;
+    padding: 2px 4px;
+}
+
+footer {
+    font-size: .8rem;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+</style>
+<body>
+    <form action="/action_page.php" method="post" id="main">
+        <div >
+            <div>
+                <button class="button1" type="submit"><i class="fa fa-close"></i></button>
+            </div>
+
+        <div style="text-align:center"> 
+          <div class="w3-light-grey">
+            <div class="w3-green" id="progressBar" style="height:24px;width:25px"></div>
+          </div>
+            
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <p id="Aufgabe" style="width: 80%; height: 100px;"></p>
+          <p id ="Hinweis" style="width: 80%; height: 100px;"></p>
+        </div>
+      <div style="display: grid; grid-template-columns: 2fr 4fr 3fr;">
+          <label fid="Text_4_a" or="week" style="font: size 20px;margin:10px;" class="text">Text_4_a</label>
+          <label></label>
+          <div style="padding: 3px">
+            <select id="sel1" style="width: 100%;"></select>
+          </div>
+      
+          <label id="Text_4_b"  style="font: size 20px;margin:10px;" class="text">Text_4_b</label>
+          <label></label>
+          <div style="padding: 3px">
+            <select id="sel2" style="width: 100%;"></select>
+          </div>
+      
+          <label id="Text_4_c"  style="font: size 20px;margin:10px;" class="text">Text_4_c</label>
+          <label></label>
+          <div style="padding: 3px">
+            <select id="sel3" style="width: 100%;"></select>
+          </div>
+      
+          <label id="Text_4_d"  style="font: size 20px;margin:10px;" class="text">Text_4_d</label>
+          <label></label>
+          <div style="padding: 3px">
+            <select id="sel4" style="width: 100%;"></select>
+          </div>
+      
+        <label id="Text_4_e"  style="font: size 20px;margin:10px;" class="text1">Text_4_e</label>
+        <label></label>
+        <div style="padding: 3px">
+          <select id="sel5" style="width: 100%;"></select>
+        </div>
+     
+          <label id="Text_4_f"  style="font: size 20px;margin:10px;" class="text1">Text_4_f</label>
+          <label></label>
+          <div style="padding: 3px">
+            <select id="sel6" style="width: 100%;"></select>
+          </div>
+      
+          <label id="Text_4_g"  style="font: size 20px;margin:10px;" class="text1">Text_4_g</label>
+          <label></label>
+          <div style="padding: 3px">
+            <select id="sel7" style="width: 100%;"></select>
+          </div>
+      
+          <label id="Text_4_h"  style="font: size 20px;margin:10px;" class="text1">Text_4_h</label>
+          <label></label>
+          <div style="padding: 3px">
+            <select id="sel8" style="width: 100%;"></select>
+          </div>
+      </div>
+      <div>
+        <button type="submit" id="beantworten">Absenden</button><button id="adminSave" style="display: none;">Änderungen Speichern</button>
+        <select id="adminQuestionSelect" style="display: none;">
+          <option>Aufgabentyp wählen</option>
+        </select>
+      </div>
+
+    </form>
+    <div>
+    </div>
+</body>
+<script type="text/javascript" src="/editAdmin.js"></script>
+<script type="text/javascript" src="adminQuestionSelect.js"></script>
+<script type="text/javascript" src="qbase.js"></script>
+<script type="text/javascript" src="/app_47.js"></script>
+<script type="text/javascript" src="/konten.js"></script>
+<script type="text/javascript" src="selectAnswers.js"></script>
+<script type="text/javascript" src="progressBar.js"></script>
+</html> 

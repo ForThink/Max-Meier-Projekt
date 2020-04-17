@@ -23,7 +23,4 @@ app.use("/exampleroute", route);
 app.use("/questions", questions);
 app.use("/rankings", rankings);
 app.use("/text", text);
-app.get("*", (req, res)=>{
-    res.sendFile(path.resolve("./htdocs/index.html"));
-})
 module.exports=app;

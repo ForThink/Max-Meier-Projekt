@@ -240,7 +240,7 @@ const answerQuestion = ({qid, uid, selected, timeSpan})=>new Promise((res, rej)=
                     }
                 })
             }            
-            giveXP({uid, qid, right, timeSpan, selected}).then((user)=>{res(user)}, rej)
+            giveXP({uid, qid, right, timeSpan, selected}).then((user)=>{res({user, right})}, rej)
         }else{
             rej({error: 404, message:`${qid} doesn't exist`})
         }

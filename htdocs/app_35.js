@@ -29,7 +29,6 @@ document.getElementById("logoutbtn").addEventListener("click", (ev)=>{
         window.location="/login.html"
     })
 })
-const params = JSON.parse(new URLSearchParams(window.location.search).get("q"));
 const {xp, logdates} = JSON.parse(localStorage.getItem("userData"));
 let aplicado = 0;
 logdates.forEach((date) => {    
@@ -62,3 +61,13 @@ window.level = level;
 document.getElementById("aplicado").innerHTML=`Level ${aplicado<0?0:aplicado<3?aplicado:3}`;
 document.getElementById("inteligente").innerHTML=`Level ${level(inteligente, estudioso)}`
 document.getElementById("estudioso").innerHTML=`Level ${estudioso<10?0:estudioso<30?1:estudioso<60?2:3}`
+if(admin){
+    const editAdmin = document.getElementById("edit_admin");
+    editAdmin.setAttribute("style", "");
+    editAdmin.addEventListener("click", (ev)=>{
+        ev.preventDefault();
+        gatherData("Umgebung");
+    }
+    )
+}
+getData("Umgebung");

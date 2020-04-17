@@ -18,7 +18,6 @@ document.getElementById("logoutbtn").addEventListener("click", (ev)=>{
 })
 let edit = false;
 const {admin} = JSON.parse(localStorage.getItem("userData"));
-const params = JSON.parse(new URLSearchParams(window.location.search).get("q"));
 fetch("/text?id=help", {
     method:"GET",
 }).then((response)=>{

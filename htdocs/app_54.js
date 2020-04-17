@@ -1,7 +1,10 @@
 document.getElementById("main").addEventListener("submit", (ev)=>{
     ev.preventDefault();
 });
-const params = JSON.parse(new URLSearchParams(window.location.search).get("q"));
+if(!params.progress){
+    params.progress=1;
+}
+console.log(params)
 const now = Date.now();
 for (let i = 0; i < 7; i++){
     const cb = document.getElementById(`cb_${i}`);
@@ -29,15 +32,17 @@ const setQuestionForm=()=>{
                 }
             })
         })
-        if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<23){
+        if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<(params.likert||1)*24-1){
             window.location=`/54.html?q={"progress":${lastAnswered+1}}`
-        }else if (lastAnswered>22){
+        }else if (lastAnswered>(params.likert||1)*24-2){
             const {group} = user;
             window.location=`/3${3+group}.html`
+        }else if(questions[params.progress]){
+            getData(`stat${params.progress}`)
         }
+    }else{
+        getData(`stat${params.progress}`)
     }
-    const question = questions[params.progress-1]||{title:`question_${params.progress-1}`, answers:[]};
-    document.getElementById("title").innerHTML=question.title;
 }
 const getStatQuestions = ()=> new Promise((res, rej)=>{
     fetch("/questions?tags=stat", {
@@ -56,7 +61,7 @@ const getStatQuestions = ()=> new Promise((res, rej)=>{
         }
     }, rej)
 })
-if(JSON.parse(localStorage.getItem("userData")).admin===true){
+if(admin){
     const skip = document.getElementById("admin_skip");
     skip.setAttribute("style", "display: unset;")
     skip.addEventListener("click", (ev)=>{
@@ -67,13 +72,12 @@ if(JSON.parse(localStorage.getItem("userData")).admin===true){
     adminButton.setAttribute("style", "display: unset;")
     adminButton.addEventListener("click", (ev)=>{
         ev.preventDefault();
-        if(editing){
-            const questions = JSON.parse(localStorage.getItem("statQuestions"));
-            
-            fetch("/questions", {
-                method: questions.length<params.progress?"POST":"PATCH",
-                body: JSON.stringify({
-                    title: document.getElementById("edit_title").value!=""?document.getElementById("edit_title").value:questions[params.progress-1].title,
+        const questions = JSON.parse(localStorage.getItem("statQuestions"));
+        gatherData(`stat${params.progress}`)    
+        fetch("/questions", {
+            method: questions.length<params.progress?"POST":"PATCH",
+            body: JSON.stringify({
+                title: document.getElementById("title").vaule,
                     answers: [],
                     tags: ["stat"],
                     qid: questions[params.progress-1]?questions[params.progress-1].qid:undefined
@@ -82,21 +86,9 @@ if(JSON.parse(localStorage.getItem("userData")).admin===true){
                     "Authorization":`Bearer ${localStorage.getItem("token")}`,
                     "Content-Type":"application/json"
                 }
-            }).then(()=>{
-                getStatQuestions().then(()=>{
-                    document.getElementById("edit_title").setAttribute("style", "display: none;")
-                }, (error)=>{
-                    console.log(error);
-                    document.getElementById("edit_title").setAttribute("style", "display: none;")
-                });
-            })
+            }).catch(console.log)
             
-        }else{
-            document.getElementById("edit_title").setAttribute("style", "display: unset; width: 80%")
-        }
-        editing=!editing;
-        
-    })
+        })
 }
 if(params.progress===1){
     getStatQuestions();
@@ -104,7 +96,9 @@ if(params.progress===1){
     setQuestionForm();
 }
 const progressbar = document.getElementById("progressbar");
-progressbar.setAttribute("style", `height: 25px; width: ${(document.getElementById("main").clientWidth/24*params.progress)||1}px;`);
+const progress = params.progress-(params.likert-1)*24+(params.likert>1?1:0)
+console.log(progress);
+progressbar.setAttribute("style", `height: 25px; width: ${document.getElementById("main").clientWidth/24*progress}px;`);
 document.getElementById("nextQuestion").addEventListener("click", (ev)=>{
     ev.preventDefault();
     let checked;
@@ -123,9 +117,10 @@ document.getElementById("nextQuestion").addEventListener("click", (ev)=>{
             }
         }).then((response)=>{
             response.json().then((json)=>{
-                localStorage.setItem("userData", JSON.stringify(json));
-                if (params.progress<24){
-                    window.location="/54.html?q={\"progress\":"+(params.progress+1)+"}"
+                localStorage.setItem("userData", JSON.stringify(json.user));
+                if (params.progress<(params.likert||1)*24-(params.likert>1?1:0)){
+                    params.progress++;
+                    window.location=`/54.html?q=${JSON.stringify(params)}`;
                 }else{
                     window.location=`/3${3+JSON.parse(localStorage.getItem("userData")).group}.html`
                 }
@@ -133,8 +128,9 @@ document.getElementById("nextQuestion").addEventListener("click", (ev)=>{
             , console.log)
         }, console.log)
     } else if(JSON.parse(atob(localStorage.getItem("token").split(".")[1])).admin==true){
-        if (params.progress<24){
-            window.location="/54.html?q={\"progress\":"+(params.progress+1)+"}"
+        if (params.progress<(params.likert||1)*24-(params.likert>1?1:0)){
+            params.progress++;
+            window.location="/54.html?q="+JSON.stringify(params);
         }else{
             window.location=`/3${3+JSON.parse(localStorage.getItem("userData")).group}.html`
         }

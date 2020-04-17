@@ -1,7 +1,6 @@
 document.getElementById("main").addEventListener("submit", (ev)=>{
     ev.preventDefault();
 });
-const params = JSON.parse(new URLSearchParams(window.location.search).get("q"));
 const errorbar = document.getElementById("error");
 document.getElementById("register").addEventListener("click", (ev)=>{
     ev.preventDefault();

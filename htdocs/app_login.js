@@ -1,7 +1,6 @@
 document.getElementById("main").addEventListener("submit", (ev)=>{
     ev.preventDefault();
 });
-const params = JSON.parse(new URLSearchParams(window.location.search).get("q"));
 
 document.getElementById("loginButton").addEventListener("click", (ev)=>{
     ev.preventDefault();
@@ -23,7 +22,7 @@ document.getElementById("loginButton").addEventListener("click", (ev)=>{
                 }
                 localStorage.setItem("token", json.token);
                 localStorage.setItem("userData", JSON.stringify(json.userData));
-                window.location="/54.html?q={\"progress\":1}"
+                window.location="/52.html?q="+JSON.stringify({main: "rquestions", modulename:"", progress:1, likert: 1})
             }else{
                 document.getElementById("error").innerHTML=json;
             }

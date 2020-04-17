@@ -1,7 +1,6 @@
 document.getElementById("main").addEventListener("submit", (ev)=>{
     ev.preventDefault();
 });
-const params = JSON.parse(new URLSearchParams(window.location.search).get("q"));
 document.getElementById("resetPW").addEventListener("click", (ev)=>{
     ev.preventDefault();
     const email = document.getElementById("email_addy").value;

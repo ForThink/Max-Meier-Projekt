@@ -4,16 +4,25 @@
 
     </head>
     <body style="padding: 0px; margin: 0px; border: 0px; display: flex; flex-direction: row; justify-items: center;">
-        <div style="min-width: 33%;">
+        <div style="min-width: 33%; max-width: 33%; display: flex; flex-direction: column;">
             <textArea id="editField" style="display: none; width: 80%; height: 20ch;"></textArea>
-            <input id="editInput" type="text" style="display: none;">
-            <input id="addFile" type="file" style="display: none;">
-            <input id="editCheckBox" type="checkbox" style="display: none;">
-            <button id="editConfirm" style="display: none">Confirm</button>
-            <button id="editCancel" style="display: none">Cancel</button>
+            <input id="editInput" type="text" style="display: none; width: 80%">
+            <input id="addFile" type="file" style="display: none; width: 80%">
+            <div id="selectEdit" style="display: none;">
+                <div id="selectOptions">
+
+                </div>
+                <button id="selectAdd">Hinzufügen</button>
+                <button id="removeLst">Entfernen</button>
+            </div>
+            <textarea id="styleField" type="text" style="display: none; width: 80%; height: 20ch;" ></textarea>
+            <div>
+                <button id="editConfirm" style="display: none">Confirm</button>
+                <button id="editCancel" style="display: none">Cancel</button>
+            </div>
             <span id="error" style="display: none;"></span>
         </div>
-        <iframe id="mainframe" style="border: none; margin: 0px; padding: 0px;max-width: 500px;"></iframe>
+        <iframe id="mainframe" style="border: none; margin: 0px; padding: 0px;"></iframe>
     </body>
     <script src="index.js">
 

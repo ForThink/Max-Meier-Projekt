@@ -29,7 +29,6 @@ document.getElementById("logoutbtn").addEventListener("click", (ev)=>{
         window.location="/login.html"
     })
 })
-const params = JSON.parse(new URLSearchParams(window.location.search).get("q"));
 const container = document.getElementById("container");
 const {xp} = JSON.parse(localStorage.getItem("userData"));
 let total = 0;
@@ -92,3 +91,13 @@ let content = `
     <line x1="${window.innerWidth>500?3*175/3:3*(window.innerWidth*0.4-25)/4}" x2="${window.innerWidth>500?175:(window.innerWidth*0.4-25)}" y1="${window.innerWidth>500?175-175*twdag[0]/((total-sock)>0?(total-sock):1):window.innerWidth*0.4-window.innerWidth/20*twdag[0]/((total-sock)>0?(total-sock):1)}" y2="${window.innerWidth>500?175-175*yesterday[0]/((total-sock)>0?(total-sock):1):window.innerWidth*0.4-window.innerWidth/20-(window.innerWidth*0.4-window.innerWidth/20)*yesterday[0]/((total-sock)>0?(total-sock):1)}"/>
     </svg>`
 container.innerHTML=content;
+if(admin){
+    const editAdmin = document.getElementById("edit_admin");
+    editAdmin.setAttribute("style", "");
+    editAdmin.addEventListener("click", (ev)=>{
+        ev.preventDefault();
+        gatherData("Umgebung");
+    }
+    )
+}
+getData("Umgebung");

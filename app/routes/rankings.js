@@ -27,7 +27,7 @@ route.get("/xp", (req, res, next)=>{
                             })
                         })
                     }
-                    return item.confirmed?{uid: item.uid, xp: total}:undefined;
+                    return item.confirmed&&!item.admin?{uid: item.uid, xp: total}:undefined;
                   }).filter((item)=>item!=undefined).sort((a, b)=>b.xp-a.xp).map(({uid})=>uid))
             }, ({error, message})=>{
                 res.status(error).json(message);
@@ -47,7 +47,7 @@ route.get("/xp", (req, res, next)=>{
                         });
                     })
                 }
-                return item.confirmed?{uid: item.uid, xp: total}:undefined;
+                return item.confirmed&&!item.admin?{uid: item.uid, xp: total}:undefined;
               }).filter((item)=>item!=undefined).sort((a, b)=>b.xp-a.xp).map(({uid})=>uid))
         }
     }, ({error, message})=>{

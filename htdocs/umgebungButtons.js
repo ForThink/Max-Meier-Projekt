@@ -1,13 +1,24 @@
+const {rounds} = JSON.parse(localStorage.getItem("userData"));
+const previousModuleDone = (id)=>{
+    const modules = rounds.length;
+    const trans = id.split("-");
+    const prog = (parseInt(trans[0].replace("Modul", ""))-1)*3+parseInt(trans[1].replace("mod", ""))-2;
+    return admin||modules>prog;
+}
 const mouseEnter = (ev)=>{
-    ev.target.setAttribute("style", "background-color: #4CAF50")}
+    if(previousModuleDone(ev.target.id)){
+        ev.target.setAttribute("style", "background-color: #4CAF50")}
+    }
 const mouseLeave = (ev)=>{
     ev.target.setAttribute("style", "background-color: #ABEE5E")}
 const click = (ev)=>{
     ev.preventDefault();
-    const mm = ev.target.id.split("-");
-    const params = {main: mm[0], modulename:mm[1]};
-    window.location="/39.html?q="+JSON.stringify(params);
-}
+    if(previousModuleDone(ev.target.id)){
+        const mm = ev.target.id.split("-");
+        const params = {main: mm[0], modulename:mm[1]};
+        window.location="/39.html?q="+JSON.stringify(params);    
+    }
+    }
 const m11 = document.getElementById("Modul1-mod1");
 const m12 = document.getElementById("Modul1-mod2");
 const m13 = document.getElementById("Modul1-mod3");

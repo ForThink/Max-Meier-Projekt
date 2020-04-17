@@ -1,0 +1,1 @@
+const lsg = 50;

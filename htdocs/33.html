@@ -133,16 +133,18 @@ body {
             </div>  
         </div>
         <div id="apan">
-          <h1>
-            your ad here
-          </h1>
+          <div id="editA">
+            <h1>
+              your ad here
+            </h1>
+          </div>
           <button id="rmad">x</button>
         </div>
         <div id="contentPanel" style="display: none;">
           <div style="text-align:center">
-            <h1>Modul 1</h1>
+            <h1 id="modulName1">Modul 1</h1>
             <span class="dot">
-            <img src="img/vv.jpg" class="rounded-circles" alt="Cinque Terre" width="100" height="100" style="position: relative; top: 25px">
+            <img id="moduleimg1" src="img/vv.jpg" class="rounded-circles" alt="Cinque Terre" width="100" height="100" style="position: relative; top: 25px">
             </span>
         </div>
         <div style="text-align:center">
@@ -153,9 +155,9 @@ body {
         </div>
 
         <div style="text-align:center">
-            <h1>Modul 2</h1>
+            <h1 id="modulName2">Modul 2</h1>
             <span class="dot">
-            <img src="img/vv.jpg" class="rounded-circles" alt="Cinque Terre" width="100" height="100" style="position: relative; top: 25px">
+            <img id="moduleimg2" src="img/vv.jpg" class="rounded-circles" alt="Cinque Terre" width="100" height="100" style="position: relative; top: 25px">
             </span>
         </div>
         <div style="text-align:center">
@@ -165,9 +167,10 @@ body {
 <button id="Modul2-mod3" class="dot1" ></button>
         </div>
         </div>
-        
+        <button id="edit_admin" style="display: none;">Änderungen speichern</button>
     </form>
   
 </body>
+<script type="text/javascript" src="editAdmin.js"></script>
 <script type="text/javascript" src="/umgebungButtons.js"></script>
 <script type="text/javascript" src="/app_33.js"></script></html> 

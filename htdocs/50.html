@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {margin:0;}
+
+
+
+
+.button1 {
+  background-color: rgb(107, 110, 107);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+div.ex1 {
+  background-color: lightblue;
+  width:auto;
+  height: 110px;
+  overflow: scroll;
+  margin: 8px;
+}
+button {
+  background-color: rgb(107, 110, 107);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+}
+select {
+    font-size: .9rem;
+    padding: 2px 4px;
+}
+
+footer {
+    font-size: .8rem;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+</style>
+<body>
+    <form action="/action_page.php" method="post" id="main" style="display: flex; flex-direction: column; justify-content: space-between;">
+      <div>  
+      <div >
+            <div>
+                <button class="button1" type="submit"><i class="fa fa-close"></i></button>
+            </div>
+
+        <div style="text-align:center"> 
+          <div class="w3-light-grey">
+            <div class="w3-green" id="progressBar" style="height:24px;width:25px"></div>
+          </div>
+            
+        </div>
+        </div>
+        <!--Text_5_a--> 
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+          <label id="Text_5_a"  style="font-size:24px;margin-bottom:10px;" class="text">Text_5_a</label>
+          <label id="Text_5_b" style="font-size:24px;margin-bottom:10px;" class="text">Text_5_b</label>
+          <label id="Text_5_c" style="font-size:24px;margin-bottom:10px;" class="text">Text_5_c</label>
+          <label id="Text_4_a">Text_4_a</label>
+          <label id="Text_4_b">Text_4_b</label>
+          <label id="Text_4_c">Text_4_c</label>
+          <label id="Text_4_d">Text_4_d</label>
+          <label id="Text_4_e">Text_4_e</label>
+          <label id="Text_4_f">Text_4_f</label>
+          <label id="Text_4_g">Text_4_g</label>
+          <label id="Text_4_h">Text_4_h</label>
+          <label id="Text_4_i">Text_4_i</label>
+          <label id="Text_4_k">Text_4_k</label>
+          <label id="Text_4_l">Text_4_l</label>
+          <label id="Text_4_m">Text_4_m</label>
+          <label id="Text_4_n">Text_4_n</label>
+          <label id="Text_4_o">Text_4_o</label>
+          <label id="Text_4_p">Text_4_p</label>
+          <label id="Text_4_q">Text_4_q</label>
+        </div>
+          
+      <!--end Text_5_a-->
+      <p id="Text_6" style="height: 100%; width: 100%;">
+        Text_6
+      </p>
+      </div>
+      <button type="submit" id="naechsteFrage">zur nächsten Frage</button> <button id="adminSave" style="display: none;">Änderungen Speichern</button>
+    </form>
+</body>
+<script type="text/javascript" src="editAdmin.js"></script>
+<script type="text/javascript" src="stretchForm.js"></script>
+<script type="text/javascript" src="/app_50.js"></script>
+<script type="text/javascript" src="progressBar.js"></script>
+<script type="text/javascript" src="nextQ.js"></script>
+</html> 
