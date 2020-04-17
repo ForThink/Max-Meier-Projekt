@@ -1,13 +1,20 @@
 const {admin} = JSON.parse(localStorage.getItem("userData"));
 let strg = false;
+let shift = false;
 document.addEventListener("keydown", (ev)=>{
     if(!strg&&ev.key.toLowerCase()=="control"){
         strg = true;
+    }
+    if(!shift&&ev.key.toLowerCase()=="shift"){
+        shift=true;
     }
 })
 document.addEventListener("keyup", (ev)=>{
     if(ev.key.toLowerCase()=="control"){
         strg = false;
+    }
+    if(ev.key.toLowerCase()=="shift"){
+        shift=false;
     }
 })
 const params = JSON.parse(new URLSearchParams(window.location.search).get("q"))||{};
@@ -303,12 +310,12 @@ if(admin){
     }
     editConfirm.addEventListener("click", confirmClickHandler)
     editInput.addEventListener("keyup", (ev)=>{
-        if(ev.key==="Enter"){
+        if(!shift&&ev.key==="Enter"){
             confirmClickHandler(ev);
         }
     })
     editField.addEventListener("keyup", (ev)=>{
-        if(ev.key==="Enter"){
+        if(!shift&&ev.key==="Enter"){
             confirmClickHandler(ev);
         }
     })
