@@ -1,4 +1,16 @@
 const {admin} = JSON.parse(localStorage.getItem("userData"));
+let strg = false;
+document.addEventListener("keydown", (ev)=>{
+    console.log("control detected")
+    if(ev.key.toLowerCase()=="control"){
+        strg = true;
+    }
+})
+document.addEventListener("keyup", (ev)=>{
+    if(ev.key.toLowerCase()=="control"){
+        strg = false;
+    }
+})
 const params = JSON.parse(new URLSearchParams(window.location.search).get("q"))||{};
 const pdoc = window.parent.document;
 const styleEdit = pdoc.getElementById("styleField");
@@ -238,17 +250,21 @@ if(admin){
         for(let button of document.getElementsByTagName("button")){
             if(button.id&&!button.id.includes("admin")){
                 button.addEventListener("mouseenter", (ev)=>{
-                    select(button, SelectedElement);
-                    reveal(editInput);
+                        if(!strg){
+                            select(button, SelectedElement);
+                            reveal(editInput);
+                        }
                     })
             }
         }
         for(let sel of document.getElementsByTagName("select")){
             if(sel.id&&!sel.id.includes("admin")){
                 sel.addEventListener("mouseenter", (ev)=>{
-                    select(sel, SelectedElement);
-                    reveal(editSelect);
-                    })
+                    if(!strg){
+                        select(sel, SelectedElement);
+                        reveal(editSelect);
+                    }
+                })
             }
         }
     }
