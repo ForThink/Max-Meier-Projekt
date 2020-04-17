@@ -39,7 +39,7 @@ document.getElementById("start").addEventListener("click", (ev)=>{
             response.json().then((token)=>{
                 localStorage.setItem("token", token);
                 params.progress=1;
-                window.location="/"+JSON.parse(localStorage.getItem(params.main+params.modulename))[0].page||41+".html?q="+JSON.stringify(params);
+                window.location="/"+(JSON.parse(localStorage.getItem(params.main+params.modulename))[0]||{}).page||41+".html?q="+JSON.stringify(params);
             })
         }else if(admin){
             params.progress=1;
