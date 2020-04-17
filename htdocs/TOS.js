@@ -1,0 +1,14 @@
+fetch("/text?id=datschu").then((response)=>{
+    if(response.status<400){
+        response.json().then(({content})=>{
+            document.getElementById("Datschu").innerHTML=content[0].content;
+        })
+    }
+})
+fetch("/text?id=agb").then((response)=>{
+    if(response.status<400){
+        response.json().then(({content})=>{
+            document.getElementById("agb").innerHTML=content[0].content;
+        })
+    }
+})
