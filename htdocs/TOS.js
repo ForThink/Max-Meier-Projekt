@@ -20,3 +20,6 @@ fetch("/text?id=agb").then((response)=>{
         })
     }
 })
+document.getElementById("back").addEventListener("click", (ev)=>{
+    window.location="signup.html"
+})
