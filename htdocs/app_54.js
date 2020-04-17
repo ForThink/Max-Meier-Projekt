@@ -85,7 +85,9 @@ if(admin){
             }).then((response)=>{
                 if(response.status<400){
                     response.json().then(({qid})=>{
-                        question.qid=qid;
+                        if(qid){
+                            question.qid=qid;
+                        }
                         let index = -1;
                         questions.forEach(({qid}, ind)=>{
                             if(qid==question.qid){
