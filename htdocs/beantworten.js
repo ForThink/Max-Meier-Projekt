@@ -1,1 +1,4 @@
-document.getElementById("beantworten").addEventListener("click", sendAnswer)
+document.getElementById("beantworten").addEventListener("click", (ev)=>{
+    ev.preventDefault();
+    sendAnswer(ev);
+})
