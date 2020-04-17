@@ -34,5 +34,7 @@ document.getElementById("register").addEventListener("click", (ev)=>{
             }, (rm)=>{errorbar.innerHTML=rm;
             })
         }, (rm)=>{errorbar.innerText=rm})
+    }else{
+        errorbar.innerText="something went wrong. Check if your email address is valid, and if your passwords match"
     }
 })
