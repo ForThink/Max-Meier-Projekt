@@ -76,7 +76,7 @@ if(admin){
         question.tags=["stat"];
         console.log(question);
         fetch("/questions", {
-            method: questions.qid!=undefined?"PATCH":"POST",
+            method: question.qid!=undefined?"PATCH":"POST",
             body: JSON.stringify(question),
             headers: {
                 "Authorization":`Bearer ${localStorage.getItem("token")}`,
