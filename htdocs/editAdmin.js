@@ -1,8 +1,7 @@
 const {admin} = JSON.parse(localStorage.getItem("userData"));
 let strg = false;
 document.addEventListener("keydown", (ev)=>{
-    console.log("control detected")
-    if(ev.key.toLowerCase()=="control"){
+    if(!strg&&ev.key.toLowerCase()=="control"){
         strg = true;
     }
 })
