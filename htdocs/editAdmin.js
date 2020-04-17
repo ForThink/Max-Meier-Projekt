@@ -3,22 +3,26 @@ let strg = false;
 let shift = false;
 const params = JSON.parse(new URLSearchParams(window.location.search).get("q"))||{};
 const pdoc = window.parent.document;
-pdoc.addEventListener("keydown", (ev)=>{
+const kdn =  (ev)=>{
     if(!strg&&ev.key.toLowerCase()=="control"){
         strg = true;
     }
     if(!shift&&ev.key.toLowerCase()=="shift"){
         shift=true;
     }
-})
-pdoc.addEventListener("keyup", (ev)=>{
+}
+const kup = (ev)=>{
     if(ev.key.toLowerCase()=="control"){
         strg = false;
     }
     if(ev.key.toLowerCase()=="shift"){
         shift=false;
     }
-})
+}
+pdoc.addEventListener("keydown", kdn)
+pdoc.addEventListener("keyup", kup)
+document.addEventListener("keydown", kdn)
+document.addEventListener("keyup", kup)
 
 const styleEdit = pdoc.getElementById("styleField");
 const editField = pdoc.getElementById("editField");
