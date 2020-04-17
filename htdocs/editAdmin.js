@@ -1,6 +1,8 @@
 const {admin} = JSON.parse(localStorage.getItem("userData"));
 let strg = false;
 let shift = false;
+const params = JSON.parse(new URLSearchParams(window.location.search).get("q"))||{};
+const pdoc = window.parent.document;
 pdoc.addEventListener("keydown", (ev)=>{
     if(!strg&&ev.key.toLowerCase()=="control"){
         strg = true;
@@ -17,8 +19,7 @@ pdoc.addEventListener("keyup", (ev)=>{
         shift=false;
     }
 })
-const params = JSON.parse(new URLSearchParams(window.location.search).get("q"))||{};
-const pdoc = window.parent.document;
+
 const styleEdit = pdoc.getElementById("styleField");
 const editField = pdoc.getElementById("editField");
 const editInput = pdoc.getElementById("editInput");
