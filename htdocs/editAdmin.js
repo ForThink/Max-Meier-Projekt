@@ -1,7 +1,7 @@
 const {admin} = JSON.parse(localStorage.getItem("userData"));
 let strg = false;
 let shift = false;
-document.addEventListener("keydown", (ev)=>{
+pdoc.addEventListener("keydown", (ev)=>{
     if(!strg&&ev.key.toLowerCase()=="control"){
         strg = true;
     }
@@ -9,7 +9,7 @@ document.addEventListener("keydown", (ev)=>{
         shift=true;
     }
 })
-document.addEventListener("keyup", (ev)=>{
+pdoc.addEventListener("keyup", (ev)=>{
     if(ev.key.toLowerCase()=="control"){
         strg = false;
     }
