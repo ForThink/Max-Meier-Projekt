@@ -1,6 +1,6 @@
 const {rounds} = JSON.parse(localStorage.getItem("userData"));
 const previousModuleDone = (id)=>{
-    const modules = rounds.length;
+    const modules = rounds?rounds.length:0;
     const trans = id.split("-");
     const prog = (parseInt(trans[0].replace("Modul", ""))-1)*3+parseInt(trans[1].replace("mod", ""))-2;
     return admin||modules>prog;
