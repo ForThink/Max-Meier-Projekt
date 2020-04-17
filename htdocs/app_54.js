@@ -74,8 +74,9 @@ if(admin){
         gatherData(`stat${params.progress}`)
         question.title=document.getElementById("title").innerHTML;
         question.tags=["stat"];
+        console.log(question);
         fetch("/questions", {
-            method: questions.qid?"PATCH":"POST",
+            method: questions.qid!=undefined?"PATCH":"POST",
             body: JSON.stringify(question),
             headers: {
                 "Authorization":`Bearer ${localStorage.getItem("token")}`,

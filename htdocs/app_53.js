@@ -16,7 +16,7 @@ if(admin){
         ev.preventDefault();
         gatherData(params.main+params.modulename+params.progress);
         fetch("/questions", {
-            method:question.qid?"PATCH":"POST",
+            method:question.qid!=undefined?"PATCH":"POST",
             headers:{
                 "Authorization":`Bearer ${localStorage.getItem("token")}`,
                 "Content-Type":"application/json"
