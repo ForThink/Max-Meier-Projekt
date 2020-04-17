@@ -14,7 +14,7 @@ if(admin){
         }).then((response)=>{
             if(response.status<400){
                 response.json().then(({qid})=>{
-                    const questions = JSON.parse(localStorage.getItem(params.main+params.modulename));
+                    const questions = JSON.parse(localStorage.getItem(params.main+params.modulename))||[];
                     if(qid){
                         question.qid=qid;
                         while(questions.length<params.progress-1){

@@ -4,7 +4,6 @@ document.getElementById("main").addEventListener("submit", (ev)=>{
 if(!params.progress){
     params.progress=1;
 }
-console.log(params)
 const now = Date.now();
 for (let i = 0; i < 7; i++){
     const cb = document.getElementById(`cb_${i}`);
@@ -19,7 +18,6 @@ for (let i = 0; i < 7; i++){
         }
     })
 }
-let editing = false;
 const setQuestionForm=()=>{
     const user = JSON.parse(localStorage.getItem("userData"));
     const questions = JSON.parse(localStorage.getItem("statQuestions"))||[];
@@ -73,18 +71,33 @@ if(admin){
     adminButton.addEventListener("click", (ev)=>{
         ev.preventDefault();
         const questions = JSON.parse(localStorage.getItem("statQuestions"));
-        gatherData(`stat${params.progress}`)    
+        gatherData(`stat${params.progress}`)
+        question.title=document.getElementById("title").innerHTML;
+        question.tags=["stat"];
         fetch("/questions", {
-            method: questions.length<params.progress?"POST":"PATCH",
-            body: JSON.stringify({
-                title: document.getElementById("title").vaule,
-                    answers: [],
-                    tags: ["stat"],
-                    qid: questions[params.progress-1]?questions[params.progress-1].qid:undefined
-                }),
-                headers: {
-                    "Authorization":`Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type":"application/json"
+            method: questions.qid?"PATCH":"POST",
+            body: JSON.stringify(question),
+            headers: {
+                "Authorization":`Bearer ${localStorage.getItem("token")}`,
+                "Content-Type":"application/json"
+            }
+            }).then((response)=>{
+                if(response.status<400){
+                    response.json().then(({qid})=>{
+                        question.qid=qid;
+                        let index = -1;
+                        questions.forEach(({qid}, ind)=>{
+                            if(qid==question.qid){
+                                index=ind
+                            }
+                        })
+                        if(index==-1){
+                            questions.push(question);
+                        }else{
+                            questions[index] = question;
+                        }
+                        localStorage.setItem("statQuestions", JSON.stringify(questions))
+                    })
                 }
             }).catch(console.log)
             
