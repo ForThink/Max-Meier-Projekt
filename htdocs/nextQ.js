@@ -18,4 +18,8 @@ if(admin){
     })
 }
 getData(params.main+params.modulename+params.progress+"Sol")
-document.getElementById("main").setAttribute("style", `animation: flash${params.last===true?"green":"red"} 3s linear;${document.getElementById("main").getAttribute("style")}`)
+const mainform = document.getElementById("main")
+mainform.setAttribute("style", `animation: flash${params.last===true?"green":"red"} 3s linear;${mainform.getAttribute("style")}`)
+setInterval(()=>{
+mainform.setAttribute("style",`background-color: ${params.last===true?'#aaffaa':'#ffaaaa'}; ${mainform.getAttribute("style")}`)
+}, 950)
