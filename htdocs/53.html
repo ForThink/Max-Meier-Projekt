@@ -38,7 +38,8 @@ footer {
 }
 </style>
 <body>
-    <form action="/action_page.php" method="post" id="main" style="display: flex; flex-direction: column; justify-content: space-between;">      
+    <form action="/action_page.php" method="post" id="main">      
+      <div id="container" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div style="display: flex; flex-direction: column; align-content: center;">
           <label id="Text_15_a" style="font: size 20px;margin:10px;" class="text">Text_15_a</label>
           <select name="pets" id="sel1" style="width: 80%;">
@@ -91,7 +92,8 @@ footer {
       <div>
         <button type="submit" id="beantworten">Weiter</button><button id="adminSave" style="display: none;">Änderungen Speichern</button>
       </div>
-    </form>
+      </div>  
+      </form>
     
 </body>
 <script type="text/javascript" src="/editAdmin.js"></script>
