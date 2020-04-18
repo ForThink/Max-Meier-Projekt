@@ -1,1 +1,1 @@
-document.getElementById("main").setAttribute("style", `min-height: ${window.innerHeight}px; ${document.getElementById("main").getAttribute("style")}`)
+document.getElementById("container").setAttribute("style", `min-height: ${window.innerHeight*0.7}px; ${document.getElementById("main").getAttribute("style")}`)
