@@ -94,7 +94,7 @@ route.post("/startRound", token.checkToken, (req, res, next)=>{
                 }
             }else{
                 rounds.splice(before?i:i+1, 0, {module: req.body.module, tries: 1});
-                jables.patchUser({uid: req.body.uid, rounds}).then(()=>{
+                jables.patchUser({uid: req.userData.uid, rounds}).then(()=>{
                     res.status(200).json(token.createToken(req.userData));
                 }, ({error, message})=>{
                     res.status(error).json(message);
