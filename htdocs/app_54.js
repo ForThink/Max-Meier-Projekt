@@ -30,10 +30,10 @@ const setQuestionForm=()=>{
                 }
             })
         })
-        if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<(params.likert||1)*24-1){
+        if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<(params.likert||1)*24-(params.likert>1?2:1)){
             params.progress = lastAnswered+1;
             window.location=`/54.html?q=${JSON.stringify(params)}`
-        }else if (lastAnswered>(params.likert||1)*24-2){
+        }else if (lastAnswered>(params.likert||1)*24-(params.likert>1?3:2)){
             const {group} = user;
             window.location=`/3${3+group}.html`
         }else if(questions[params.progress]){
@@ -75,7 +75,6 @@ if(admin){
         gatherData(`stat${params.progress}`)
         question.title=document.getElementById("title").innerHTML;
         question.tags=["stat"];
-        console.log(question);
         fetch("/questions", {
             method: question.qid!=undefined?"PATCH":"POST",
             body: JSON.stringify(question),
