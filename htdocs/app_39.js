@@ -41,7 +41,7 @@ document.getElementById("start").addEventListener("click", (ev)=>{
                     localStorage.setItem("token", token);
                 }
                 params.progress=1;
-                window.location="/"+(JSON.parse(localStorage.getItem(params.main+params.modulename))[0]||{page: 41}).page||41+".html?q="+JSON.stringify(params);
+                window.location="/"+((JSON.parse(localStorage.getItem(params.main+params.modulename))[0]||{page: 41}).page||41)+".html?q="+JSON.stringify(params);
             })
         }
     })
