@@ -27,6 +27,8 @@ const setQuestionForm=()=>{
             user.xp.forEach((date)=>{
                 if(date.xp.map(({qid})=>qid).includes(qid)){
                     lastAnswered++;
+                }else{
+                    console.log(qid)
                 }
             })
         })
