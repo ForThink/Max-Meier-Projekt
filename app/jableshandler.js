@@ -232,10 +232,15 @@ const answerQuestion = ({qid, uid, selected, timeSpan})=>new Promise((res, rej)=
     getQuestions([]).then((questions)=>{
         const {i, before} = searchArray("qid", qid, questions);
         if (before===undefined){
-            let right = questions[i].answers.filter(({correct})=>correct).length===selected.length;
+            const rightAnswers = questions[i].answers.filter(({correct})=>correct);
+            console.log(rightAnswers)
+            let right = rightAnswers.length===selected.length;
+
             if (right){
                 selected.forEach((index)=>{
+                    console.log(index);
                     if(!questions[i].answers[index].correct){
+                        console.log(index+ "is incorrect")
                         right = false;
                     }
                 })
