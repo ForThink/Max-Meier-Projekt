@@ -36,7 +36,6 @@ const checkedChangeHandler = (ev)=>{
     while(pdoc.getElementById(`true${k}`)!=null){
         k++;
     }
-    console.log(k);
     if(ev.target.checked===true){
         for (let i = 0; i < k; i++){
             const check = pdoc.getElementById(`true${i}`);
@@ -60,7 +59,6 @@ const spliceAnswers = (selnum, answers, prevlen)=>{
         }
     }
     question.answers.splice(startind, prevlen, ...answers);
-    console.log(question);
 }
 pdoc.getElementById("selectAdd").addEventListener("click", (ev)=>{
     let i = 0;

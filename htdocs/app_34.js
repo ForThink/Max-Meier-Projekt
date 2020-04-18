@@ -13,7 +13,6 @@ document.getElementById("rmad").addEventListener("click", (ev)=>{
     },950)
 })
 const tabcontent = (ranking)=>{
-    console.log(ranking)
     const {uid} = JSON.parse(localStorage.getItem("userData"));
     const tab = document.getElementById("ranktab");
     let tabcontent = "";

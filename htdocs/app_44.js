@@ -3,7 +3,6 @@ if (admin){
         if (input.type==="checkbox"&&input.id){
             input.setAttribute("style", "");
             const index = parseInt(input.id.replace("a", ""))-1;
-            console.log(index, question.answers);
             input.checked=(question.answers[index]||{correct:false}).correct;
             input.addEventListener("change", (ev)=>{
                 question.answers[index].correct=ev.target.checked;
@@ -23,7 +22,6 @@ for (let img of document.getElementsByTagName("img")){
             selections.splice(selections.indexOf(index), 1);
             ev.target.setAttribute("style", ev.target.getAttribute("style").replace('filter: brightness(1.25);', ''));
         }
-        console.log(selections, index);
     })
 }
 const stretchFactor = 0.8;

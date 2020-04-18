@@ -1,6 +1,5 @@
 const mainframe = document.getElementById("mainframe")
 window.addEventListener("resize", ()=>{
-    console.log(window.innerWidth, window.innerHeight)
     mainframe.setAttribute("style", mainframe.getAttribute("style")+`width: ${heightwidth(0)}px ; height: ${heightwidth(1)}px;`)
 })
 const heightwidth = (index)=>{

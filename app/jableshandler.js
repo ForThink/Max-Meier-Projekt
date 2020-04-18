@@ -31,7 +31,6 @@ const updateObject = (original, update)=>{
     return merge;
 }
 const searchArray = (searchkey, searchvalue, array)=>{
-    console.log(searchkey, searchvalue)
     if(array.length>0){
     let search = array.map((item)=>item);
     let bound = Math.round(search.length/2);
@@ -49,19 +48,16 @@ const searchArray = (searchkey, searchvalue, array)=>{
     }
 const userBase = {path: "users", indexKey:"uid"};
 const getUser = ({email, uid})=>new Promise((res, rej)=>{
-    console.log(email, uid)
     jables.getDefinition({location, definition: userBase}).then((Obj)=>{
         const {Versions} = JSON.parse(Obj);
         let searchterm = "uid";
         let searchcontent = uid;
         if (uid==undefined){
             Versions.sort(({email: a}, {email: b})=>a<b?-1:1);
-            console.log(Versions);
             searchterm = "email";
             searchcontent = email;
         }
         const {i, before} = searchArray(searchterm, searchcontent, Versions)
-        console.log(i,before);
         if (before==undefined){
             res(Versions[i]);
         }else{

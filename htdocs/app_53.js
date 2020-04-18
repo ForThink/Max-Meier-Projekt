@@ -8,7 +8,6 @@ if(admin){
     adminSave.setAttribute("style", "");
     adminSave.addEventListener("click", (ev)=>{
         ev.preventDefault();
-        console.log(question);
         gatherData(params.main+params.modulename+params.progress);
         fetch("/questions", {
             method:question.qid!=undefined?"PATCH":"POST",

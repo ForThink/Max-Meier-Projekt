@@ -5,7 +5,6 @@ route.get("/xp", (req, res, next)=>{
     let all = req.query.all||0;
     const exclude = [];
     const tags = req.query.tags?req.query.tags.split(","):[];
-    console.log(tags, all)
     jables.getUsers().then((users)=>{
         if (tags.length){
             jables.getQuestions({tags}).then((questions)=>{

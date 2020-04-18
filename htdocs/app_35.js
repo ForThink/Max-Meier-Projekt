@@ -34,7 +34,6 @@ let aplicado = 0;
 logdates.forEach((date) => {    
     const d1 = new Date(date[1])-0||Date.now();
     const d2 = new Date(date[0])-0;
-    console.log(d1, d2, d1-d2)
     if(!isNaN(d1)&&!isNaN(d2)){
         aplicado+=d1-d2;
     }
