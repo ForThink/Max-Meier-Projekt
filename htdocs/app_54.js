@@ -31,7 +31,8 @@ const setQuestionForm=()=>{
             })
         })
         if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<(params.likert||1)*24-1){
-            window.location=`/54.html?q={"progress":${lastAnswered+1}}`
+            params.progress = lastAnswered+1;
+            window.location=`/54.html?q=${JSON.stringify(params)}`
         }else if (lastAnswered>(params.likert||1)*24-2){
             const {group} = user;
             window.location=`/3${3+group}.html`
