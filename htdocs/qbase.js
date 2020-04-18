@@ -4,7 +4,6 @@ if(admin){
     adminSave.addEventListener("click", (ev)=>{
         ev.preventDefault();
         question.page=window.location.pathname.replace(".html", "").replace("/", "");
-        console.log(question);
         gatherData(params.main+params.modulename+params.progress);
         fetch("/questions", {
             method:question.qid!=undefined?"PATCH":"POST",
