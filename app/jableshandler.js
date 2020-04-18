@@ -103,8 +103,11 @@ const login = ({email, password})=>new Promise((res, rej)=>{
         const {Versions} = JSON.parse(Obj);
         Versions.sort((a, b)=>a.email<b.email?-1:1);
         const {i, before} = searchArray("email", email, Versions);
+        console.log(i, before, Versions)
         if (before===undefined&&Versions[i].confirmed){
+            console.log("user found");
                 if(verify(Versions[i].password, password)){
+                    console.log("user verified");
                     if (Versions[i].logdates!=undefined){
                         if (Versions[i].logdates[Versions[i].logdates.length-1].length===1){
                             Versions[i].logdates[Versions[i].logdates.length-1][0]=new Date().toUTCString();
