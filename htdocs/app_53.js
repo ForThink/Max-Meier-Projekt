@@ -66,3 +66,4 @@ const sendAnswer = ()=>{
         }
     })
 }
+const stretchFactor =1;
