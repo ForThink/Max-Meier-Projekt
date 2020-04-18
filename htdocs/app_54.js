@@ -18,6 +18,7 @@ for (let i = 0; i < 7; i++){
         }
     })
 }
+const skipthreshold = (params.likert||1)*24-(params.likert>1?1:0);
 const setQuestionForm=()=>{
     const user = JSON.parse(localStorage.getItem("userData"));
     const questions = JSON.parse(localStorage.getItem("statQuestions"))||[];
@@ -32,12 +33,11 @@ const setQuestionForm=()=>{
                 }
             })
         })
-        const skipthreshold = (params.likert||1)*24+(params.likert>1?0:1);
         console.log(lastAnswered, skipthreshold);
-        if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<skipthreshold){
-            params.progress = lastAnswered+1;
+        if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<skipthreshold-1){
+            params.progress = lastAnswered+2;
             window.location=`/54.html?q=${JSON.stringify(params)}`
-        }else if (lastAnswered>(params.likert||1)*24-(params.likert>1?2:1)){
+        }else if (lastAnswered>skipthreshold-2){
             const {group} = user;
             window.location=`/3${3+group}.html`
         }else if(questions[params.progress]){
@@ -148,7 +148,7 @@ document.getElementById("nextQuestion").addEventListener("click", (ev)=>{
             , console.log)
         }, console.log)
     } else if(JSON.parse(atob(localStorage.getItem("token").split(".")[1])).admin==true){
-        if (params.progress<(params.likert||1)*24+(params.likert>1?1:2)){
+        if (params.progress<skipthreshold){
             params.progress++;
             window.location="/54.html?q="+JSON.stringify(params);
         }else{
