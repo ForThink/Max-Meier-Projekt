@@ -80,18 +80,18 @@ const height = (day)=>{
 let content = `
 <label style="margin-bottom:5px">Insgesamt: ${total}&nbsp;&nbsp;Heute:${today[0]}</label>
 <svg width="${width}" height ="${width}">
-    <line x1="${width/20}" x2="${width/20}" y1="${width-25}" y2="${0}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
-    <line x1="${width/20}" x2="${width}" y1="${width-25}" y2="${width-25}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
-    <text x="${width/50}" y="${3*width/50}" style="fill:black;font-size: ${width/20}px; font-weight: bold" >XP</text>
-    <text x="${width/50}" y="${(width-25)/4}" style="fill:black;font-size: ${width/20}px;" >${Math.round((total-sock)/4*3+sock)}</text>
-    <text x="${width/50}" y="${(width-25)/2}" style="fill:black;font-size: ${width/20}px;" >${Math.round((total-sock)/4*2+sock)}</text>
-    <text x="${width/50}" y="${3*(width-25)/4}" style="fill:black;font-size: ${width/20}px;" >${Math.round((total-sock)/4+sock)}</text>
-    <text x="${width/50}" y="${width-25}" style="fill:black;font-size: ${width/20}px;" >${sock}</text>
-    <text y="${0.97*width}" x="${(width-25)/4}" style="fill:black;font-size: ${width/20}px;" >${numtoday(trdag[1])}</text>
-    <text y="${0.97*width}" x="${(width-25)/2}" style="fill:black;font-size: ${width/20}px;" >${numtoday(twdag[1])}</text>
-    <text y="${0.97*width}" x="${3*(width-25)/4}" style="fill:black;font-size: ${width/20}px;" >${numtoday(yesterday[1])}</text>
-    <text y="${0.97*width}" x="${width-25}" style="fill:black;font-size: ${width/20}px;" >${numtoday(today[1])}</text>
-    <line x1="${width/20}" x2="${(width-25)/4}" y1="${width-25}" y2="${height(trdag)}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
+    <line x1="${5*width/40}" x2="${5*width/40}" y1="${width-25}" y2="${0}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
+    <line x1="${5*width/40}" x2="${width}" y1="${width-25}" y2="${width-25}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
+    <text x="${width/50}" y="${3*width/50}" style="fill:black;font-size: ${width/15}px; font-weight: bold" >XP</text>
+    <text x="${width/50}" y="${(width-25)/4}" style="fill:black;font-size: ${width/15}px;" >${Math.round((total-sock)/4*3+sock)}</text>
+    <text x="${width/50}" y="${(width-25)/2}" style="fill:black;font-size: ${width/15}px;" >${Math.round((total-sock)/4*2+sock)}</text>
+    <text x="${width/50}" y="${3*(width-25)/4}" style="fill:black;font-size: ${width/15}px;" >${Math.round((total-sock)/4+sock)}</text>
+    <text x="${width/50}" y="${width-25}" style="fill:black;font-size: ${width/15}px;" >${sock}</text>
+    <text y="${0.97*width}" x="${(width-25)/4}" style="fill:black;font-size: ${width/15}px;" >${numtoday(trdag[1])}</text>
+    <text y="${0.97*width}" x="${(width-25)/2}" style="fill:black;font-size: ${width/15}px;" >${numtoday(twdag[1])}</text>
+    <text y="${0.97*width}" x="${3*(width-25)/4}" style="fill:black;font-size: ${width/15}px;" >${numtoday(yesterday[1])}</text>
+    <text y="${0.97*width}" x="${width-25}" style="fill:black;font-size: ${width/15}px;" >${numtoday(today[1])}</text>
+    <line x1="${5*width/40}" x2="${(width-25)/4}" y1="${width-25}" y2="${height(trdag)}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
     <line x1="${(width-25)/4}" x2="${(width-25)/2}" y1="${height(trdag)}" y2="${height(twdag)}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
     <line x1="${(width-25)/2}" x2="${3*(width-25)/4}" y1="${height(twdag)}" y2="${height(yesterday)}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
     <line x1="${3*(width-25)/4}" x2="${width-25}" y1="${height(yesterday)}" y2="${height(today)}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
