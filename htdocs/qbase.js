@@ -3,6 +3,7 @@ if(admin){
     adminSave.setAttribute("style", "");
     adminSave.addEventListener("click", (ev)=>{
         ev.preventDefault();
+        question.page=window.location.pathname.replace(".html", "").replace("/", "");
         gatherData(params.main+params.modulename+params.progress);
         fetch("/questions", {
             method:question.qid!=undefined?"PATCH":"POST",
