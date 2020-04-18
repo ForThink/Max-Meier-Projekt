@@ -37,7 +37,9 @@ document.getElementById("start").addEventListener("click", (ev)=>{
     }).then((response)=>{
         if(admin||response.status<400){
             response.json().then((token)=>{
-                localStorage.setItem("token", token);
+                if(response.status<400){
+                    localStorage.setItem("token", token);
+                }
                 params.progress=1;
                 window.location="/"+(JSON.parse(localStorage.getItem(params.main+params.modulename))[0]||{page: 41}).page+".html?q="+JSON.stringify(params);
             })
