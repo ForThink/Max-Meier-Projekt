@@ -249,7 +249,7 @@ const answerQuestion = ({qid, uid, selected, timeSpan})=>new Promise((res, rej)=
         }
     }, rej);
 })
-const patchQuestion = ({qid, title, answers, tags})=>new Promise((res, rej)=>{
+const patchQuestion = ({qid, title, answers, tags, page})=>new Promise((res, rej)=>{
     let base;
     let rejected = false;
     if(qid!=undefined){
@@ -281,6 +281,13 @@ const patchQuestion = ({qid, title, answers, tags})=>new Promise((res, rej)=>{
         }else{
             rejected = true;
             rej({error: 409, message:"answers must be an array"})
+        }
+    }
+    if(!rejected&&page!=undefined){
+        if(typeof(page)==="number"){
+            base=updateObject(base, {page})
+        }else{
+            rejected=true;
         }
     }
     if(!rejected&&tags){
