@@ -75,9 +75,9 @@ const numtoday = (num)=>{
     }
 }
 const width = window.innerWidth>500?200:window.innerWidth*0.4;
+const range = (total - sock)*1.2;
 const height = (day)=>{
     const h = width-25;
-    const range = total - sock;
     return h*(1 - day[0]/(range>0?range:1));
 }
 let content = `
@@ -86,9 +86,9 @@ let content = `
     <line x1="${5*width/40}" x2="${5*width/40}" y1="${width-25}" y2="${0}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
     <line x1="${5*width/40}" x2="${width}" y1="${width-25}" y2="${width-25}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
     <text x="${width/50}" y="${3*width/50}" style="fill:black;font-size: ${width/15}px; font-weight: bold" >XP</text>
-    <text x="${width/50}" y="${(width-25)/4}" style="fill:black;font-size: ${width/15}px;" >${Math.round((total-sock)/4*3+sock)}</text>
-    <text x="${width/50}" y="${(width-25)/2}" style="fill:black;font-size: ${width/15}px;" >${Math.round((total-sock)/4*2+sock)}</text>
-    <text x="${width/50}" y="${3*(width-25)/4}" style="fill:black;font-size: ${width/15}px;" >${Math.round((total-sock)/4+sock)}</text>
+    <text x="${width/50}" y="${(width-25)/4}" style="fill:black;font-size: ${width/15}px;" >${Math.round(range/4*3+sock)}</text>
+    <text x="${width/50}" y="${(width-25)/2}" style="fill:black;font-size: ${width/15}px;" >${Math.round(range/2+sock)}</text>
+    <text x="${width/50}" y="${3*(width-25)/4}" style="fill:black;font-size: ${width/15}px;" >${Math.round(range/4+sock)}</text>
     <text x="${width/50}" y="${width-25}" style="fill:black;font-size: ${width/15}px;" >${sock}</text>
     <text y="${0.97*width}" x="${(width-25)/4}" style="fill:black;font-size: ${width/15}px;" >${numtoday(trdag[1])}</text>
     <text y="${0.97*width}" x="${(width-25)/2}" style="fill:black;font-size: ${width/15}px;" >${numtoday(twdag[1])}</text>
