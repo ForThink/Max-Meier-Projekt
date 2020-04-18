@@ -285,10 +285,11 @@ const patchQuestion = ({qid, title, answers, tags, page})=>new Promise((res, rej
         }
     }
     if(!rejected&&page!=undefined){
-        if(typeof(page)==="number"){
+        if(typeof(page)==="number"||parseInt(page)!=NaN){
             base=updateObject(base, {page})
         }else{
             rejected=true;
+            rej({error: 409, message:"page must be a number"})
         }
     }
     if(!rejected&&tags){
