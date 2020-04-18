@@ -91,7 +91,7 @@ let content = `
     <text y="${0.97*width}" x="${(width-25)/2}" style="fill:black;font-size: ${width/15}px;" >${numtoday(twdag[1])}</text>
     <text y="${0.97*width}" x="${3*(width-25)/4}" style="fill:black;font-size: ${width/15}px;" >${numtoday(yesterday[1])}</text>
     <text y="${0.97*width}" x="${width-25}" style="fill:black;font-size: ${width/15}px;" >${numtoday(today[1])}</text>
-    <line x1="${5*width/40}" x2="${(width-25)/4}" y1="${width-25}" y2="${height(trdag)}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
+    <line x1="${5*width/40}" x2="${(width-25)/4}" y1="${height(frdag)}" y2="${height(trdag)}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
     <line x1="${(width-25)/4}" x2="${(width-25)/2}" y1="${height(trdag)}" y2="${height(twdag)}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
     <line x1="${(width-25)/2}" x2="${3*(width-25)/4}" y1="${height(twdag)}" y2="${height(yesterday)}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
     <line x1="${3*(width-25)/4}" x2="${width-25}" y1="${height(yesterday)}" y2="${height(today)}" style="stroke:rgb(0,0,0);stroke-width:1;"/>
