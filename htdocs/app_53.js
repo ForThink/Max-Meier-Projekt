@@ -6,7 +6,7 @@ params.likert=1;
 const {xp} = JSON.parse(localStorage.getItem("userData"));
 if(!admin){
     if(xp&&xp.length>0){
-        window.location=`54.html?q=${JSON.parse({progress: 1, likert: 1, main:"statQuestions", moduleName:""})}`
+        window.location=`54.html?q=${JSON.stringify({progress: 1, likert: 1, main:"statQuestions", moduleName:""})}`
     }
 }
 const adminSave = document.getElementById("adminSave");

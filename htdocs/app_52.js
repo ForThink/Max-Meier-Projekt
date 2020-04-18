@@ -15,4 +15,4 @@ document.getElementById("naechsteFrage").addEventListener("click", (ev)=>{
         window.location=`54.html?q=${JSON.stringify({likert: params.likert, progress: (params.likert-1)*24})}`
     }
 })
-const stretchFactor = 0.8;
+const stretchFactor = 1;
