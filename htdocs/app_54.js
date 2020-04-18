@@ -148,7 +148,7 @@ document.getElementById("nextQuestion").addEventListener("click", (ev)=>{
             , console.log)
         }, console.log)
     } else if(JSON.parse(atob(localStorage.getItem("token").split(".")[1])).admin==true){
-        if (params.progress<(params.likert||1)*24-(params.likert>1?1:0)){
+        if (params.progress<(params.likert||1)*24+(params.likert>1?0:1)){
             params.progress++;
             window.location="/54.html?q="+JSON.stringify(params);
         }else{
