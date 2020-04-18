@@ -11,6 +11,13 @@ document.getElementById("resetPW").addEventListener("click", (ev)=>{
             "Content-Type":"application/json"
         }
     }).then((response)=>{
-        response.json().then(console.log, console.log)
+        if(response.status<400){
+            window.location="/login.html";
+        }else{
+            response.json().then((json)=>{
+                document.getElementById("error").innerHTML=json;
+            }, console.log)
+        }
+        
     })
 })

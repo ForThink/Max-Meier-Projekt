@@ -3,7 +3,6 @@ let strg = false;
 let shift = false;
 const params = JSON.parse(new URLSearchParams(window.location.search).get("q"))||{};
 const pdoc = window.parent.document;
-const body= document.getElementsByTagName("body")[0];
 const kdn =  (ev)=>{
     if(!strg&&ev.key.toLowerCase()=="control"){
         strg = true;
@@ -392,10 +391,8 @@ const getData = (id)=>new Promise((res, rej)=>{
                     }
                 })
                 res();
-                body.setAttribute("style", "")
             }, rej)
         }else{
-            body.setAttribute("style", "")
             rej();
         }
     }, rej)

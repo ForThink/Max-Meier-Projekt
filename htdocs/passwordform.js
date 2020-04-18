@@ -13,6 +13,10 @@ sendb.onclick=()=>{
                 "Authorization":"Bearer " + token
             },
             body:JSON.stringify({uid, password: password.value})
+        }).then((response)=>{
+            if(response.status<400){
+                window.location="/index.html"
+            }
         })
     }
 }
