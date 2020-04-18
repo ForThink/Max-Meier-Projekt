@@ -26,3 +26,4 @@ for (let img of document.getElementsByTagName("img")){
         console.log(selections, index);
     })
 }
+const stretchFactor = 0.8;

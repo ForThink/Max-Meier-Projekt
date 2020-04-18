@@ -1,0 +1,1 @@
+const stretchFactor = 0.8;
