@@ -55,6 +55,9 @@ let sock = 0;
         default: sock+=tday; break;
     }
 });
+if(sock==total){
+    sock=0;
+}
 today[1]=new Date().getDay();
 yesterday[1]=(today[1]-1)<0?(today[1]+6):today[1]-1;
 twdag[1]=(today[1]-2)<0?(today[1]-1+6):(today[1]-2);
