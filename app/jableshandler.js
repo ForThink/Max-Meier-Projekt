@@ -31,6 +31,7 @@ const updateObject = (original, update)=>{
     return merge;
 }
 const searchArray = (searchkey, searchvalue, array)=>{
+    console.log(searchkey, searchvalue)
     if(array.length>0){
     let search = array.map((item)=>item);
     let bound = Math.round(search.length/2);
