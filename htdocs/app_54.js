@@ -135,7 +135,7 @@ document.getElementById("nextQuestion").addEventListener("click", (ev)=>{
         }).then((response)=>{
             response.json().then((json)=>{
                 localStorage.setItem("userData", JSON.stringify(json.user));
-                if (params.progress<(params.likert||1)*24-(params.likert>1?1:0)){
+                if (params.progress<(params.likert||1)*24-(params.likert>1?2:1)){
                     params.progress++;
                     window.location=`/54.html?q=${JSON.stringify(params)}`;
                 }else{
