@@ -50,7 +50,7 @@ const checkedChangeListeners = (l)=>{
         pdoc.getElementById(`true${i}`).addEventListener("change", checkedChangeHandler)
     }
 }
-const question = (JSON.parse(localStorage.getItem(params.main+params.modulename))||[])[params.progress-1]||{title:params.main+"_"+params.modulename+"_"+params.progress, answers:window.location.pathname.includes("44")?[{text: "1", correct: false}, {text: "2", correct: false}, {text: "3", correct: false}]:[], tags:[params.main+params.modulename], page:window.location.pathname.replace(".html", "").replace("/", "")};
+const question = (JSON.parse(localStorage.getItem(params.main+params.modulename))||[])[params.progress-1]||{title:params.main+"_"+params.modulename+"_"+params.progress, answers:[], tags:[params.main+params.modulename], page:window.location.pathname.replace(".html", "").replace("/", "")};
 const spliceAnswers = (selnum, answers, prevlen)=>{
     let startind = 0;
     if(selnum>1){

@@ -1,4 +1,7 @@
 if (admin){
+    if(question.answers.length!=3){
+        question.answers=[{text: "1", correct: false}, {text: "2", correct: false}, {text: "3", correct: false}]
+    }
     for (let input of document.getElementsByTagName("input")){
         if (input.type==="checkbox"&&input.id){
             input.setAttribute("style", "");
