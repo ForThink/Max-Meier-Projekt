@@ -74,9 +74,10 @@ const getUser = ({email, uid})=>new Promise((res, rej)=>{
 const newUser = ({email, password})=>new Promise((res, rej)=>{
     jables.getDefinition({location, definition: userBase}).then((Obj)=>{
         const {Versions} = JSON.parse(Obj);
-        const {before} = searchArray("email", email.toLowerCase(), Versions.sort(({email: a}, {email: b})=>a<b?-1:1));
+        const uid = Versions[Versions.length-1].uid+1;
+        Versions.sort(({email: a}, {email: b})=>a<b?-1:1);
+        const {before} = searchArray("email", email.toLowerCase(), Versions);
         if(before!=undefined){
-                const uid = Versions[Versions.length-1].uid+1;
                 jables.writeDefinition({location, definition: updateObject(userBase, {email, password: sign(password), uid, admin: false, confirmed: false, joined: new Date().toUTCString()})}).then(()=>{
                     setTimeout(()=>{
                         getUser({uid: Versions.length}).then(({confirmed})=>{
