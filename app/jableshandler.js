@@ -250,6 +250,7 @@ const answerQuestion = ({qid, uid, selected, timeSpan})=>new Promise((res, rej)=
     }, rej);
 })
 const patchQuestion = ({qid, title, answers, tags, page})=>new Promise((res, rej)=>{
+    console.log(qid, title, answers, tags, page)
     let base;
     let rejected = false;
     if(qid!=undefined){
