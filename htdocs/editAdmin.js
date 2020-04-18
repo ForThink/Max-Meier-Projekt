@@ -381,6 +381,8 @@ const gatherData = (id)=>{
     })
 }
 const getData = (id)=>new Promise((res, rej)=>{
+    const body= document.getElementsByTagName("body")[0];
+    body.setAttribute("style", "display: none;")
     fetch("/text?id="+id).then((response)=>{
         if(response.status<400){
             response.json().then(({content})=>{
@@ -391,6 +393,7 @@ const getData = (id)=>new Promise((res, rej)=>{
                     }
                 })
                 res();
+                body.setAttribute("style", "")
             }, rej)
         }else{
             rej();
