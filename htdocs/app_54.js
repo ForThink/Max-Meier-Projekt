@@ -30,10 +30,12 @@ const setQuestionForm=()=>{
                 }
             })
         })
-        if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<(params.likert||1)*24-(params.likert>1?2:1)){
+        const skipthreshold = (params.likert||1)*24-(params.likert>1?1:0);
+        console.log(lastAnswered, skipthreshold);
+        if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<skipthreshold){
             params.progress = lastAnswered+1;
             window.location=`/54.html?q=${JSON.stringify(params)}`
-        }else if (lastAnswered>(params.likert||1)*24-(params.likert>1?3:2)){
+        }else if (lastAnswered>(params.likert||1)*24-(params.likert>1?2:1)){
             const {group} = user;
             window.location=`/3${3+group}.html`
         }else if(questions[params.progress]){
