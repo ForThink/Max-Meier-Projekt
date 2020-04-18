@@ -5,6 +5,7 @@ beantworten.addEventListener("click", (ev)=>{
     ev.preventDefault();
     let totalAnswers = 0;
     for (let sel of document.getElementsByTagName("select")){
+        if(sel.id!=="adminQuestionSelect")
         selections.push(sel.selectedIndex+totalAnswers);
         totalAnswers+=sel.children.length;
     }
