@@ -1,3 +1,4 @@
+const {xp} = JSON.parse(localStorage.getItem("userData"));
 if(admin){
     const adminEdit=document.getElementById("adminSave");
     adminEdit.setAttribute("style", "");

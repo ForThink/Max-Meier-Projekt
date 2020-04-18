@@ -3,7 +3,6 @@ document.getElementById("main").addEventListener("submit", (ev)=>{
 });
 const lsg=54;
 params.likert=1;
-const {xp} = JSON.parse(localStorage.getItem("userData"));
 const adminSave = document.getElementById("adminSave");
 if(admin){
     adminSave.setAttribute("style", "");
