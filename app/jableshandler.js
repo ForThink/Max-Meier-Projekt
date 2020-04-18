@@ -237,7 +237,6 @@ const answerQuestion = ({qid, uid, selected, timeSpan})=>new Promise((res, rej)=
 
             if (right){
                 selected.forEach((index)=>{
-                    console.log(index);
                     if(!questions[i].answers[index].correct){
                         right = false;
                     }
