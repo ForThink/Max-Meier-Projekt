@@ -48,6 +48,7 @@ const searchArray = (searchkey, searchvalue, array)=>{
     }
 const userBase = {path: "users", indexKey:"uid"};
 const getUser = ({email, uid})=>new Promise((res, rej)=>{
+    console.log(email, uid)
     jables.getDefinition({location, definition: userBase}).then((Obj)=>{
         const {Versions} = JSON.parse(Obj);
         let searchterm = "uid";
