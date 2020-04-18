@@ -14,6 +14,7 @@ const sendAnswer = ()=>{
         if(response.status<400){
             response.json().then((json)=>{
                 localStorage.setItem("userData", JSON.stringify(json.user));
+                params.last = json.right;
                 if(params.right==undefined){
                     params.right=0;
                 }
@@ -23,7 +24,7 @@ const sendAnswer = ()=>{
                 window.location=`/${lsg}.html?q=${JSON.stringify(params)}`
             })
         }else if(admin){
-            window.location=`/${lsg}.html${window.location.search}`
+            window.location=`/${lsg}.html?q=${JSON.stringify(params)}`
         }
     })
 }
