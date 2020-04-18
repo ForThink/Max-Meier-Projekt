@@ -250,7 +250,6 @@ const answerQuestion = ({qid, uid, selected, timeSpan})=>new Promise((res, rej)=
     }, rej);
 })
 const patchQuestion = ({qid, title, answers, tags, page})=>new Promise((res, rej)=>{
-    console.log(qid, title, answers, tags, page)
     let base;
     let rejected = false;
     if(qid!=undefined){
@@ -309,7 +308,6 @@ const patchQuestion = ({qid, title, answers, tags, page})=>new Promise((res, rej
             base=updateObject(base, {tags});
         }
     }
-    console.log(base, rejected)
     if(!rejected){
         jables.writeDefinition({location, definition:updateObject(questionBase, base)}).then(res, rej);
     }
