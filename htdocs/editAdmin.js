@@ -396,6 +396,7 @@ const getData = (id)=>new Promise((res, rej)=>{
                 body.setAttribute("style", "")
             }, rej)
         }else{
+            body.setAttribute("style", "")
             rej();
         }
     }, rej)
