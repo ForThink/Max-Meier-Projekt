@@ -60,6 +60,7 @@ const getUser = ({email, uid})=>new Promise((res, rej)=>{
             searchcontent = email;
         }
         const {i, before} = searchArray(searchterm, searchcontent, Versions)
+        console.log(i,before);
         if (before==undefined){
             res(Versions[i]);
         }else{
