@@ -54,10 +54,12 @@ const getUser = ({email, uid})=>new Promise((res, rej)=>{
         let searchcontent = uid;
         if (uid==undefined){
             Versions.sort(({email: a}, {email: b})=>a<b?-1:1);
+            console.log(Versions);
             searchterm = "email";
             searchcontent = email;
         }
         const {i, before} = searchArray(searchterm, searchcontent, Versions)
+        console.log(i, before);
         if (before==undefined){
             res(Versions[i]);
         }else{
