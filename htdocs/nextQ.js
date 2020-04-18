@@ -18,4 +18,4 @@ if(admin){
     })
 }
 getData(params.main+params.modulename+params.progress+"Sol")
-document.getElementById("main").setAttribute("style", `background-color: ${params.last===true?"green":"red"};${document.getElementById("main").getAttribute("style")}`)
+document.getElementById("main").setAttribute("style", `animation: flash${params.last===true?"green":"red"} 3s linear;${document.getElementById("main").getAttribute("style")}`)
