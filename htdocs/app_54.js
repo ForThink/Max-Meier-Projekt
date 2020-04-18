@@ -40,7 +40,7 @@ const setQuestionForm=()=>{
         }else if (lastAnswered>skipthreshold-2){
             const {group} = user;
             window.location=`/3${3+group}.html`
-        }else if(questions[params.progress]){
+        }else if(questions[params.progress-(params.likert>1?0:1)]){
             getData(`stat${params.progress}`)
         }
     }else{
