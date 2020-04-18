@@ -32,7 +32,7 @@ const setQuestionForm=()=>{
                 }
             })
         })
-        const skipthreshold = (params.likert||1)*24-(params.likert>1?1:0);
+        const skipthreshold = (params.likert||1)*24+(params.likert>1?0:1);
         console.log(lastAnswered, skipthreshold);
         if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<skipthreshold){
             params.progress = lastAnswered+1;
