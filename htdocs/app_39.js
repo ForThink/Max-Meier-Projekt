@@ -35,15 +35,12 @@ document.getElementById("start").addEventListener("click", (ev)=>{
         },
         body:JSON.stringify({module: params.main+params.modulename})
     }).then((response)=>{
-        if(response.status<400){
+        if(admin||response.status<400){
             response.json().then((token)=>{
                 localStorage.setItem("token", token);
                 params.progress=1;
                 window.location="/"+(JSON.parse(localStorage.getItem(params.main+params.modulename))[0]||{page: 41}).page+".html?q="+JSON.stringify(params);
             })
-        }else if(admin){
-            params.progress=1;
-            window.location="/41.html?q="+JSON.stringify(params);
         }
     })
 })
