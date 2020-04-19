@@ -3,7 +3,7 @@ if(admin){
     adminSave.setAttribute("style", "");
     adminSave.addEventListener("click", (ev)=>{
         ev.preventDefault();
-        while (question.answers.length>document.getElementsByTagName("select").length-1){
+        while (!window.location.pathname.includes("44.html")&&question.answers.length>document.getElementsByTagName("select").length-1){
             question.answers.pop();
         }
         question.page=window.location.pathname.replace(".html", "").replace("/", "");
