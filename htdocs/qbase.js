@@ -3,6 +3,11 @@ if(admin){
     adminSave.setAttribute("style", "");
     adminSave.addEventListener("click", (ev)=>{
         ev.preventDefault();
+        if(!working){
+            working = true;
+            let onedone = false;
+            let fetchmes = "";
+        
         let allowedanswersnumber = 0;
         for(let select of document.getElementsByTagName("select")){
             if(select.id&&select.id!=="adminQuestionSelect"){
@@ -13,7 +18,22 @@ if(admin){
             question.answers.pop();
         }
         question.page=window.location.pathname.replace(".html", "").replace("/", "");
-        gatherData(params.main+params.modulename+params.progress);
+        gatherData(params.main+params.modulename+params.progress).then((res)=>{
+            if(onedone){
+                showError(res)
+            }else{
+                onedone = true;
+                fetchmes = res;
+            }
+        }, (res)=>{
+            if(onedone){
+                showError(res)
+                working = false;
+            }else{
+                onedone = true;
+                fetchmes = res;
+            }
+        });
         fetch("/questions", {
             method:question.qid!=undefined?"PATCH":"POST",
             headers:{
@@ -35,7 +55,24 @@ if(admin){
                     localStorage.setItem(params.main+params.modulename, JSON.stringify(questions))
                 })
             }
+            if(onedone){
+                showError(fetchmes)
+                working = false;
+            }else{
+                onedone = true;
+            }
+        }).catch(()=>{
+            if(onedone){
+                showError("something went horribly wrong")
+                working = false;
+            }else{
+                onedone = true;
+            }
         })
+        }else{
+            showError("ich bin noch nicht fertig gedulde dich bitte")
+        }
+        
     })
 }
 getData(params.main+params.modulename+params.progress);

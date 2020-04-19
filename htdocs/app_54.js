@@ -68,9 +68,28 @@ if(admin){
     const adminButton = document.getElementById("admin_button");
     adminButton.setAttribute("style", "display: unset;")
     adminButton.addEventListener("click", (ev)=>{
+        
         ev.preventDefault();
-        const questions = JSON.parse(localStorage.getItem("statQuestions"));
-        gatherData(`stat${params.progress}`)
+        if(!working){
+            let onedone = false;
+            let fetchmes = "";
+            const questions = JSON.parse(localStorage.getItem("statQuestions"));
+        gatherData(`stat${params.progress}`).then((res)=>{
+            if(onedone){
+                showError(res)
+            }else{
+                onedone = true;
+                fetchmes = res;
+            }
+        }, (res)=>{
+            if(onedone){
+                showError(res)
+                working = false;
+            }else{
+                onedone = true;
+                fetchmes = res;
+            }
+        });
         question.title=document.getElementById("title").innerHTML;
         question.tags=["stat"];
         fetch("/questions", {
@@ -100,8 +119,23 @@ if(admin){
                         localStorage.setItem("statQuestions", JSON.stringify(questions))
                     })
                 }
-            }).catch(console.log)
+                if(onedone){
+                    showError(fetchmes)
+                    working = false;
+                }else{
+                    onedone = true;
+                }
+            }).catch(()=>{
+                if(onedone){
+                    showError("something went horribly wrong")
+                    working = false;
+                }else{
+                    onedone = true;
+                }
+            })
             
+        }
+        
         })
 }
 if(params.progress===0){

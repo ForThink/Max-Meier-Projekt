@@ -359,8 +359,8 @@ if(admin){
         hide(styleEdit);
     })
 }
-const gatherData = (id)=>{
-    if(!working){
+const gatherData = (id)=>new Promise((res, rej)=>{
+    
         const data = [];
     for (let label of document.getElementsByTagName("label")){
         if(label.id){
@@ -410,18 +410,15 @@ const gatherData = (id)=>{
         if(response.status>399){
             alert("token abgelaufen bitte neu einloggen")
             window.location="login.html";
+        }else{
+            res("ich bin fertig darfst weitermachen")
         }
-        working = false;
-        showError("ich bin fertig darfst weitermachen")
+        
     }).catch(()=>{
-        working = false;
-        showError("ich bin fertig aber es ist was ordentlich schief gelaufen")
+        rej("ich bin fertig aber es ist was ordentlich schief gelaufen")
     })
-    }else{
-        showError("Ich arbeite noch lass mich in Ruhe!")
-    }
     
-}
+})
 const getData = (id)=>new Promise((res, rej)=>{
     fetch("/text?id="+id).then((response)=>{
         if(response.status<400){
