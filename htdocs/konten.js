@@ -1,6 +1,7 @@
-const answer = {qid: question.qid}
+const answer = {}
 const now = Date.now();
 const sendAnswer = ()=>{
+    answer.qid = question.qid;
     answer.selected = selections;
     answer.timeSpan = Date.now()-now;
     fetch("/questions/answer", {
