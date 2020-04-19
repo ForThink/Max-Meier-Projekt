@@ -37,7 +37,7 @@ const setQuestionForm=()=>{
         if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<skipthreshold-1){
             params.progress = lastAnswered+2;
             window.location=`/54.html?q=${JSON.stringify(params)}`
-        }else if (lastAnswered>skipthreshold-2){
+        }else if (lastAnswered>skipthreshold-1){
             console.log(lastAnswered);
             const {group} = user;
             window.location=`/3${3+group}.html`
@@ -149,7 +149,7 @@ document.getElementById("nextQuestion").addEventListener("click", (ev)=>{
             , console.log)
         }, console.log)
     } else if(JSON.parse(atob(localStorage.getItem("token").split(".")[1])).admin==true){
-        if (params.progress<skipthreshold+1){
+        if (params.progress<skipthreshold){
             params.progress++;
             window.location="/54.html?q="+JSON.stringify(params);
         }else{
