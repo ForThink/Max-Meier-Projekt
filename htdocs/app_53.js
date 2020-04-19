@@ -8,7 +8,26 @@ if(admin){
     adminSave.setAttribute("style", "");
     adminSave.addEventListener("click", (ev)=>{
         ev.preventDefault();
-        gatherData("rquestions1");
+        if(!working){
+            working=true;
+            let onedone = false;
+            let fetchmes = "";
+            gatherData("rquestions1").then((res)=>{
+                if(onedone){
+                    showError(res)
+                }else{
+                    onedone = true;
+                    fetchmes = res;
+                }
+            }, (res)=>{
+                if(onedone){
+                    showError(res)
+                    working = false;
+                }else{
+                    onedone = true;
+                    fetchmes = res;
+                }
+            });
         fetch("/questions", {
             method:question.qid!=undefined?"PATCH":"POST",
             headers:{
@@ -27,7 +46,22 @@ if(admin){
                     localStorage.setItem(params.main+params.modulename, JSON.stringify(questions))
                 })
             }
+            if(onedone){
+                showError(fetchmes)
+                working = false;
+            }else{
+                onedone = true;
+            }
+        }, ()=>{
+            if(onedone){
+                showError("something went horribly wrong")
+                working = false;
+            }else{
+                onedone = true;
+            }
         })
+        }
+        
     })
 }
 getData("rquestions1");
