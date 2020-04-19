@@ -40,7 +40,7 @@ document.getElementById("start").addEventListener("click", (ev)=>{
                 if(response.status<400){
                     localStorage.setItem("token", token);
                 }
-                params.progress=1;
+                params.progress=0;
                 window.location="/"+((JSON.parse(localStorage.getItem(params.main+params.modulename))[0]||{page: 41}).page||41)+".html?q="+JSON.stringify(params);
             })
         }
