@@ -403,6 +403,11 @@ const gatherData = (id)=>{
             "Content-Type":"application/json"
         },
         body:JSON.stringify({id, content: data})
+    }).then((response)=>{
+        if(response.status>399){
+            alert("token abgelaufen bitte neu einloggen")
+            window.location="login.html";
+        }
     })
 }
 const getData = (id)=>new Promise((res, rej)=>{
