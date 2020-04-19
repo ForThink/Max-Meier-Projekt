@@ -31,9 +31,10 @@ if(admin){
     })
 }
 getData("rquestions1");
-const answer = {qid: question.qid}
+const answer = {}
 const now = Date.now();
 const sendAnswer = ()=>{
+    answer.qid = JSON.parse(localStorage.getItem("rquestions"))[0].qid;
     answer.selected = selections;
     answer.timeSpan = Date.now()-now;
     fetch("/questions/answer", {
