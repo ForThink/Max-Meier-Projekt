@@ -21,7 +21,7 @@ for (let img of document.getElementsByTagName("img")){
         const index = parseInt(ev.target.id.replace("acc", ""))-1;
         if(!selections.includes(index)){
             selections.push(index);
-            parent.setAttribute("style", `animation: mark 1s linear; ${parent.getAttribute("style")}`)
+            parent.setAttribute("style", `animation: mark 1s linear;`)
             setTimeout(()=>{
                 parent.setAttribute("style", `background-color: lawngreen; ${parent.getAttribute("style").replace("animation: mark 1s linear; ", "")}`)
             }, 950)
