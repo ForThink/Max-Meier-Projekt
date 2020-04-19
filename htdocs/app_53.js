@@ -20,7 +20,7 @@ if(admin){
             if(response.status<400){
                 response.json().then(({qid})=>{
                     const questions = JSON.parse(localStorage.getItem(params.main+params.modulename))||[];
-                    if(qid){
+                    if(qid!=undefined){
                         question.qid=qid;
                     }
                     questions[params.progress]=question;
