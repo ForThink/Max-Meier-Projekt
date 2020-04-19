@@ -34,10 +34,10 @@ const setQuestionForm=()=>{
             })
         })
         console.log(lastAnswered, skipthreshold);
-        if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<skipthreshold-1){
+        if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<23){
             params.progress = lastAnswered+2;
             window.location=`/54.html?q=${JSON.stringify(params)}`
-        }else if (lastAnswered>skipthreshold-1){
+        }else if (lastAnswered>22){
             console.log(lastAnswered);
             const {group} = user;
             window.location=`/3${3+group}.html`
