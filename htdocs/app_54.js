@@ -38,6 +38,7 @@ const setQuestionForm=()=>{
             params.progress = lastAnswered+2;
             window.location=`/54.html?q=${JSON.stringify(params)}`
         }else if (lastAnswered>skipthreshold-2){
+            console.log(lastAnswered);
             const {group} = user;
             window.location=`/3${3+group}.html`
         }else if(questions[params.progress-(params.likert>1?0:1)]){
