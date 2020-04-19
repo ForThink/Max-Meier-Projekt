@@ -4,7 +4,7 @@ if(admin){
     adminSave.addEventListener("click", (ev)=>{
         ev.preventDefault();
         while (question.answers.length>document.getElementsByTagName("select").length-1){
-            questions.answers.pop();
+            question.answers.pop();
         }
         question.page=window.location.pathname.replace(".html", "").replace("/", "");
         gatherData(params.main+params.modulename+params.progress);
