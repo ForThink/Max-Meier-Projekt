@@ -1,9 +1,6 @@
 document.getElementById("main").addEventListener("submit", (ev)=>{
     ev.preventDefault();
 });
-if(!params.progress){
-    params.progress=1;
-}
 const now = Date.now();
 for (let i = 0; i < 7; i++){
     const cb = document.getElementById(`cb_${i}`);
