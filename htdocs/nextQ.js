@@ -22,4 +22,4 @@ const mainform = document.getElementById("main")
 mainform.setAttribute("style", `animation: flash${params.last===true?"green":"red"} 3s linear;${mainform.getAttribute("style")}`)
 setTimeout(()=>{
 mainform.setAttribute("style",`background-color: ${params.last===true?'#aaffaa':'#ffaaaa'}; ${mainform.getAttribute("style")}`)
-}, 950)
+}, 2950)

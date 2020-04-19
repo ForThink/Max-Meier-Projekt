@@ -23,7 +23,7 @@ for (let img of document.getElementsByTagName("img")){
             selections.push(index);
             parent.setAttribute("style", `animation: mark 1s linear;`)
             setTimeout(()=>{
-                parent.setAttribute("style", `background-color: lawngreen; ${parent.getAttribute("style").replace("animation: mark 1s linear; ", "")}`)
+                parent.setAttribute("style", `background-color: lawngreen;`)
             }, 950)
         }else if (selections.includes(index)){
             selections.splice(selections.indexOf(index), 1);
