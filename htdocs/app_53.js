@@ -26,7 +26,7 @@ if(admin){
                             questions.push(undefined);
                         }
                     }
-                    questions[params.progress-1]=question;
+                    questions[params.progress]=question;
                     localStorage.setItem(params.main+params.modulename, JSON.stringify(questions))
                 })
             }

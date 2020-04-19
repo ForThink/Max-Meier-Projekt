@@ -7,7 +7,7 @@ if(admin){
         gatherData("description"+params.likert);
     })
 }else if(xp&&xp.length>0){
-    window.location=`54.html?q=${JSON.stringify({progress: 1, likert: 1, main:"statQuestions", moduleName:""})}`
+    window.location=`54.html?q=${JSON.stringify({progress: 0, likert: 1, main:"statQuestions", moduleName:""})}`
 }
 getData("description"+params.likert);
 document.getElementById("naechsteFrage").addEventListener("click", (ev)=>{
