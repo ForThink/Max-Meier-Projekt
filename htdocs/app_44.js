@@ -17,19 +17,18 @@ const selections = [];
 const lsg = 49;
 for (let img of document.getElementsByTagName("img")){
     img.addEventListener("click", (ev)=>{
-        const parent = document.getElementById(ev.target.id+"disp");
         const index = parseInt(ev.target.id.replace("acc", ""))-1;
         if(!selections.includes(index)){
             selections.push(index);
-            parent.setAttribute("style", `animation: mark 1s linear;`)
+            ev.target.setAttribute("style", `animation: mark 1s linear; ${ev.target.getAttribute("style")}`)
             setTimeout(()=>{
-                parent.setAttribute("style", `background-color: lawngreen;`)
+                ev.target.setAttribute("style", `border: 2px solid lawngreen; ${ev.target.getAttribute("style").replace("animation: mark 1s linear; ", "")}`)
             }, 950)
         }else if (selections.includes(index)){
             selections.splice(selections.indexOf(index), 1);
-            parent.setAttribute("style", `animation: unmark 1s linear;`)
+            ev.target.setAttribute("style", `animation: unmark 1s linear; ${ev.target.getAttribute("style").replace("border: 2px solid lawngreen; ", "")}`)
             setTimeout(()=>{
-                parent.setAttribute("style", "")
+                ev.target.setAttribute("style", `${ev.target.getAttribute("style").replace("animation: unmark 1s linear; ", "")}`)
             }, 950)
         }
     })
