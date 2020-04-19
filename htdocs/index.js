@@ -39,6 +39,9 @@ if (lastUser!=null&&html==null){
                 localStorage.setItem("token", json.token);
                 localStorage.setItem("userData", JSON.stringify(json.userData))
                 mainframe.setAttribute("src", "52.html?q="+JSON.stringify({main: "rquestions", modulename:"", progress:1, likert: 1}));
+            }else{
+              mainframe.setAttribute("src", "login.html");
+              localStorage.removeItem("lastUser")  
             }
             
         })
