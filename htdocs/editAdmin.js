@@ -14,8 +14,10 @@ if(admin){
                 const taglist = ["select", "label", "h1", "h2", "h3", "h4", "h5", "h6", "img", "div", "p"];
                 taglist.forEach((tag)=>{
                     for (let element of document.getElementsByTagName(tag)){
-                        element.setAttribute("style", element.getAttribute("style").replace("display: none;", "").replace("display: none", ""));
-                        revealed.push(element);
+                        if(element.getAttribute("style")!=null&&element.getAttribute("style").includes("display: none")){
+                            element.setAttribute("style", (element.getAttribute("style")).replace("display: none;", "").replace("display: none", ""));
+                            revealed.push(element);
+                        }
                     }
                 })
             }
