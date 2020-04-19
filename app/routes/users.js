@@ -62,7 +62,7 @@ route.post("/login", (req, res, next)=>{
         const {uid, admin, confirmed} = user;
         user.password = undefined;
         if(confirmed){
-            res.status(200).json({token: token.createToken({uid, admin}), userData: user});
+            res.status(200).json({token: token.createToken({uid, admin}, admin?7200:1800), userData: user});
         }else{
             res.status(403).json("please confirm your email address")
         }
