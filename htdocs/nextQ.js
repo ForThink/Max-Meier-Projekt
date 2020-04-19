@@ -1,8 +1,8 @@
 document.getElementById("naechsteFrage").addEventListener("click", (ev)=>{
     ev.preventDefault();
-    if(params.progress<10){
+    if(params.progress<9){
         const questions = JSON.parse(localStorage.getItem(params.main+params.modulename));
-        const nextPage = (questions[params.progress]||{page: 41}).page;
+        const nextPage = (questions[params.progress+1]||{page: 41}).page;
         params.progress++;
         window.location=`${nextPage}.html?q=${JSON.stringify(params)}`
     }else{
