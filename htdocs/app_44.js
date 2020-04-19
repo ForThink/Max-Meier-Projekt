@@ -17,10 +17,14 @@ const selections = [];
 const lsg = 49;
 for (let img of document.getElementsByTagName("img")){
     img.addEventListener("click", (ev)=>{
+        const parent = document.getElementById(ev.target.id+"disp");
         const index = parseInt(ev.target.id.replace("acc", ""))-1;
         if(!selections.includes(index)){
             selections.push(index);
-            ev.target.setAttribute("style", `filter: brightness(1.25); ${ev.target.getAttribute("style")}`);
+            parent.setAttribute("style", `animation: mark 1s linear; ${parent.getAttribute("style")}`)
+            setTimeout(()=>{
+                parent.setAttribute("style", `background-color: lawngreen; ${parent.getAttribute("style").replace("animation: mark 1s linear; ", "")}`)
+            }, 950)
         }else if (selections.includes(index)){
             selections.splice(selections.indexOf(index), 1);
             ev.target.setAttribute("style", ev.target.getAttribute("style").replace('filter: brightness(1.25);', ''));
