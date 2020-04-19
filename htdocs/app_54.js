@@ -28,12 +28,10 @@ const setQuestionForm=()=>{
                 }
             })
         })
-        console.log(lastAnswered, skipthreshold, params.progress);
         if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<skipthreshold){
             params.progress = lastAnswered+1;
             window.location=`/54.html?q=${JSON.stringify(params)}`
         }else if (lastAnswered>skipthreshold-1){
-            console.log(lastAnswered);
             const {group} = user;
             window.location=`/3${3+group}.html`
         }else if(questions[params.progress]){
@@ -113,7 +111,6 @@ if(params.progress===0){
 }
 const progressbar = document.getElementById("progressbar");
 const progress = params.progress-(params.likert-1)*24+1
-console.log(progress);
 progressbar.setAttribute("style", `height: 25px; width: ${document.getElementById("main").clientWidth/24*progress}px;`);
 document.getElementById("nextQuestion").addEventListener("click", (ev)=>{
     ev.preventDefault();

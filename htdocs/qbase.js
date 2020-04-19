@@ -9,7 +9,6 @@ if(admin){
                 allowedanswersnumber+=select.children.length;
             }
         }
-        console.log(allowedanswersnumber);
         while (!window.location.pathname.includes("44.html")&&question.answers.length>allowedanswersnumber){
             question.answers.pop();
         }
