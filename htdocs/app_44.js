@@ -27,7 +27,10 @@ for (let img of document.getElementsByTagName("img")){
             }, 950)
         }else if (selections.includes(index)){
             selections.splice(selections.indexOf(index), 1);
-            ev.target.setAttribute("style", ev.target.getAttribute("style").replace('filter: brightness(1.25);', ''));
+            parent.setAttribute("style", `animation: unmark 1s linear;`)
+            setTimeout(()=>{
+                parent.setAttribute("style", "")
+            }, 950)
         }
     })
 }
