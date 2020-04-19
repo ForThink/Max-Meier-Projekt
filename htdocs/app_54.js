@@ -28,12 +28,10 @@ const setQuestionForm=()=>{
             user.xp.forEach((date)=>{
                 if(date.xp.map(({qid})=>qid).includes(qid)){
                     lastAnswered++;
-                }else{
-                    console.log(qid)
                 }
             })
         })
-        console.log(lastAnswered, skipthreshold);
+        console.log(lastAnswered, skipthreshold, params.progress);
         if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<skipthreshold){
             params.progress = lastAnswered+1;
             window.location=`/54.html?q=${JSON.stringify(params)}`
