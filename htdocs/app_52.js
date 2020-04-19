@@ -6,7 +6,7 @@ if(admin){
         ev.preventDefault();
         gatherData("description"+params.likert);
     })
-}else if(xp&&xp.length>0){
+}else if(params.likert==1&&xp&&xp.length>0){
     window.location=`54.html?q=${JSON.stringify({progress: 0, likert: 1, main:"statQuestions", moduleName:""})}`
 }
 getData("description"+params.likert);
