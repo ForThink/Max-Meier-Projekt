@@ -336,37 +336,39 @@ const gatherData = (id)=>{
     const data = [];
     for (let label of document.getElementsByTagName("label")){
         if(label.id){
-            data.push({id: label.id, attr: "innerHTML", content: label.innerHTML});
+            data.push({id: label.id, attr: "innerHTML", content: label.innerHTML, style:label.getAttribute("style")});
         }
     }
-    for (let h of document.getElementsByTagName("h1")){
-        if(h.id){
-            data.push({id: h.id, attr: "innerHTML", content: h.innerHTML});
+    for(let i = 1; i <7; i++){
+        for (let h of document.getElementsByTagName("h"+i)){
+            if(h.id){
+                data.push({id: h.id, attr: "innerHTML", content: h.innerHTML, style: h.getAttribute("style")});
+            }
         }
     }
     for (let p of document.getElementsByTagName("p")){
         if(p.id){
-            data.push({id: p.id, attr: "innerHTML", content: p.innerHTML});
+            data.push({id: p.id, attr: "innerHTML", content: p.innerHTML, style: p.getAttribute("style")});
         }
     }
     for (let img of document.getElementsByTagName("img")){
         if(img.id){
-            data.push({id: img.id, attr: "src", content: img.src});
+            data.push({id: img.id, attr: "src", content: img.src, style: img.getAttribute("style")});
         }
     }
     for (let button of document.getElementsByTagName("button")){
         if(button.id){
-            data.push({id: button.id, attr: "innerHTML", content: button.innerHTML});
+            data.push({id: button.id, attr: "innerHTML", content: button.innerHTML, style: button.getAttribute("style")});
         }
     }
     for (let div of document.getElementsByTagName("div")){
         if(div.id&&div.id.includes("edit")){
-            data.push({id: div.id, attr: "innerHTML", content: div.innerHTML});
+            data.push({id: div.id, attr: "innerHTML", content: div.innerHTML, style: div.getAttribute("style")});
         }
     }
     for (let select of document.getElementsByTagName("select")){
         if(select.id&&!select.id.includes("admin")){
-            data.push({id: select.id, attr: "innerHTML", content: select.innerHTML} )
+            data.push({id: select.id, attr: "innerHTML", content: select.innerHTML, style: select.getAttribute("style")} )
         }
     }
     fetch("/text", {
@@ -382,10 +384,13 @@ const getData = (id)=>new Promise((res, rej)=>{
     fetch("/text?id="+id).then((response)=>{
         if(response.status<400){
             response.json().then(({content})=>{
-                content.forEach(({id, attr, content})=>{
+                content.forEach(({id, attr, content, style})=>{
                     const item = document.getElementById(id);
                     if(item){
                         item[attr]=content;
+                        if(style){
+                            item.setAttribute("style", style);
+                        }
                     }
                 })
                 res();
