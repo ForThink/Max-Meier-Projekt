@@ -1,4 +1,27 @@
 const {admin} = JSON.parse(localStorage.getItem("userData"));
+const revealed = [];
+if(admin){
+    const alleZeigen = document.getElementById("allezeigen");
+    if(alleZeigen){
+        alleZeigen.setAttribute("style", "");
+        alleZeigen.addEventListener("click", (ev)=>{
+            ev.preventDefault();
+            if(revealed.length>0){
+                revealed.forEach((item)=>{
+                    item.setAttribute("style", `display: none; ${item.getAttribute("style")}`);
+                })
+            }else{
+                const taglist = ["select", "label", "h1", "h2", "h3", "h4", "h5", "h6", "img", "div", "p"];
+                taglist.forEach((tag)=>{
+                    for (let element of document.getElementsByTagName(tag)){
+                        element.setAttribute("style", element.getAttribute("style").replace("display: none;", "").replace("display: none", ""));
+                        revealed.push(element);
+                    }
+                })
+            }
+        })
+    }
+}
 let strg = false;
 let shift = false;
 const params = JSON.parse(new URLSearchParams(window.location.search).get("q"))||{};
