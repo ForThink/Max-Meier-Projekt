@@ -4,6 +4,7 @@ const sendAnswer = ()=>{
     answer.qid = question.qid;
     answer.selected = selections;
     answer.timeSpan = Date.now()-now;
+    console.log(question, answer);
     fetch("/questions/answer", {
         method:"POST",
         headers: {
