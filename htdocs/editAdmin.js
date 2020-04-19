@@ -1,5 +1,6 @@
 const {admin} = JSON.parse(localStorage.getItem("userData"));
 const revealed = [];
+let working = false;
 if(admin){
     const alleZeigen = document.getElementById("allezeigen");
     if(alleZeigen){
@@ -359,7 +360,8 @@ if(admin){
     })
 }
 const gatherData = (id)=>{
-    const data = [];
+    if(!working){
+        const data = [];
     for (let label of document.getElementsByTagName("label")){
         if(label.id){
             data.push({id: label.id, attr: "innerHTML", content: label.innerHTML, style:label.getAttribute("style")});
@@ -409,7 +411,16 @@ const gatherData = (id)=>{
             alert("token abgelaufen bitte neu einloggen")
             window.location="login.html";
         }
+        working = false;
+        showError("ich bin fertig darfst weitermachen")
+    }).catch(()=>{
+        working = false;
+        showError("ich bin fertig aber es ist was ordentlich schief gelaufen")
     })
+    }else{
+        showError("Ich arbeite noch lass mich in Ruhe!")
+    }
+    
 }
 const getData = (id)=>new Promise((res, rej)=>{
     fetch("/text?id="+id).then((response)=>{
