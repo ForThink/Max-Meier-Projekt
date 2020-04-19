@@ -22,11 +22,11 @@ for (let img of document.getElementsByTagName("img")){
             selections.push(index);
             ev.target.setAttribute("style", `animation: mark 1s linear; ${ev.target.getAttribute("style")}`)
             setTimeout(()=>{
-                ev.target.setAttribute("style", `border: 2px solid lawngreen; ${ev.target.getAttribute("style").replace("animation: mark 1s linear; ", "")}`)
+                ev.target.setAttribute("style", `border: 9px solid lawngreen; height: 118px; width: 118px; ${ev.target.getAttribute("style").replace("animation: mark 1s linear; ", "")}`)
             }, 950)
         }else if (selections.includes(index)){
             selections.splice(selections.indexOf(index), 1);
-            ev.target.setAttribute("style", `animation: unmark 1s linear; ${ev.target.getAttribute("style").replace("border: 2px solid lawngreen; ", "")}`)
+            ev.target.setAttribute("style", `animation: unmark 1s linear; ${ev.target.getAttribute("style").replace("border: 9px solid lawngreen; height: 118px; width: 118px; ", "")}`)
             setTimeout(()=>{
                 ev.target.setAttribute("style", `${ev.target.getAttribute("style").replace("animation: unmark 1s linear; ", "")}`)
             }, 950)
