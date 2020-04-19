@@ -18,7 +18,7 @@ for (let i = 0; i < 7; i++){
         }
     })
 }
-const skipthreshold = (params.likert||1)*24-(params.likert>1?1:0);
+const skipthreshold = (params.likert||1)*24-1;
 const setQuestionForm=()=>{
     const user = JSON.parse(localStorage.getItem("userData"));
     const questions = JSON.parse(localStorage.getItem("statQuestions"))||[];
@@ -34,14 +34,14 @@ const setQuestionForm=()=>{
             })
         })
         console.log(lastAnswered, skipthreshold);
-        if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<23){
-            params.progress = lastAnswered+2;
+        if(lastAnswered>-1&&lastAnswered>params.progress&&lastAnswered<skipthreshold){
+            params.progress = lastAnswered+1;
             window.location=`/54.html?q=${JSON.stringify(params)}`
-        }else if (lastAnswered>22){
+        }else if (lastAnswered>skipthreshold-1){
             console.log(lastAnswered);
             const {group} = user;
             window.location=`/3${3+group}.html`
-        }else if(questions[params.progress-(params.likert>1?0:1)]){
+        }else if(questions[params.progress]){
             getData(`stat${params.progress}`)
         }
     }else{
@@ -111,13 +111,13 @@ if(admin){
             
         })
 }
-if(params.progress===1){
+if(params.progress===0){
     getStatQuestions();
 }else{
     setQuestionForm();
 }
 const progressbar = document.getElementById("progressbar");
-const progress = params.progress-(params.likert-1)*24+(params.likert>1?1:0)
+const progress = params.progress-(params.likert-1)*24+1
 console.log(progress);
 progressbar.setAttribute("style", `height: 25px; width: ${document.getElementById("main").clientWidth/24*progress}px;`);
 document.getElementById("nextQuestion").addEventListener("click", (ev)=>{
@@ -131,7 +131,7 @@ document.getElementById("nextQuestion").addEventListener("click", (ev)=>{
     if (checked!=undefined){
         fetch("/questions/answer", {
             method:"POST",
-            body:JSON.stringify({qid: JSON.parse(localStorage.getItem("statQuestions"))[params.progress-1].qid, selected: [checked], uid: JSON.parse(localStorage.getItem("userData")).uid, timeSpan: Date.now()-now}),
+            body:JSON.stringify({qid: JSON.parse(localStorage.getItem("statQuestions"))[params.progress].qid, selected: [checked], uid: JSON.parse(localStorage.getItem("userData")).uid, timeSpan: Date.now()-now}),
             headers: {
                 "Authorization":`Bearer ${localStorage.getItem("token")}`,
                 "Content-Type":"application/json"
@@ -139,7 +139,7 @@ document.getElementById("nextQuestion").addEventListener("click", (ev)=>{
         }).then((response)=>{
             response.json().then((json)=>{
                 localStorage.setItem("userData", JSON.stringify(json.user));
-                if (params.progress<(params.likert||1)*24-(params.likert>1?2:1)){
+                if (params.progress<(params.likert||1)*24){
                     params.progress++;
                     window.location=`/54.html?q=${JSON.stringify(params)}`;
                 }else{

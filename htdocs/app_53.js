@@ -48,7 +48,7 @@ const sendAnswer = ()=>{
         body:JSON.stringify(answer)
     }).then((response)=>{
         params.main="statQuestions";
-        params.progress=1;
+        params.progress=0;
         if(response.status<400){
             response.json().then((json)=>{
                 localStorage.setItem("userData", JSON.stringify(json.user));
