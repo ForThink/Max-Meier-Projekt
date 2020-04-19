@@ -27,11 +27,11 @@ if(admin){
                     const questions = JSON.parse(localStorage.getItem(params.main+params.modulename))||[];
                     if(qid){
                         question.qid=qid;
-                        while(questions.length<params.progress-1){
+                        while(questions.length<params.progress){
                             questions.push(undefined);
                         }
                     }
-                    questions[params.progress-1]=question;
+                    questions[params.progress]=question;
                     localStorage.setItem(params.main+params.modulename, JSON.stringify(questions))
                 })
             }

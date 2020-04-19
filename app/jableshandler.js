@@ -154,7 +154,7 @@ const getQuestions = (tags=[]) => new Promise((res, rej)=>{
 })
 const newQuestion = ({title, answers, tags, page})=>new Promise((res, rej)=>{
     getQuestions().then((Versions)=>{
-        if(searchArray("title", title, Versions.sort(({title: a}, {title: b})=>a-b)).before!==undefined){
+        if(searchArray("title", title, Versions.sort(({title: a}, {title: b})=>a<b?-1:1)).before!==undefined){
             jables.writeDefinition({location, definition: updateObject(questionBase, {title, answers, qid: Versions.length, tags, page})}).then(()=>{
                 res({qid: Versions.length});
             }, rej)
