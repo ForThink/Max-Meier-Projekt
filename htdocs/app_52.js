@@ -18,4 +18,11 @@ document.getElementById("naechsteFrage").addEventListener("click", (ev)=>{
         window.location=`54.html?q=${JSON.stringify({likert: params.likert, progress: (params.likert-1)*24})}`
     }
 })
+fetch("/questions?tags=rquestions").then((response)=>{
+    if(response.status<400){
+        response.json().then((json)=>{
+            localStorage.setItem("rquestions", JSON.stringify(json));
+        })
+    }
+})
 const stretchFactor = 1;
