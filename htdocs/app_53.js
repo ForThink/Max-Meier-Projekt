@@ -8,7 +8,7 @@ if(admin){
     adminSave.setAttribute("style", "");
     adminSave.addEventListener("click", (ev)=>{
         ev.preventDefault();
-        gatherData(params.main+params.modulename+params.progress);
+        gatherData("rquestions1");
         fetch("/questions", {
             method:question.qid!=undefined?"PATCH":"POST",
             headers:{
@@ -30,7 +30,7 @@ if(admin){
         })
     })
 }
-getData(params.main+params.modulename+params.progress);
+getData("rquestions1");
 const answer = {qid: question.qid}
 const now = Date.now();
 const sendAnswer = ()=>{
