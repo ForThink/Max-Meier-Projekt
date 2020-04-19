@@ -23,6 +23,12 @@ div.ex1 {
   overflow: scroll;
   margin: 8px;
 }
+.dot {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  display: inline-block;
+}
 button {
   background-color: rgb(107, 110, 107);
   color: white;
@@ -122,21 +128,21 @@ label img {
     
         <div style="display: flex; flex-direction: row; justify-content:space-evenly;">
           <div>
-            <span id="acc1disp" style="height: 150; width: 150; display:inline-block; border-radius: 20%;">
+            <span id="acc1disp" class="dot">
               <img src="img/vv.jpg" id="acc1" style="width: 100px; height: 100px; position: relative; top: 25px;;"/>
             </span>
             <input type="checkbox" style="display: none;" id="a1">
             <label id="labelacc1"></label>
           </div>
           <div>
-            <span id="acc2disp" style="height: 150; width: 150; display:inline-block; border-radius: 20%;">
+            <span id="acc2disp" class="dot">
               <img src="img/vv.jpg" id="acc2" style="width: 100px; height: 100px; position: relative; top: 25px;;"/>
             </span> 
               <input type="checkbox" style="display: none;" id="a2">
               <label id="labelacc2"></label>   
           </div>
           <div>
-            <span id="acc3disp" style="height: 150; width: 150; display:inline-block; border-radius: 20%;">
+            <span id="acc3disp" class="dot">
               <img src="img/vv.jpg" id="acc3" style="width: 100px; height: 100px; position: relative; top: 25px;;"/>
             </span>
               <input type="checkbox" style="display: none;" id="a3">
