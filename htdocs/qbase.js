@@ -3,7 +3,13 @@ if(admin){
     adminSave.setAttribute("style", "");
     adminSave.addEventListener("click", (ev)=>{
         ev.preventDefault();
-        while (!window.location.pathname.includes("44.html")&&question.answers.length>document.getElementsByTagName("select").length-1){
+        let allowedanswersnumber = 0;
+        for(let select of document.getElementsByTagName("select")){
+            if(select.id&&select.id!=="adminQuestionSelect"){
+                allowedanswersnumber+=select.children.length;
+            }
+        }
+        while (!window.location.pathname.includes("44.html")&&question.answers.length>allowedanswersnumber){
             question.answers.pop();
         }
         question.page=window.location.pathname.replace(".html", "").replace("/", "");
