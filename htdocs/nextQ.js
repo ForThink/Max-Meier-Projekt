@@ -19,7 +19,4 @@ if(admin){
 }
 getData(params.main+params.modulename+params.progress+"Sol")
 const mainform = document.getElementById("main")
-mainform.setAttribute("style", `animation: flash${params.last===true?"green":"red"} 3s linear;${mainform.getAttribute("style")}`)
-setTimeout(()=>{
-mainform.setAttribute("style",`background-color: ${params.last===true?'#aaffaa':'#ffaaaa'}; ${mainform.getAttribute("style")}`)
-}, 2950)
+mainform.setAttribute("style", `animation: flash${params.last===true?"green":"red"} 5s linear;${mainform.getAttribute("style")}`)
