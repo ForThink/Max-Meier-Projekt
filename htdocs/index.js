@@ -6,15 +6,15 @@ const heightwidth = (index)=>{
     const rs = [0, 0];
     if (window.innerWidth>500){
         rs[0]=500;
-        if(window.innerHeight>800){
-            rs[1]=800;
+        if(window.innerHeight>1000){
+            rs[1]=1000;
         }else{
             rs[1]=window.innerHeight;
         }
     }else{
         rs[0] = window.innerWidth;
-        if(window.innerHeight>1.6*window.innerWidth){
-            rs[1]=window.innerWidth*1.6;
+        if(window.innerHeight>2*window.innerWidth){
+            rs[1]=window.innerWidth*2;
         }else{
             rs[1]=window.innerHeight;
         }
