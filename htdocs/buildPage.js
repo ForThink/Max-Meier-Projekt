@@ -11,7 +11,7 @@ const textel = (text, imglnk, id)=> `<div class="img">
 const subpane = (title, elements, id)=>`
 <div>
 ${subpanehead(title, id)}
-${(()=>{let rs = ""; elements.forEach(({text, image}, index)=>{rs+=textel(text, image, id+index)}); return rs;})()}
+${(()=>{let rs = ""; elements.forEach(({text, image}, index)=>{rs+=textel(text, image, id+""+index)}); return rs;})()}
 </div>
 `
 const defaultPage = {
