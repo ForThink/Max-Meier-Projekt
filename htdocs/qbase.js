@@ -21,6 +21,7 @@ if(admin){
         gatherData(params.main+params.modulename+params.progress).then((res)=>{
             if(onedone){
                 showError(res)
+                working=false;
             }else{
                 onedone = true;
                 fetchmes = res;
