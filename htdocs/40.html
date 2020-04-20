@@ -64,8 +64,12 @@ button {
   width: 30%;
 }
 
+@keyframes onload{
+ 0% {opacity: 0}
+100% {opacity: 1}
+}
 </style>
-<body>
+<body style="animation: onload 1s linear">
     <form action="/action_page.php" method="post" id="main">
         <div class="col-md-5 forgot-form">
             <div>

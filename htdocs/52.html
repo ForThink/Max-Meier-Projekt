@@ -33,8 +33,12 @@ button {
   cursor: pointer;
   width: 30%;
 }
+@keyframes onload{
+ 0% {opacity: 0}
+100% {opacity: 1}
+}
 </style>
-<body>
+<body style="animation: onload 1s linear">
     <form action="/action_page.php" method="post" id="main">
       <div id="container" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1rem;">
             <h1 id="Text_5_i">Text_5_i</h1>

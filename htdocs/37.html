@@ -98,8 +98,12 @@ color: rgb(224, 172, 30);
 color:blue ;
 }
 
+@keyframes onload{
+ 0% {opacity: 0}
+100% {opacity: 1}
+}
 </style>
-<body>
+<body style="animation: onload 1s linear">
     <form action="/action_page.php" method="post" id="main">
             <div class="navbar">
                     <div class="dropdown">

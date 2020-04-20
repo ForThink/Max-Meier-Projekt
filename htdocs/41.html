@@ -48,8 +48,12 @@ footer {
     bottom: 30px;
     left: 30px;
 }
+@keyframes onload{
+ 0% {opacity: 0}
+100% {opacity: 1}
+}
 </style>
-<body>
+<body style="animation: onload 1s linear">
     <form action="/action_page.php" method="post" id="main">
       <div>
         <button class="button1" type="submit"><i class="fa fa-close"></i></button>
