@@ -24,7 +24,7 @@ const tabcontent = (ranking)=>{
         const top5 = ranking.splice(0, 5);
         const last5 = ranking.splice(ranking.length-6, 5);
         tabcontent = `<table style="border: 1px solid black; border-collapse: collapse">
-        ${top5.map((item, index)=>{return "<tr style=\"background: "+(index%2==0?"white":"grey")+";border: solid 1px black;\"><td style=\"width: 20px;\">"+index+"</td><td style=\"width: 120px\">"+(item===uid?"DU":("Spieler "+item))+"</td></tr>"})}
+        ${top5.map((item, index)=>{return "<tr style=\"background: "+(index%2==0?"white":"grey")+";border: solid 1px black;\"><td style=\"width: 20px;\">"+(index+1)+"</td><td style=\"width: 120px\">"+(item===uid?"DU":("Spieler "+item))+"</td></tr>"})}
       </table>
         ${!top5.includes(uid)&&!last5.includes(uid)?'<table style="border: 1px solid black; border-collapse: collapse"><tr><td></td style="width: 20px;">'+(ranking.indexOf(uid)+6)+'<td style="width: 120px">DU</td></tr></table>':""}
       <table style="border: 1px solid black; border-collapse: collapse">
