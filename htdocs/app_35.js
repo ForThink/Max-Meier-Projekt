@@ -63,7 +63,6 @@ const estudiosointeligente = (modulename)=>{
         if(studious==10){
             estudioso++;
         }
-        console.log(intelligent, studious);
     })
 }
 estudiosointeligente("Modul1mod1");
@@ -73,6 +72,7 @@ estudiosointeligente("Modul2mod1");
 estudiosointeligente("Modul2mod2");
 estudiosointeligente("Modul2mod3");
 const level = (stat)=>{
+    console.log(stat);
     let level = 0;
     while(level*(level+1)<2*stat){
         level++
