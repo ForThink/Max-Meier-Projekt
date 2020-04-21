@@ -43,14 +43,12 @@ let estudioso = 0;
 const checked = [];
 const estudiosointeligente = (modulename)=>{
     const mod1m1= JSON.parse(localStorage.getItem(modulename))||[];
+    let intelligent = 0;
+    let studious = 0;
     mod1m1.forEach(({qid})=>{
-        let intelligent = 0;
-        let studious = 0;
         xp.forEach(({xp})=>{
             xp.forEach((item)=>{
                 if(!checked.includes(qid)&&item.qid==qid){
-                    console.log(item);
-                    checked.push(qid);
                     studious++;
                     if(item.right){
                         intelligent++;
