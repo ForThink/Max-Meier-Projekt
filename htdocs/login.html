@@ -7,7 +7,7 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 form {border: 3px solid #f1f1f1;}
 
-input {
+.userdata {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -73,10 +73,10 @@ span.psw {
 <form action="/action_page.php" method="post" id="main">
   <div class="container">
     <label for="uname"><b>Username</b></label>
-    <input type="email" placeholder="Enter Email" name="uname" id="emailInput" required>
+    <input class="userdata" type="email" placeholder="Enter Email" name="uname" id="emailInput" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="passwordInput" required>
+    <input class="userdata" type="password" placeholder="Enter Password" name="psw" id="passwordInput" required>
         
     <button type="submit" id="loginButton">Login</button>
     <label>
