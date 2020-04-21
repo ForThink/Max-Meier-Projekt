@@ -14,7 +14,7 @@ route.get("/xp", (req, res, next)=>{
                     if (item.xp){
                         item.xp.forEach((day)=>{
                             day.xp.filter(({qid})=>{
-                                const rs = !exclude.includes(qid)&&questions.includes(qid)
+                                const rs = !exclude.includes(qid)&&question.includes(qid)
                                 if(rs&&!all){
                                     exclude.push(qid);   
                                 }

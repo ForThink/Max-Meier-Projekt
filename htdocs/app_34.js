@@ -46,10 +46,10 @@ document.getElementById("selector").addEventListener("change", (ev)=>{
     switch(ev.target.selectedIndex){
         case 0: args = "all=0"; break;
         case 1: args = "all=1"; break;
-        case 2: args = "tags=module1&all=0"; break;
-        case 3: args = "tags=module1&all=1"; break;
-        case 4: args = "tags=module2&all=0"; break;
-        case 5: args = "tags=module2&all=1"; break;
+        case 2: args = "tags=Modul1mod1,Modul1mod2,Modul1mod3&all=0"; break;
+        case 3: args = "tags=Modul1mod1,Modul1mod2,Modul1mod3&all=1"; break;
+        case 4: args = "tags=Modul2mod1,Modul2mod2,Modul2mod3&all=0"; break;
+        case 5: args = "tags=Modul2mod1,Modul2mod2,Modul2mod3&all=1"; break;
     }
     fetch(`/rankings/xp?${args}`).then((response)=>{
         if(response.status<400){
