@@ -49,6 +49,7 @@ const estudiosointeligente = (modulename)=>{
         xp.forEach(({xp})=>{
             xp.forEach((item)=>{
                 if(!checked.includes(qid)&&item.qid==qid){
+                    checked.push(qid);
                     studious++;
                     if(item.right){
                         intelligent++;
