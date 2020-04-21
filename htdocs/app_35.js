@@ -42,6 +42,7 @@ let inteligente = 0;
 let estudioso = 0;
 const checked = [];
 const estudiosointeligente = (modulename)=>{
+    console.log(estudioso, indeligente)
     console.log(modulename);
     const mod1m1= JSON.parse(localStorage.getItem(modulename))||[];
     let intelligent = 0;
@@ -73,7 +74,6 @@ estudiosointeligente("Modul2mod1");
 estudiosointeligente("Modul2mod2");
 estudiosointeligente("Modul2mod3");
 const level = (stat)=>{
-    console.log(stat);
     let level = 0;
     while(level*(level+1)<2*stat){
         level++
