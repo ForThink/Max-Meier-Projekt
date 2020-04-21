@@ -59,13 +59,13 @@ const estudiosointeligente = (modulename)=>{
                 }
             })
         })
-        if(intelligent>7){
-            inteligente++;
-        }
-        if(studious==10){
-            estudioso++;
-        }
     })
+    if(intelligent>7){
+        inteligente++;
+    }
+    if(studious==10){
+        estudioso++;
+    }
 }
 estudiosointeligente("Modul1mod1");
 estudiosointeligente("Modul1mod2");
