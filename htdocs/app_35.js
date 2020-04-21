@@ -43,7 +43,6 @@ let estudioso = 0;
 const checked = [];
 const estudiosointeligente = (modulename)=>{
     const mod1m1= JSON.parse(localStorage.getItem(modulename))||[];
-    console.log(mod1m1)
     mod1m1.forEach(({qid})=>{
         let intelligent = 0;
         let studious = 0;
@@ -64,6 +63,7 @@ const estudiosointeligente = (modulename)=>{
         if(studious==10){
             estudioso++;
         }
+        console.log(intelligent, studious);
     })
 }
 estudiosointeligente("Modul1mod1");
