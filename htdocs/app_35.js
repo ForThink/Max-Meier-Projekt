@@ -48,8 +48,8 @@ const estudiosointeligente = (modulename)=>{
         let studious = 0;
         xp.forEach(({xp})=>{
             xp.forEach((item)=>{
-                console.log(item);
                 if(!checked.includes(qid)&&item.qid==qid){
+                    console.log(item);
                     checked.push(qid);
                     studious++;
                     if(item.right){
