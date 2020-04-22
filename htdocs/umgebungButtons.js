@@ -23,7 +23,7 @@ const click = (ev)=>{
 const setStartStyle = (id)=>{
     const element = document.getElementById(id);
     if(navigator.userAgent.includes("Mobil")&&previousModuleDone(id)){
-        standardStyles[id]=`animation: highlight 2s ease-in-out ${Object.keys(standardStyles).length/10}s infinite`
+        standardStyles[id]=`animation: highlight 2s linear; animation-iteration-count: infinite`
     }else{
         standardStyles[id]="background-color: #ABEE5E"
     }
