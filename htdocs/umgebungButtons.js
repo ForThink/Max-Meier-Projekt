@@ -5,12 +5,13 @@ const previousModuleDone = (id)=>{
     const prog = (parseInt(trans[0].replace("Modul", ""))-1)*3+parseInt(trans[1].replace("mod", ""))-2;
     return admin||modules>prog;
 }
+const standardStyles = {};
 const mouseEnter = (ev)=>{
     if(previousModuleDone(ev.target.id)){
         ev.target.setAttribute("style", "background-color: #4CAF50")}
     }
 const mouseLeave = (ev)=>{
-    ev.target.setAttribute("style", "background-color: #ABEE5E")}
+    ev.target.setAttribute("style", standardStyles[ev.target.id])}
 const click = (ev)=>{
     ev.preventDefault();
     if(previousModuleDone(ev.target.id)){
@@ -19,27 +20,21 @@ const click = (ev)=>{
         window.location="/39.html?q="+JSON.stringify(params);    
     }
     }
-const m11 = document.getElementById("Modul1-mod1");
-const m12 = document.getElementById("Modul1-mod2");
-const m13 = document.getElementById("Modul1-mod3");
-const m21 = document.getElementById("Modul2-mod1");
-const m22 = document.getElementById("Modul2-mod2");
-const m23 = document.getElementById("Modul2-mod3");
-m11.addEventListener("mouseenter", mouseEnter);
-m11.addEventListener("mouseleave", mouseLeave);
-m11.addEventListener("click", click);
-m12.addEventListener("mouseenter", mouseEnter);
-m12.addEventListener("mouseleave", mouseLeave);
-m12.addEventListener("click", click);
-m13.addEventListener("mouseenter", mouseEnter);
-m13.addEventListener("mouseleave", mouseLeave);
-m13.addEventListener("click", click);
-m21.addEventListener("mouseenter", mouseEnter);
-m21.addEventListener("mouseleave", mouseLeave);
-m21.addEventListener("click", click);
-m22.addEventListener("mouseenter", mouseEnter);
-m22.addEventListener("mouseleave", mouseLeave);
-m22.addEventListener("click", click);
-m23.addEventListener("mouseenter", mouseEnter);
-m23.addEventListener("mouseleave", mouseLeave);
-m23.addEventListener("click", click);
+const setStartStyle = (id)=>{
+    const element = document.getElementById(id);
+    if(navigator.userAgent.includes("Mobil")&&previousModuleDone(id)){
+        standardStyles[id]=`animation: highlight 2s ease-in-out ${Object.keys(standardStyles).length*200}mil infinite`
+    }else{
+        standardStyles[id]="background-color: #ABEE5E"
+    }
+    element.setAttribute("style", standardStyles[id]);
+    element.addEventListener("mouseenter", mouseEnter);
+    element.addEventListener("mouseleave", mouseLeave);
+    element.addEventListener("click", click);
+}
+setStartStyle("Modul1-mod1");
+setStartStyle("Modul1-mod2");
+setStartStyle("Modul1-mod3");
+setStartStyle("Modul2-mod1");
+setStartStyle("Modul2-mod2");
+setStartStyle("Modul2-mod3");
