@@ -427,7 +427,7 @@ const getData = (id)=>new Promise((res, rej)=>{
                     const item = document.getElementById(id);
                     if(item){
                         item[attr]=content;
-                        if(style&&(admin||(!item.id.includes("admin")&&!item.id!="allezeigen")&&item.id!="a1"&&item.id!="a2"&&item.id!="a3")){
+                        if(style&&(admin||(!item.id.includes("admin")&&!item.id!="allezeigen")&&item.id!="a1"&&item.id!="a2"&&item.id!="a3"&&!item.className!="dot1")){
                             item.setAttribute("style", style);
                         }
                     }
