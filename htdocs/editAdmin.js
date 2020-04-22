@@ -385,7 +385,7 @@ const gatherData = (id)=>new Promise((res, rej)=>{
         }
     }
     for (let button of document.getElementsByTagName("button")){
-        if(button.id){
+        if(button.id&&button.className!="dot1"){
             data.push({id: button.id, attr: "innerHTML", content: button.innerHTML, style: button.getAttribute("style")});
         }
     }
