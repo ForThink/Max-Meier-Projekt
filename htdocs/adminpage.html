@@ -8,6 +8,15 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+.button {
+  background-color: rgb(107, 110, 107);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+}
 
 .navbar {
   display: flex;
@@ -42,7 +51,7 @@ body {
   margin-left: left;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
+.navbar a:hover, .dropdown:hover .dropbtn:hover {
   background-color: red;
 }
 
@@ -80,54 +89,37 @@ body {
   display: inline-block;
 }
 .dot1 {
-  border: none;
   height: 50px;
   width: 50px;
   background-color: #ABEE5E;
   border-radius: 50%;
   display: inline-block;
-  cursor: pointer;
 }
-
 .img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-@keyframes fadein {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
-}
-@keyframes fadeout {
-  0% {opacity: 1;}
-  100%{opacity: 0;}
-}
 @keyframes onload{
  0% {opacity: 0}
 100% {opacity: 1}
 }
-@keyframes highlight {
-  0% { background-color: #ABEE5E;}
-  50% { background-color:#4CAF50;}
-  0% {background-color: #ABEE5E;}
-}
 </style>
 <body style="animation: onload 1s linear">
-    <form action="/action_page.php" method="post" id="main">
+    <form action="/action_page.php" method="post" id="main" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div class="navbar">
             <div class="dropdown">
                 <button class="dropbtn"> 
                     <img style="width: 40px; height: 40px;" src="img/menubar/menu.svg" class="img-fluid">
                 </button>
                 <div class="dropdown-content">
-                    <a id="adminpage" style="display: none;" href="adminpage.html">Adminbereich</a>
                     <a href="10.html?q={%22main%22:%22about%22}">Über uns</a>
                     <a href="10.html?q={%22main%22:%22help%22}">Hilfe</a>
                     <a href="10.html?q={%22main%22:%22agb%22}">AGB</a>
                     <a href="10.html?q={%22main%22:%22datschu%22}">Datenschutz</a>
-                    <a id="34html" style="display: none;" href="34.html">Umgebung Leaderboard</a>
-                    <a id="35html" style="display: none;" href="35.html">Umgebung Badges</a>
-                    <a id="36html" style="display: none;" href="36.html">Umgebung Points</a>
+                    <a href="34.html">Umgebung Leaderboard</a>
+                    <a href="35.html">Umgebung Badges</a>
+                    <a href="36.html">Umgebung Points</a>
                 </div>
             </div> 
             <div>
@@ -142,45 +134,11 @@ body {
             <a id="logoutbtn" href="#logout"><img style="width: 40px; height: 40px;" src="img/menubar/logout.svg" class="img-fluid"></a>
             </div>  
         </div>
-        <div id="apan">
-          <div id="editA">
-            <h1>
-              your ad here
-            </h1>
-          </div>
-          <button id="rmad">x</button>
-        </div>
-        <div id="contentPanel" style="display: none;">
-          <div style="text-align:center">
-            <h1 id="modulName1">Modul 1</h1>
-            <span class="dot">
-            <img id="moduleimg1" src="img/vv.jpg" class="rounded-circles" alt="Cinque Terre" width="100" height="100" style="position: relative; top: 25px">
-            </span>
-        </div>
-        <div style="text-align:center">
-            <h1></h1>
-            <button id="Modul1-mod1" class="dot1" ></button>
-            <button id="Modul1-mod2" class="dot1" ></button>
-            <button id="Modul1-mod3" class="dot1" ></button>
-        </div>
-
-        <div style="text-align:center">
-            <h1 id="modulName2">Modul 2</h1>
-            <span class="dot">
-            <img id="moduleimg2" src="img/vv.jpg" class="rounded-circles" alt="Cinque Terre" width="100" height="100" style="position: relative; top: 25px">
-            </span>
-        </div>
-        <div style="text-align:center">
-            <h1></h1>
-            <button id="Modul2-mod1" class="dot1" ></button>
-<button id="Modul2-mod2"class="dot1" ></button>
-<button id="Modul2-mod3" class="dot1" ></button>
-        </div>
-        </div>
-        <button id="edit_admin" style="display: none;">Änderungen speichern</button>
+        <div id="content"></div>
+        <label id="percent">0% geladen</label>
+        <a id="downloadData" style="display: none;" download>Daten herunterladen</a>
     </form>
   
 </body>
-<script type="text/javascript" src="editAdmin.js"></script>
-<script type="text/javascript" src="/umgebungButtons.js"></script>
-<script type="text/javascript" src="/app_33.js"></script></html> 
+<script type="text/javascript" src="adminpage.js"></script>
+</html> 

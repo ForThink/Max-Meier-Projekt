@@ -2,6 +2,9 @@ const {admin} = JSON.parse(localStorage.getItem("userData"));
 const revealed = [];
 let working = false;
 if(admin){
+    if(document.getElementById("adminpage")){
+        document.getElementById("adminpage").setAttribute("style","")
+    }
     const alleZeigen = document.getElementById("allezeigen");
     if(alleZeigen){
         alleZeigen.setAttribute("style", "");
