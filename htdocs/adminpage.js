@@ -15,6 +15,9 @@ fetch("/users?token="+token).then((response)=>{
                     users[groups[data.group]]=item;
                 }
             })
+            const rawdata = document.getElementById("rawdata");
+            rawdata.href = URL.createObjectURL(new Blob([JSON.stringify(json)]));
+            rawdata.setAttribute("style", "")
             fetch("/questions").then((response)=>{
                 if(response.status<400){
                     response.json().then((json)=>{
@@ -102,41 +105,46 @@ const user = function({rounds, logdates, admin, xp}){
     this.Antworten = (Fragen)=>{
         const responses = {};
         Object.keys(Fragen).forEach((key)=>{
-            this.xp.forEach(({date, xp})=>{
-                xp.forEach(({qid, right, selected, timeSpan})=>{
-                    if(parseInt(key)==qid){
-                        const {title, answers} = Fragen[key];
-                        const selectedAnswers = []
-                        selected.forEach((index)=>{
-                            if(answers[index]){
-                                selectedAnswers.push(answers[index].text);
+            if(this.xp){
+                this.xp.forEach(({date, xp})=>{
+                    xp.forEach(({qid, right, selected, timeSpan})=>{
+                        if(parseInt(key)==qid){
+                            const {title, answers} = Fragen[key];
+                            const selectedAnswers = []
+                            selected.forEach((index)=>{
+                                if(answers[index]){
+                                    selectedAnswers.push(answers[index].text);
+                                }
+                            })
+                            if(responses[title]){
+                                responses[title][date]={selectedAnswers, right, timeSpan}
+                            }else{
+                                const item = {};
+                                item[date] = {selectedAnswers, right, timeSpan};
+                                responses[title]=item;
                             }
-                        })
-                        if(responses[title]){
-                            responses[title][date]={selectedAnswers, right, timeSpan}
-                        }else{
-                            const item = {};
-                            item[date] = {selectedAnswers, right, timeSpan};
-                            responses[title]=item;
                         }
-                    }
-                })                
-            })
+                    })                
+                })
+            }
+            
         })
         return responses;  
     }
     this.Gesamtpunktzahl = (exclude)=>{
         let total = [0, 0];
-        this.xp.forEach(({xp})=>{
-            xp.forEach(({qid, right})=>{
-                if(!exclude||!exclude.includes(qid)){
-                    total[1]++;
-                    if(right){
-                        total[0]++;
+        if(this.xp){
+            this.xp.forEach(({xp})=>{
+                xp.forEach(({qid, right})=>{
+                    if(!exclude||!exclude.includes(qid)){
+                        total[1]++;
+                        if(right){
+                            total[0]++;
+                        }
                     }
-                }
+                })
             })
-        })
+        }
         return total;
     }
 }
