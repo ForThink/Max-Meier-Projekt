@@ -41,12 +41,14 @@ fetch("/users?token="+token).then((response)=>{
                                     const {admin, logdates, Antworten, Gesamtpunktzahl} = users[group][index];
                                     let utext = `admin: ${admin}\r\n`;
                                     let logtime = 0;
-                                    logdates.forEach((dates)=>{
-                                        if(dates.length>1){
-                                            const t =Date.parse(dates[1])-Date.parse(dates[0]);;
-                                            logtime+=isNaN(t)?0:(t/60000);
-                                        }
-                                    })
+                                    if (logdates){
+                                        logdates.forEach((dates)=>{
+                                            if(dates.length>1){
+                                                const t =Date.parse(dates[1])-Date.parse(dates[0]);;
+                                                logtime+=isNaN(t)?0:(t/60000);
+                                            }
+                                        })
+                                    }
                                     utext+=`gesamte Anmeldezeit: ${logtime.toFixed(2)}m\r\n`;
                                     const exclude = [];
                                     const responses = [];
