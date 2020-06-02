@@ -203,8 +203,12 @@ const questionElement = (exclude)=>new Promise((res, rej)=>{
                         })
                     break;
                 }
+                let Versuche = 0;
+                Object.keys(squestion).filter((key)=>key!=="textmark"&&key!=="page"&&key!=="qid").forEach((key)=>{
+                    Versuche+=question[key].length;
+                })
                 res(`<div>
-                    <label>Versuche: ${Object.keys(squestion).length-3}</label>
+                    <label>Versuche: ${Versuche}</label>
                     ${Object.keys(squestion).filter((key)=>key!=="textmark"&&key!=="page"&&key!=="qid").map((key)=>`<div><label>${key}</label>${squestion[key].map((date)=>answered(date, answermap, exclude.includes(squestion.qid))).join("\r\n")}</div>`).join("\r\r\n")}
                 </div>`)
             })
