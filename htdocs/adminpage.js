@@ -130,11 +130,7 @@ const user = function({rounds, logdates, admin, xp}){
                             const {title, answers, page} = Fragen[key];
                             const selectedAnswers = []
                             selected.forEach((index)=>{
-                                if(answers[index]){
-                                    selectedAnswers.push(answers[index].text);
-                                }else if (answers.length==0){
-                                    selectedAnswers.push(index);
-                                }
+                                selectedAnswers.push(index);
                             })
                             if(responses[title]){
                                 if(responses[title][date]){
