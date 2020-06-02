@@ -208,7 +208,7 @@ const questionElement = (exclude)=>new Promise((res, rej)=>{
                 }
                 let Versuche = 0;
                 Object.keys(squestion).filter((key)=>key!=="textmark"&&key!=="page"&&key!=="qid").forEach((key)=>{
-                    Versuche+=question[key].length;
+                    Versuche+=squestion[key].length;
                 })
                 res(`<div>
                     <label>Versuche: ${Versuche}</label>
