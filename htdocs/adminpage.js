@@ -3,6 +3,9 @@ let contentpage = document.getElementById("content")
 const groups = ["Control", "Leaderboard", "Badges", "Points"];
 const users = {};
 const questions = {};
+let selecteduser = undefined;
+let selectedAnswers = undefined;
+let selectedQuestion = undefined;
 fetch("/users?token="+token).then((response)=>{
     if(response.status<400){
         response.json().then((json)=>{
@@ -15,14 +18,15 @@ fetch("/users?token="+token).then((response)=>{
                     users[groups[data.group]]=item;
                 }
             })
-            const rawdata = document.getElementById("rawdata");
-            rawdata.href = URL.createObjectURL(new Blob([JSON.stringify(json)]));
-            rawdata.setAttribute("style", "")
             fetch("/questions").then((response)=>{
                 if(response.status<400){
                     response.json().then((json)=>{
+                        const exclude = [];
                         json.forEach((data)=>{
                             data.tags.forEach((tag)=>{
+                                if(tag==="rquestions"||tag==="stat"){
+                                    exclude.push(data.qid);
+                                }
                                 if(questions[tag]){
                                     questions[tag][data.qid]=new question(data);
                                 }else{
@@ -31,59 +35,71 @@ fetch("/users?token="+token).then((response)=>{
                                     questions[tag]=item;
                                 }
                             })
-                            const parts = [];
-                            Object.keys(users).forEach((group, i)=>{
-                                let percent = i*100/Object.keys(users).length;
-                                let text = group.toUpperCase()+"\r\r\r\n";
-                                Object.keys(users[group]).forEach((index, i)=>{
-                                    percent+=100/(Object.keys(users[group]).length*Object.keys(users).length);
-                                    document.getElementById("percent").innerHTML=percent.toFixed(1)+"% geladen";
-                                    const {admin, logdates, Antworten, Gesamtpunktzahl} = users[group][index];
-                                    let utext = `admin: ${admin}\r\n`;
-                                    let logtime = 0;
-                                    if (logdates){
-                                        logdates.forEach((dates)=>{
-                                            if(dates.length>1){
-                                                const t =Date.parse(dates[1])-Date.parse(dates[0]);;
-                                                logtime+=isNaN(t)?0:(t/60000);
-                                            }
-                                        })
-                                    }
-                                    utext+=`gesamte Anmeldezeit: ${logtime.toFixed(2)}m\r\n`;
-                                    const exclude = [];
-                                    const responses = [];
-                                    Object.keys(questions).forEach((tag)=>{
-                                        responses.push({tag, antworten: Antworten(questions[tag])})
-                                        if(tag==="stat"||tag==="rquestions"){
-                                            exclude.push(...Object.keys(questions[tag]));
-                                        }
-                                    })
-                                    const GP = Gesamtpunktzahl(exclude);
-                                    utext+=`richtig/gesamt beantwortet: ${GP[0]}/${GP[1]}\r\n`;
-                                    responses.forEach(({tag, antworten})=>{
-                                        let rtext=tag.toUpperCase()+"\r\n";
-                                        Object.keys(antworten).forEach((antwort)=>{
-                                           let atext = antwort+"\r\n";
-                                           Object.keys(antworten[antwort]).forEach((date)=>{
-                                                   const {right, timeSpan, selectedAnswers} = antworten[antwort][date]
-                                                   let dtext = `${date}: ${right?"richtig":"falsch"} Antwortzeit:${(timeSpan/1000).toFixed(1)}s\r\nGegeben:`;
-                                                   selectedAnswers.forEach((selected)=>{
-                                                     dtext+=`\r\n${selected}`
-                                                }) 
-                                                   atext+=dtext+"\r\n";
-                                               })
-                                               rtext+=atext+"\r\n";
-                                        })
-                                        utext+=rtext+"\r\n";
-                                    })
-                                    text+=utext+"\r\r\n";
+                        })
+                        contentpage.innerHTML=`
+                        <select id="Gruppe">
+                            <option>Gruppe wählen</option>
+                        </select>
+                        <select id="Spieler">
+                        </select>
+                        <select id="Fragenkategorie" style="display: none">
+                            <option>Fragenkategorie auswählen</option>
+                            ${Object.keys(questions).map((key)=>"<option>"+key+"</option>").join("\r\n")}
+                        </select>
+                        <select style="display:none;" id="Fragenkatalog"></select>
+                        <div id="SpielerInfo"></div>
+                        <div id="Frage"></div>`
+                        const GruppeAuswahl = document.getElementById("Gruppe");
+                        const SpielerAuswahl = document.getElementById("Spieler");
+                        const Fragenkatalog = document.getElementById("Fragenkatalog");
+                        const FragenKategorie = document.getElementById("Fragenkategorie");
+                        const Frage = document.getElementById("Frage")
+                        GruppeAuswahl.innerHTML+=Object.keys(users).map((key)=>`<option>${key}</option>`).join("\r\n");
+                        GruppeAuswahl.addEventListener("change", (ev)=>{
+                            if(ev.target.value==="Gruppe wählen"){
+                                SpielerAuswahl.innerHTML="";
+                            }else{
+                                console.log(users[ev.target.value])
+                                SpielerAuswahl.innerHTML=`<option>Spieler wählen</option>\r\n${Object.keys(users[ev.target.value]).map((uid)=>"<option>"+uid+"</option>").join("\r\n")}`
+                            }
+                        })
+                        SpielerAuswahl.addEventListener("change", (ev)=>{
+                            if(ev.target.value===""||ev.target.value==="Spieler wählen"){
+                                selecteduser=undefined;
+                                FragenKategorie.setAttribute("style", "display: none")
+                                Frage.setAttribute("style", "display: none");
+                            }else{
+                                selecteduser=users[GruppeAuswahl.value][ev.target.value];
+                                document.getElementById("SpielerInfo").innerHTML=SpielerInfo(exclude);
+                                FragenKategorie.setAttribute("style", "")
+                                Frage.setAttribute("style", "");
+                            }
+                        })
+                        FragenKategorie.addEventListener("change", (ev)=>{
+                            Fragenkatalog.innerHTML="<option>Frage auswählen</option>"
+                            if(ev.target.value==="Fragenkategorie auswählen"){
+                                Fragenkatalog.setAttribute("style", "display: none");
+                            }else{
+                                Fragenkatalog.setAttribute("style", "")
+                                selectedAnswers = selecteduser.Antworten(questions[ev.target.value])
+                                Object.keys(selectedAnswers).forEach((question)=>{
+                                    const option = document.createElement("option");
+                                    option.innerHTML=question;
+                                    Fragenkatalog.appendChild(option);
                                 })
-                                parts.push(text);
-                            })
-                            const dl = document.getElementById("downloadData")
-                            dl.href=URL.createObjectURL(new Blob(parts));
-                            dl.download=new Date().toDateString()+".txt";
-                            dl.setAttribute("style", "");
+                                Fragenkatalog.addEventListener("change", (ev)=>{
+                                    if(ev.target.value==="Frage auswählen"){
+                                        selectedQuestion=undefined
+                                    }else{
+                                        selectedQuestion=ev.target.value
+                                    }
+                                    questionElement(exclude).then((jsx)=>{
+                                        Frage.innerHTML=jsx;
+                                    }, (err)=>{
+                                        Frage.innerHTML=err;
+                                    })
+                                })
+                            }
                         })
                     }, ()=>{
                         contentpage.innerHTML+="\r\ncan't parse response";
@@ -111,18 +127,24 @@ const user = function({rounds, logdates, admin, xp}){
                 this.xp.forEach(({date, xp})=>{
                     xp.forEach(({qid, right, selected, timeSpan})=>{
                         if(parseInt(key)==qid){
-                            const {title, answers} = Fragen[key];
+                            const {title, answers, page} = Fragen[key];
                             const selectedAnswers = []
                             selected.forEach((index)=>{
                                 if(answers[index]){
                                     selectedAnswers.push(answers[index].text);
+                                }else if (answers.length==0){
+                                    selectedAnswers.push(index);
                                 }
                             })
                             if(responses[title]){
-                                responses[title][date]={selectedAnswers, right, timeSpan}
+                                if(responses[title][date]){
+                                    responses[title][date].push({selectedAnswers, right, timeSpan})
+                                }else{
+                                    responses[title][date]=[{selectedAnswers, right, timeSpan}]
+                                }
                             }else{
-                                const item = {};
-                                item[date] = {selectedAnswers, right, timeSpan};
+                                const item = {qid, textmark: Object.keys(Fragen).indexOf(`${qid}`), page:page||"52"};
+                                item[date] = [{selectedAnswers, right, timeSpan}];
                                 responses[title]=item;
                             }
                         }
@@ -150,7 +172,56 @@ const user = function({rounds, logdates, admin, xp}){
         return total;
     }
 }
-const question = function({title, answers}){
+const question = function({title, answers, page}){
     this.title=title;
     this.answers=answers;
+    this.page=page
+}
+const SpielerInfo = (exclude)=>{
+
+    return (`
+    <label>Admin: ${selecteduser.admin}</label>
+    <label>Gesamtpunktzahl: ${selecteduser.Gesamtpunktzahl(exclude).join("/")}</label>`)
+}
+const questionElement = (exclude)=>new Promise((res, rej)=>{
+    const tag = document.getElementById("Fragenkategorie").value;
+    const squestion = selectedAnswers[selectedQuestion]
+    fetch(`/text?id=${tag}${tag==="rquestions"?1:selectedAnswers[selectedQuestion].textmark}`).then((response)=>{
+        if(response.status<400){
+            response.json().then((json)=>{
+                const answermap = [];
+                switch(squestion.page){
+                    case "44":
+                        json.content.filter(({id})=>id.includes("acc")&&!id.includes("label")).forEach((item)=>{
+                            answermap.push(`<img src="${item.content}" height="100" width="100" style="margin: 3px;"/>`)
+                        })
+                    break;
+                    case "54": 
+                        for (let i = 0; i < 7; i++){
+                            answermap.push(`<label>${i+1}</label>`);
+                        }
+                    break;
+                    default: 
+                        json.content.filter(({id})=>id.includes("sel")).forEach((item)=>{
+                            answermap.push(...item.content.split("</option>").map((answer)=>answer.replace("<option>", "")).filter((answer)=>answer.length>0).map((answer)=>`<label ${item.style.includes("display: none")||item.style.includes("display:none")?'style="display: none;"':""}>${answer}</label>`))
+                        })
+                    break;
+                }
+                res(`<div>
+                    <label>Versuche: ${Object.keys(squestion).length-1}</label>
+                    ${Object.keys(squestion).filter((key)=>key!=="textmark"&&key!=="page"&&key!=="qid").map((key)=>`<div><label>${key}</label>${squestion[key].map((date)=>answered(date, answermap, exclude.includes(squestion.qid))).join("\r\n")}</div>`).join("\r\r\n")}
+                </div>`)
+            })
+        }else{
+            rej(response.status)
+        }
+    }, rej)
+    
+})
+const answered = (date, answermap, exclude)=>{
+    console.log(date, answermap, exclude);
+    return `<div style="display: flex; flex-direction: column;">${!exclude?"<label>"+(date.right?"richtig":"falsch")+" beantwortet</label>":""}
+        <label>Dauer: ${(date.timeSpan/1000).toFixed(1)}</label>
+        ${date.selectedAnswers.map((answer)=>answermap[answer]).join("\r\n")}
+    </div>`
 }
