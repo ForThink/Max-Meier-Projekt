@@ -10,13 +10,16 @@ fetch("/users?token="+token).then((response)=>{
     if(response.status<400){
         response.json().then((json)=>{
             json.forEach((data)=>{
-                if(users[groups[data.group]]){
-                    users[groups[data.group]][data.uid]=new user(data);
-                }else{
-                    const item = {};
-                    item[data.uid]=new user(data);
-                    users[groups[data.group]]=item;
+                if(data.xp){
+                    if(users[groups[data.group]]){
+                        users[groups[data.group]][data.uid]=new user(data);
+                    }else{
+                        const item = {};
+                        item[data.uid]=new user(data);
+                        users[groups[data.group]]=item;
+                    }
                 }
+                
             })
             fetch("/questions").then((response)=>{
                 if(response.status<400){
