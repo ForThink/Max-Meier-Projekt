@@ -62,7 +62,6 @@ fetch("/users?token="+token).then((response)=>{
                             if(ev.target.value==="Gruppe wählen"){
                                 SpielerAuswahl.innerHTML="";
                             }else{
-                                console.log(users[ev.target.value])
                                 SpielerAuswahl.innerHTML=`<option>Spieler wählen</option>\r\n${Object.keys(users[ev.target.value]).map((uid)=>"<option>"+uid+"</option>").join("\r\n")}`
                             }
                         })
@@ -177,9 +176,15 @@ const question = function({title, answers, page}){
     this.page=page
 }
 const SpielerInfo = (exclude)=>{
-
+    let totaltLogTime = 0;
+    selecteduser.logdates.forEach(([begin, end])=>{
+        if(end){
+            totaltLogTime+=Date.parse(end)-Date.parse(begin);
+        }
+    })
     return (`
     <label>Admin: ${selecteduser.admin}</label>
+    <label>Gesamtzeit im Spiel: ${Math.round(totaltLogTime/60000)}m ${((totaltLogTime/60000)%1*60).toFixed(1)}s </label>
     <label>Gesamtpunktzahl: ${selecteduser.Gesamtpunktzahl(exclude).join("/")}</label>`)
 }
 const questionElement = (exclude)=>new Promise((res, rej)=>{
@@ -222,7 +227,6 @@ const questionElement = (exclude)=>new Promise((res, rej)=>{
     
 })
 const answered = (date, answermap, exclude)=>{
-    console.log(date, answermap, exclude);
     return `<div style="display: flex; flex-direction: column;">${!exclude?"<label>"+(date.right?"richtig":"falsch")+" beantwortet</label>":""}
         <label>Dauer: ${(date.timeSpan/1000).toFixed(1)}</label>
         ${date.selectedAnswers.map((answer)=>answermap[answer]).join("\r\n")}

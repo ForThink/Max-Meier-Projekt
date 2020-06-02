@@ -80,7 +80,6 @@ const checkedChangeListeners = (l)=>{
     }
 }
 const question = (JSON.parse(localStorage.getItem(params.main+params.modulename))||[])[params.progress]||{title:params.main+"_"+params.modulename+"_"+params.progress, answers:[], tags:[params.main+params.modulename], page:window.location.pathname.replace(".html", "").replace("/", "")};
-console.log(question);
 const spliceAnswers = (selnum, answers, prevlen)=>{
     let startind = 0;
     if(selnum>1){
@@ -430,7 +429,6 @@ const getData = (id)=>new Promise((res, rej)=>{
                     const item = document.getElementById(id);
                     if(item){
                         item[attr]=content;
-                        console.log(item.className)
                         if(style&&(admin||(!item.id.includes("admin")&&!item.id!="allezeigen")&&item.id!="a1"&&item.id!="a2"&&item.id!="a3"&&item.className!="dot1")){
                             item.setAttribute("style", style);
                         }

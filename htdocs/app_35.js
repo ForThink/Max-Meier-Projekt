@@ -42,8 +42,6 @@ let inteligente = 0;
 let estudioso = 0;
 const checked = [];
 const estudiosointeligente = (modulename)=>{
-    console.log(estudioso, inteligente)
-    console.log(modulename);
     const mod1m1= JSON.parse(localStorage.getItem(modulename))||[];
     let intelligent = 0;
     let studious = 0;
