@@ -84,6 +84,7 @@ fetch("/users?token="+token).then((response)=>{
                             }else{
                                 Fragenkatalog.setAttribute("style", "")
                                 selectedAnswers = selecteduser.Antworten(questions[ev.target.value])
+                                console.log(selectedAnswers)
                                 Object.keys(selectedAnswers).forEach((question)=>{
                                     const option = document.createElement("option");
                                     option.innerHTML=question;
