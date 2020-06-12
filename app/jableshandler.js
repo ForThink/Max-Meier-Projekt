@@ -1,8 +1,11 @@
 const jables = require("jables-multiproc");
+const fs = require("fs");
+const tar = require("tar-fs");
 //replace exampledomain with whatever you please, but for readability's sake, it should be the main domain you are backending for
 const secdatpath = process.argv[3]||"./.secdat";
 const location = "./udb/";
 const {sign, verify, setup} = require("verlikify");
+const { stdout } = require("process");
 setup("./.RSA");
 jables.setup({location, secDatFileLoc:secdatpath}).then(()=>{
     getUsers().then((users)=>{
@@ -344,7 +347,81 @@ const getTextList = ({tag})=>new Promise((res, rej)=>{
         res(JSON.parse(Obj).Versions.filter((item)=>tag==undefined||item.tag==tag).map(({id, lastChange, changedBy})=>({id, lastChange, changedBy})))
     }, rej)
 })
-
+const createCSV = (uid, res)=>{
+    getUser({uid}).then((user)=>{
+        const csvobj = {email: user.email, uid, group: user.group}
+        const tags = {}
+        getQuestions().then((questions)=>{
+            questions.forEach((question)=>{
+                if(tags[question.tags[0]]){
+                    tags[question.tags[0]].push(question.qid)
+                }else{
+                    tags[question.tags[0]]=[question.qid];
+                }
+                user.xp.forEach(({xp})=>{
+                    xp.filter(({qid})=>qid===question.qid).forEach(({right, timeSpan, selected})=>{
+                        if(csvobj[question.qid]){
+                            csvobj[question.qid].push({right, timeSpan, selected})
+                        }else{
+                            csvobj[question.qid]=[{right, timeSpan, selected}]
+                        }
+                    })
+                })
+            })
+            const template = ["email", "uid", "group"];
+        Object.keys(tags).forEach((tag)=>{
+            tags[tag].forEach((qid)=>{
+                template.push(`timeSpan::${qid}`);
+                if(tag!=="rquestions"&&tag!=="stat"){
+                    template.push(`right::${qid}`)
+                }else{
+                    template.push(`selected::${qid}`)
+                }
+            })
+        })
+        const round1 = [];
+        const round2 = [];
+        const round3 = [];
+        template.forEach((item)=>{
+            if(isNaN(parseInt(item.split("::")[1]))){
+                round1.push(csvobj[item])
+                round2.push("");
+                round3.push("");
+            }else{
+                const question = csvobj[parseInt(item.split("::")[1])]
+                if(question!=undefined){
+                    const key2 = item.split("::")[0].trim();
+                    round1.push(question[0][key2]);
+                    round2.push(question[1]&&question[1][key2]?question[1][key2]:"")
+                    round3.push(question[2]&&question[2][key2]?question[2][key2]:"")
+                }else{
+                    round1.push("");
+                    round2.push("");
+                    round3.push("");
+                }
+            }
+        })
+        if(!fs.existsSync(__dirname+"/csv")){
+            fs.mkdirSync(__dirname+"/csv");
+        }
+        fs.writeFileSync(__dirname+"/csv/template"+uid+".csv", template.map((item)=>item.replace("::", "")).join(","));
+        fs.writeFileSync(__dirname+"/csv/round1"+uid+".csv", round1.join(","));
+        fs.writeFileSync(__dirname+"/csv/round2"+uid+".csv", round2.join(","));
+        fs.writeFileSync(__dirname+"/csv/round3"+uid+".csv", round3.join(","));
+        res.status(200);
+        fs.rmdirSync(__dirname+"/csv", {recursive:true})
+        const ball = tar.pack(__dirname+"/csv").pipe(res);
+        ball.on("finish", ()=>{
+            res.end();
+        })
+        
+        }, ({error, message})=>{
+            res.status(error).json(message)
+        })
+    }, ({error, message})=>{
+        res.status(error).json(message)
+    })
+}
 module.exports = {
     searchArray,
     newUser,
@@ -367,5 +444,6 @@ module.exports = {
     setActiveOrder,
     getActiveOrder,
     getTextList,
-    patchQuestion
+    patchQuestion,
+    createCSV
 }

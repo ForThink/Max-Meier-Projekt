@@ -17,6 +17,7 @@
     "json-web-token": "^3.2.0",
     "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.4.5",
+    "tar-fs": "^2.1.0",
     "verlikify": "git+https://github.com/nickveliki/Verlikify.git"
   }
 }

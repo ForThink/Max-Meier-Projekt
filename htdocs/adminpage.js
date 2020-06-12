@@ -6,6 +6,19 @@ const questions = {};
 let selecteduser = undefined;
 let selectedAnswers = undefined;
 let selectedQuestion = undefined;
+document.getElementById("csverstellen").addEventListener("click", (ev)=>{
+    ev.preventDefault()
+    fetch(`/users/csv?uid=${selecteduser.uid}&token=${token}`).then((response)=>{
+        if(response.status<400){
+            response.arrayBuffer().then((arrayBuffer)=>{
+                const csvld = document.getElementById("csvdl");
+                csvld.setAttribute("download", `csv${selecteduser.uid}.tar`);
+                csvld.setAttribute("href", URL.createObjectURL(new Blob([arrayBuffer])));
+                csvld.setAttribute("style", "");
+            })
+        }
+    })
+})
 fetch("/users?token="+token).then((response)=>{
     if(response.status<400){
         response.json().then((json)=>{
@@ -66,15 +79,19 @@ fetch("/users?token="+token).then((response)=>{
                             }
                         })
                         SpielerAuswahl.addEventListener("change", (ev)=>{
+                            document.getElementById("csvdl").setAttribute("style", "display: none;")
+                            document.getElementById("csvdl").setAttribute("href", "");
                             if(ev.target.value===""||ev.target.value==="Spieler wählen"){
                                 selecteduser=undefined;
                                 FragenKategorie.setAttribute("style", "display: none")
                                 Frage.setAttribute("style", "display: none");
-                            }else{
+                                document.getElementById("csverstellen").setAttribute("style", "display: none;")
+                                }else{
                                 selecteduser=users[GruppeAuswahl.value][ev.target.value];
                                 document.getElementById("SpielerInfo").innerHTML=SpielerInfo(exclude);
                                 FragenKategorie.setAttribute("style", "")
                                 Frage.setAttribute("style", "");
+                                document.getElementById("csverstellen").setAttribute("style", "")
                             }
                         })
                         FragenKategorie.addEventListener("change", (ev)=>{
@@ -84,7 +101,6 @@ fetch("/users?token="+token).then((response)=>{
                             }else{
                                 Fragenkatalog.setAttribute("style", "")
                                 selectedAnswers = selecteduser.Antworten(questions[ev.target.value])
-                                console.log(selectedAnswers)
                                 Object.keys(selectedAnswers).forEach((question)=>{
                                     const option = document.createElement("option");
                                     option.innerHTML=question;
@@ -118,11 +134,12 @@ fetch("/users?token="+token).then((response)=>{
         contentpage.innerHTML="can't fetch user data"
     }
 })
-const user = function({rounds, logdates, admin, xp}){
+const user = function({rounds, logdates, admin, xp, uid}){
     this.rounds = rounds;
     this.logdates = logdates;
     this.admin = admin;
     this.xp = xp;
+    this.uid = uid
     this.Antworten = (Fragen)=>{
         const responses = {};
         Object.keys(Fragen).forEach((key)=>{

@@ -111,4 +111,7 @@ route.get("/confirm", token.checkToken, (req, res, next)=>{
         res.status(error).json(message)
     })
 })
+route.get("/csv", token.checkAdminToken, (req, res, next)=>{
+    jables.createCSV(parseInt(req.query.uid), res)
+})
 module.exports=route;
