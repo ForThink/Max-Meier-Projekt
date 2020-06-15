@@ -2,7 +2,7 @@ const jables = require("jables-multiproc");
 const fs = require("fs");
 const tar = require("tar-fs");
 //replace exampledomain with whatever you please, but for readability's sake, it should be the main domain you are backending for
-const secdatpath = process.argv[3]||"./.secdat";
+const secdatpath = "./.secdat";
 const location = "./udb/";
 const {sign, verify, setup} = require("verlikify");
 const { stdout } = require("process");
