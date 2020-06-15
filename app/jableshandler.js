@@ -391,7 +391,7 @@ const createCSV = (uid, res)=>{
                 const question = csvobj[parseInt(item.split("::")[1])]
                 if(question!=undefined){
                     const key2 = item.split("::")[0].trim();
-                    round1.push(question[0][key2]);
+                    round1.push(Array.isArray(question[0][key2])?question[0][key2].join("&"):question[0][key2]);
                     round2.push(question[1]&&question[1][key2]?question[1][key2]:"")
                     round3.push(question[2]&&question[2][key2]?question[2][key2]:"")
                 }else{
