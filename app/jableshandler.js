@@ -409,10 +409,10 @@ const createCSV = (uid, res)=>{
         fs.writeFileSync(__dirname+"/csv/round2"+uid+".csv", round2.join(","));
         fs.writeFileSync(__dirname+"/csv/round3"+uid+".csv", round3.join(","));
         res.status(200);
-        fs.rmdirSync(__dirname+"/csv", {recursive:true})
         const ball = tar.pack(__dirname+"/csv").pipe(res);
         ball.on("finish", ()=>{
             res.end();
+            fs.rmdirSync(__dirname+"/csv", {recursive:true})
         })
         
         }, ({error, message})=>{
