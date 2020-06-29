@@ -5,7 +5,6 @@ const tar = require("tar-fs");
 const secdatpath = "./.secdat";
 const location = "./udb/";
 const {sign, verify, setup} = require("verlikify");
-const { stdout } = require("process");
 setup("./.RSA");
 jables.setup({location, secDatFileLoc:secdatpath}).then(()=>{
     getUsers().then((users)=>{
@@ -379,6 +378,7 @@ const createCSV = (uid, res)=>{
                 }
             })
         })
+        console.log(csvobj, user);
         const round1 = [];
         const round2 = [];
         const round3 = [];
