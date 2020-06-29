@@ -448,7 +448,7 @@ const createCSVs = (uids, res)=>{
             })
             })
             fs.writeFileSync(__dirname+"/csv/template.csv", template.map((item)=>item.replace("::", "")).join(","));
-            users.filter(({uid})=>uids==undefined||uids.split(",").map(parseInt).includes(uid)).forEach((user)=>{
+            users.filter(({uid, xp})=>xp!=undefined&&(uids==undefined||uids.split(",").map(parseInt).includes(uid))).forEach((user)=>{
                 const csvobj = {email: user.email, uid:user.uid, group: user.group}
                 user.xp.forEach(({xp})=>{
                     xp.forEach(({qid, right, timeSpan, selected})=>{
