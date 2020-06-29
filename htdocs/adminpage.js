@@ -38,7 +38,7 @@ fetch("/users?token="+token).then((response)=>{
             allcsv.setAttribute("style", "");
             allcsv.addEventListener("click", (ev)=>{
                 ev.preventDefault();
-                fetch("/users/csv?uid="+json.filter(({xp})=>xp?true:false).map(({uid})=>uid).join(",")+"&token="+token).then((response)=>{
+                fetch("/users/csv?token="+token).then((response)=>{
                     if(response.status<400){
                         response.arrayBuffer().then((arrayBuffer)=>{
                             const csvld = document.getElementById("csvdl");
