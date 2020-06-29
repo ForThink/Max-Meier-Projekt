@@ -481,9 +481,9 @@ const createCSVs = (uids, res)=>{
                 }
             }
         })
-        fs.writeFileSync(__dirname+"/csv/round1"+uid+".csv", round1.join(","));
-        fs.writeFileSync(__dirname+"/csv/round2"+uid+".csv", round2.join(","));
-        fs.writeFileSync(__dirname+"/csv/round3"+uid+".csv", round3.join(","));
+        fs.writeFileSync(__dirname+"/csv/round1"+user.uid+".csv", round1.join(","));
+        fs.writeFileSync(__dirname+"/csv/round2"+user.uid+".csv", round2.join(","));
+        fs.writeFileSync(__dirname+"/csv/round3"+user.uid+".csv", round3.join(","));
             })
             res.status(200);
         const ball = tar.pack(__dirname+"/csv").pipe(res);
