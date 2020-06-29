@@ -449,7 +449,6 @@ const createCSVs = (uids, res)=>{
             })
             fs.writeFileSync(__dirname+"/csv/template.csv", template.map((item)=>item.replace("::", "")).join(","));
             users.filter(({uid, xp})=>xp!=undefined&&(uids==undefined||uids.split(",").map(parseInt).includes(uid))).forEach((user)=>{
-                console.log(uids, user.uid)
                 const csvobj = {email: user.email, uid:user.uid, group: user.group}
                 user.xp.forEach(({xp})=>{
                     xp.forEach(({qid, right, timeSpan, selected})=>{
