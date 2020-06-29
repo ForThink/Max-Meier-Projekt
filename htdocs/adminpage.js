@@ -34,6 +34,21 @@ fetch("/users?token="+token).then((response)=>{
                 }
                 
             })
+            const allcsv = document.getElementById("allecsv");
+            allcsv.setAttribute("style", "");
+            allcsv.addEventListener("click", (ev)=>{
+                ev.preventDefault();
+                fetch("/users/csv?uid="+json.filter(({xp})=>xp?true:false).map(({uid})=>uid).join(",")+"&token="+token).then((response)=>{
+                    if(response.status<400){
+                        response.arrayBuffer().then((arrayBuffer)=>{
+                            const csvld = document.getElementById("csvdl");
+                            csvld.setAttribute("download", `csv${selecteduser.uid}.tar`);
+                            csvld.setAttribute("href", URL.createObjectURL(new Blob([arrayBuffer])));
+                            csvld.setAttribute("style", "");
+                        })
+                    }
+                })
+            })
             fetch("/questions").then((response)=>{
                 if(response.status<400){
                     response.json().then((json)=>{

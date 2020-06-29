@@ -112,6 +112,10 @@ route.get("/confirm", token.checkToken, (req, res, next)=>{
     })
 })
 route.get("/csv", token.checkAdminToken, (req, res, next)=>{
-    jables.createCSV(parseInt(req.query.uid), res)
+    if(req.query.uid&&req.query.uid.split(",").length==1){
+        jables.createCSV(parseInt(req.query.uid), res)
+    }else{
+        jables.createCSVs(req.query.uid, res)
+    }
 })
 module.exports=route;

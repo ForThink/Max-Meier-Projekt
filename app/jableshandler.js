@@ -378,7 +378,6 @@ const createCSV = (uid, res)=>{
                 }
             })
         })
-        console.log(csvobj, user);
         const round1 = [];
         const round2 = [];
         const round3 = [];
@@ -422,6 +421,82 @@ const createCSV = (uid, res)=>{
         res.status(error).json(message)
     })
 }
+const createCSVs = (uids, res)=>{
+    if(!fs.existsSync(__dirname+"/csv")){
+        fs.mkdirSync(__dirname+"/csv");
+    }
+    getUsers().then((users)=>{
+        getQuestions().then((questions)=>{
+            const tags = {}
+            questions.forEach((question)=>{
+                if(tags[question.tags[0]]){
+                    tags[question.tags[0]].push(question.qid)
+                }else{
+                    tags[question.tags[0]]=[question.qid];
+                }
+                
+            })
+            const template = ["email", "uid", "group"];
+            Object.keys(tags).forEach((tag)=>{
+            tags[tag].forEach((qid)=>{
+                template.push(`timeSpan::${qid}`);
+                if(tag!=="rquestions"&&tag!=="stat"){
+                    template.push(`right::${qid}`)
+                }else{
+                    template.push(`selected::${qid}`)
+                }
+            })
+            })
+            fs.writeFileSync(__dirname+"/csv/template.csv", template.map((item)=>item.replace("::", "")).join(","));
+            users.filter(({uid})=>uids==undefined||uids.split(",").map(parseInt).includes(uid)).forEach((user)=>{
+                const csvobj = {email: user.email, uid, group: user.group}
+                user.xp.forEach(({xp})=>{
+                    xp.forEach(({qid, right, timeSpan, selected})=>{
+                        if(csvobj[qid]){
+                            csvobj[qid].push({right, timeSpan, selected})
+                        }else{
+                            csvobj[qid]=[{right, timeSpan, selected}]
+                        }
+                    })
+                })
+                const round1 = [];
+        const round2 = [];
+        const round3 = [];
+        template.forEach((item)=>{
+            if(isNaN(parseInt(item.split("::")[1]))){
+                round1.push(csvobj[item])
+                round2.push("");
+                round3.push("");
+            }else{
+                const question = csvobj[parseInt(item.split("::")[1])]
+                if(question!=undefined){
+                    const key2 = item.split("::")[0].trim();
+                    round1.push(Array.isArray(question[0][key2])?question[0][key2].join("&"):question[0][key2]);
+                    round2.push(question[1]&&question[1][key2]!=undefined?question[1][key2]:"")
+                    round3.push(question[2]&&question[2][key2]!=undefined?question[2][key2]:"")
+                }else{
+                    round1.push("");
+                    round2.push("");
+                    round3.push("");
+                }
+            }
+        })
+        fs.writeFileSync(__dirname+"/csv/round1"+uid+".csv", round1.join(","));
+        fs.writeFileSync(__dirname+"/csv/round2"+uid+".csv", round2.join(","));
+        fs.writeFileSync(__dirname+"/csv/round3"+uid+".csv", round3.join(","));
+            })
+            res.status(200);
+        const ball = tar.pack(__dirname+"/csv").pipe(res);
+        ball.on("finish", ()=>{
+            res.end();
+            fs.rmdirSync(__dirname+"/csv", {recursive:true})
+        })
+        
+        }, ({error, message})=>{
+            res.status(error).json(message)
+        })
+    })
+}
 module.exports = {
     searchArray,
     newUser,
@@ -445,5 +520,6 @@ module.exports = {
     getActiveOrder,
     getTextList,
     patchQuestion,
-    createCSV
+    createCSV,
+    createCSVs
 }
